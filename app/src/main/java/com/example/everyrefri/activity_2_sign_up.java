@@ -9,13 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-public class activity_2_sign_in extends AppCompatActivity {
+public class activity_2_sign_up extends AppCompatActivity {
 
     // 액티비티 요소들 선언
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_2_sign_in);
+        setContentView(R.layout.activity_2_sign_up);
 
         // 액티비티 요소들 할당
         Button bt_next = findViewById(R.id.bt_next);
@@ -29,7 +29,7 @@ public class activity_2_sign_in extends AppCompatActivity {
         bt_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_2_sign_in.class);
+                Intent intent = new Intent(getApplicationContext(), activity_3_sign_in.class);
                 startActivityForResult(intent,2);
             }
         });

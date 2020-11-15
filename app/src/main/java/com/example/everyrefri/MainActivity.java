@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_2_sign_in.class);
+                Intent intent = new Intent(getApplicationContext(), activity_2_sign_up.class);
                 startActivityForResult(intent,2);
             }
         });
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         bt_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_3_sign_up.class);
+                Intent intent = new Intent(getApplicationContext(), activity_3_sign_in.class);
                 startActivityForResult(intent,3);
             }
         });

@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EveryRefri">
-        <activity android:name=".activity_3_sign_up"></activity>
-        <activity android:name=".activity_2_sign_in" />
+        <activity android:name=".activity_3_sign_in"></activity>
+        <activity android:name=".activity_2_sign_up" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
