@@ -3,14 +3,12 @@ package com.example.everyrefri;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 
-public class activity_3_sign_in extends AppCompatActivity {
+public class activity_6_board extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_3_sign_in);
+        setContentView(R.layout.activity_6_board);
     }
-
 }

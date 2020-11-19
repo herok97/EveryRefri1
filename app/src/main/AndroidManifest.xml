@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EveryRefri">
-        <activity android:name=".activity_3_sign_in"></activity>
+        <activity android:name=".activity_7_myprofile"></activity>
+        <activity android:name=".activity_6_board" />
+        <activity android:name=".activity_5_chat_list" />
+        <activity android:name=".activity_4_main" />
+        <activity android:name=".activity_3_sign_in" />
         <activity android:name=".activity_2_sign_up" />
         <activity android:name=".MainActivity">
             <intent-filter>
