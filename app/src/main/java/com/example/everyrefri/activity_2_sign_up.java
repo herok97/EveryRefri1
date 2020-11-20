@@ -120,7 +120,7 @@ public class activity_2_sign_up extends AppCompatActivity {
                  String name = id;
 
                  //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
-                 HashMap<Object, String> hashMap = new HashMap<>();
+                 HashMap<String, Object> userInfo = new HashMap<>();
                  // 현재시간을 msec 으로 구한다.
                  long now = System.currentTimeMillis();
                  // 현재시간을 date 변수에 저장한다.
@@ -130,15 +130,19 @@ public class activity_2_sign_up extends AppCompatActivity {
                  // nowDate 변수에 값을 저장한다.
                  String formatDate = sdfNow.format(date);
 
-                 hashMap.put("email", email);
-                 hashMap.put("id", id);
-                 hashMap.put("pass", pass);
-                 hashMap.put("start", formatDate);
+                 userInfo.put("email", email);
+                 userInfo.put("id", id);
+                 userInfo.put("pass", pass);
+                 userInfo.put("start", formatDate);
+
+                 userInfo.put("following", 0);
+                 userInfo.put("follower", 0);
+                 userInfo.put("grade", 0);
 
 
                  FirebaseDatabase database = FirebaseDatabase.getInstance();
                  DatabaseReference reference = database.getReference("Users");
-                 reference.child(id).setValue(hashMap);
+                 reference.child(id).setValue(userInfo);
 
 
                  //가입이 이루어져을시 가입 화면을 빠져나감.
