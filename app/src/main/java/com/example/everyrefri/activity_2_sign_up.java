@@ -29,33 +29,40 @@ public class activity_2_sign_up extends AppCompatActivity {
 
     // 액티비티 요소들 선언
     private FirebaseAuth fireAuth;
+    private EditText et_id, et_email, et_pass, et_passconfirm;
+    private Button bt_next;
+    private ImageButton ibt_back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2_sign_up);
 
-        Button bt_next = findViewById(R.id.bt_next);
-        ImageButton ibt_back = findViewById(R.id.ibt_back);
-        EditText et_id = findViewById(R.id.et_id);
-        EditText et_email = findViewById(R.id.et_email);
-        EditText et_pass = findViewById(R.id.et_pass);
-        EditText et_passconfirm = findViewById(R.id.et_passconfirm);
+        bt_next = findViewById(R.id.bt_next);
+        ibt_back = findViewById(R.id.ibt_back);
+        et_id = findViewById(R.id.et_id);
+        et_email = findViewById(R.id.et_email);
+        et_pass = findViewById(R.id.et_pass);
+        et_passconfirm = findViewById(R.id.et_passconfirm);
 
         // 다음 버튼 이벤트 처리
         bt_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
+                String email = myGetText(et_email);
+                String pass = myGetText(et_pass);
+                String id = myGetText(et_id);
+                String passconfirm = myGetText(et_passconfirm);
 
                 // 입력한 비밀번호와 비밀번호 확인이 다르다면
-                if (!myGetText(et_pass).equals(myGetText(et_passconfirm)))
+                if (!pass.equals(passconfirm))
                 {
-                    Toast.makeText(getApplicationContext(), "비밀번호와 비밀번호 확인이 다릅니다." + myGetText(et_pass)
-                            + "," + myGetText(et_passconfirm), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "비밀번호와 비밀번호 확인이 다릅니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // 이메일 형식이 맞지 않다면
-                else if (!myGetText(et_email).matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$"))
+                else if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$"))
                 {
                     Toast.makeText(getApplicationContext(), "이메일 형식에 맞게 입력해주세요.", Toast.LENGTH_SHORT).show();
                     return;
@@ -63,7 +70,7 @@ public class activity_2_sign_up extends AppCompatActivity {
                 // 제대로 정보를 입력했다면.
                 else
                 {
-                    signIn(myGetText(et_id), myGetText(et_email), myGetText(et_pass));
+                    signIn(id, email, pass);
                 }
 
             }
