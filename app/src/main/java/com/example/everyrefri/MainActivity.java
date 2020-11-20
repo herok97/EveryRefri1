@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // 액티비티 요소들 선언
-    private Button bt_login;
+    private Button bt_sign_in;
     private Button bt_sign_up;
 
     @Override
@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // 액티비티 요소들 할당
-        bt_login = findViewById(R.id.bt_sign_up);
-        bt_sign_up = findViewById(R.id.bt_login);
+        bt_sign_in = findViewById(R.id.bt_sign_up);
+        bt_sign_up = findViewById(R.id.bt_sign_in);
 
         // 로그인 버튼 이벤트 처리 (onclick이랑 다른 방법이며, 오류가 더 적다고 합니다. 한 덩어리로 생각하시면 좋을 것 같아요)
-        bt_login.setOnClickListener(new View.OnClickListener() {
+        bt_sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_2_sign_up.class);

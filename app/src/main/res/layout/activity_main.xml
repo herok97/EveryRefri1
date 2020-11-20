@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_main_logo" />
 
     <Button
-        android:id="@+id/bt_login"
+        android:id="@+id/bt_sign_in"
         android:layout_width="298dp"
         android:layout_height="65dp"
         android:layout_marginBottom="20dp"
