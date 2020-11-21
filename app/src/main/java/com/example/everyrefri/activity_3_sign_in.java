@@ -50,6 +50,15 @@ public class activity_3_sign_in extends AppCompatActivity {
                     login(email, pass);
             }
         });
+
+
+        ibt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { // 버튼 클릭시 첫메인으로 이동
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
     }
 
     private void login(String email, String pass)
