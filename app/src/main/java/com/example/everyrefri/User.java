@@ -1,6 +1,6 @@
 package com.example.everyrefri;
 
-public class user {
+public class User {
 
     public String id;
     public String email;
@@ -8,11 +8,11 @@ public class user {
     public int follower;
     public float grade;
 
-    public user() {
+    public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public user(String id, String email) {
+    public User(String id, String email) {
         this.id = id;
         this.email = email;
         this.following = following;

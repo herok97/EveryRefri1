@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,10 +20,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class activity_3_sign_in extends AppCompatActivity {
 
+    // 액티비티 요소들 선언
     private FirebaseAuth fireAuth;
     private EditText et_email, et_pass;
     private Button bt_next;
     private ImageButton ibt_back;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,19 @@ public class activity_3_sign_in extends AppCompatActivity {
         et_email = findViewById(R.id.et_email3);
         et_pass = findViewById(R.id.et_pass3);
         ibt_back = findViewById(R.id.ibt_back3);
+
+        // 저장된 정보 가져오기
+        String[] email_and_pass = load_login_info();
+        String email = email_and_pass[0];
+        String pass = email_and_pass[1];
+
+        if (!email.isEmpty() && !pass.isEmpty())
+        {
+            Toast.makeText(getApplicationContext(), "저장된 로그인 정보가 있습니다." + email,Toast.LENGTH_SHORT).show();
+            et_email.setText(email);
+            et_pass.setText(pass);
+            login(email, pass);
+        }
 
         // 다음 버튼 이벤트 처리
         bt_next.setOnClickListener(new View.OnClickListener() {
@@ -51,12 +69,13 @@ public class activity_3_sign_in extends AppCompatActivity {
             }
         });
 
-
+        // 뒤로가기 버튼 이벤트 처리
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { // 버튼 클릭시 첫메인으로 이동
+            public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivityForResult(intent,1);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -69,7 +88,15 @@ public class activity_3_sign_in extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            //로그인 정보 저장
+                            save_login_info(email, pass);
+
+                            // 로그인 성공 메세지 출력
+                            Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
+
+                            // 유저 정보 전달 객체 생성
                             Intent intent = new Intent(getApplicationContext(), activity_4_main.class);
+                            intent.putExtra("email", (String) email);
                             startActivity(intent);
                             finish();
                         }else{
@@ -89,4 +116,26 @@ public class activity_3_sign_in extends AppCompatActivity {
         else
             return et.getText().toString();
     }
+
+    private void save_login_info(String email, String pass)
+    {
+        //기본 SharedPreferences 환경과 관련된 객체를 얻어옵니다.
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // SharedPreferences 수정을 위한 Editor 객체를 얻어옵니다.
+        editor = preferences.edit();
+        editor.putString("email", email);
+        editor.putString("pass", pass);
+        editor.commit();
+    }
+
+    private String[] load_login_info()
+    {
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String email = preferences.getString("email", "");
+        String pass = preferences.getString("pass","");
+        String[] email_and_pass = {email, pass};
+        return email_and_pass;
+    }
+
 }

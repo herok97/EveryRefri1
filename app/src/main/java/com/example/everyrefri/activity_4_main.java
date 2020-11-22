@@ -37,6 +37,14 @@ public class activity_4_main extends AppCompatActivity {
         tv_name =findViewById(R.id.tv_fullname);//사용자정보와연결
         iv_prof= findViewById(R.id.iv_profile);//사용자정보와연결
 
+
+        // 이전 액티비티의 데이터 수신
+        Intent intent =getIntent();
+        String email = intent.getExtras().getString("email");
+
+        // email에 해당하는 유저 정보 가져오기.
+        User me = get_user(email);
+
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // back 버튼 클릭시 첫main으로 이동(?)
@@ -103,4 +111,10 @@ public class activity_4_main extends AppCompatActivity {
 
 
     }
+
+    private User get_user(String email)
+    {
+        return new User();
+    }
+
 }
