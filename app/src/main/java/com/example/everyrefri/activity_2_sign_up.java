@@ -79,7 +79,7 @@ public class activity_2_sign_up extends AppCompatActivity {
         // 뒤로가기 버튼 이벤트 처리
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
+            public void onClick(View view) { // 버튼 클릭시 첫메인으로
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivityForResult(intent,1);
             }

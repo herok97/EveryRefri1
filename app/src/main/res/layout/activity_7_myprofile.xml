@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_profile"
+        android:id="@+id/iv_profile7"
         android:layout_width="78dp"
         android:layout_height="96dp"
         android:layout_marginStart="64dp"
@@ -50,7 +50,7 @@
         android:layout_marginEnd="32dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_profile"
+        app:layout_constraintStart_toEndOf="@+id/iv_profile7"
         app:layout_constraintTop_toBottomOf="@+id/tv_mypr" />
 
     <TextView
@@ -79,7 +79,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/ti_self"
+        android:id="@+id/et_self"
         android:layout_width="336dp"
         android:layout_height="65dp"
         android:layout_marginTop="10dp"
@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <TextView
-        android:id="@+id/tv_num"
+        android:id="@+id/tv_div_num7"
         android:layout_width="75sp"
         android:layout_height="75sp"
         android:layout_marginStart="42dp"
@@ -120,7 +120,7 @@
         android:layout_marginEnd="53dp"
         android:text="팔로워"
         app:layout_constraintEnd_toStartOf="@+id/bt_following7"
-        app:layout_constraintStart_toEndOf="@+id/tv_num"
+        app:layout_constraintStart_toEndOf="@+id/tv_div_num7"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <Button
@@ -143,7 +143,7 @@
         android:text="프로필 사진 변경"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_num" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_div_num7" />
 
     <Button
         android:id="@+id/bt_location"
