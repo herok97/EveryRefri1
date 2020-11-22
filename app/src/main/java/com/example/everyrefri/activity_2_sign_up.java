@@ -108,54 +108,54 @@ public class activity_2_sign_up extends AppCompatActivity {
         // Initialize Firebase Auth
         fireAuth = FirebaseAuth.getInstance();
         fireAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(
-                    this, new OnCompleteListener<AuthResult>() {
-         @Override
-         public void onComplete(@NonNull Task<AuthResult> task) {
-             //가입 성공시
-             mDialog.dismiss();
-             if (task.isSuccessful()) {
+                this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        //가입 성공시
+                        mDialog.dismiss();
+                        if (task.isSuccessful()) {
 
-                 FirebaseUser user = fireAuth.getCurrentUser();
-                 String email = user.getEmail();
-                 String name = id;
+                            FirebaseUser user = fireAuth.getCurrentUser();
+                            String email = user.getEmail();
+                            String name = id;
 
-                 //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
-                 HashMap<String, Object> userInfo = new HashMap<>();
-                 // 현재시간을 msec 으로 구한다.
-                 long now = System.currentTimeMillis();
-                 // 현재시간을 date 변수에 저장한다.
-                 Date date = new Date(now);
-                 // 시간을 나타냇 포맷을 정한다 ( yyyy/MM/dd 같은 형태로 변형 가능 )
-                 SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                 // nowDate 변수에 값을 저장한다.
-                 String formatDate = sdfNow.format(date);
+                            //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
+                            HashMap<String, Object> userInfo = new HashMap<>();
+                            // 현재시간을 msec 으로 구한다.
+                            long now = System.currentTimeMillis();
+                            // 현재시간을 date 변수에 저장한다.
+                            Date date = new Date(now);
+                            // 시간을 나타냇 포맷을 정한다 ( yyyy/MM/dd 같은 형태로 변형 가능 )
+                            SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                            // nowDate 변수에 값을 저장한다.
+                            String formatDate = sdfNow.format(date);
 
-                 userInfo.put("email", email);
-                 userInfo.put("id", id);
-                 userInfo.put("pass", pass);
-                 userInfo.put("start", formatDate);
+                            userInfo.put("email", email);
+                            userInfo.put("id", id);
+                            userInfo.put("pass", pass);
+                            userInfo.put("start", formatDate);
 
-                 userInfo.put("following", 0);
-                 userInfo.put("follower", 0);
-                 userInfo.put("grade", 0);
-
-
-                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                 DatabaseReference reference = database.getReference("Users");
-                 reference.child(id).setValue(userInfo);
+                            userInfo.put("following", 0);
+                            userInfo.put("follower", 0);
+                            userInfo.put("grade", 0);
 
 
-                 //가입이 이루어져을시 가입 화면을 빠져나감.
-                 Intent intent = new Intent(getApplicationContext(), activity_3_sign_in.class);
-                 startActivity(intent);
-                 finish();
-                 Toast.makeText(getApplicationContext(), "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-             }
-             else
-             {
-                 Toast.makeText(getApplicationContext(), "회원가입에 실패하셨습니다." + task.getException().toString(), Toast.LENGTH_SHORT).show();
-                 return;  //해당 메소드 진행을 멈추고 빠져나감.
-             }
-         }});
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference reference = database.getReference("Users");
+                            reference.child(id).setValue(userInfo);
+
+
+                            //가입이 이루어져을시 가입 화면을 빠져나감.
+                            Intent intent = new Intent(getApplicationContext(), activity_3_sign_in.class);
+                            startActivity(intent);
+                            finish();
+                            Toast.makeText(getApplicationContext(), "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(), "회원가입에 실패하셨습니다." + task.getException().toString(), Toast.LENGTH_SHORT).show();
+                            return;  //해당 메소드 진행을 멈추고 빠져나감.
+                        }
+                    }});
     }
 }
