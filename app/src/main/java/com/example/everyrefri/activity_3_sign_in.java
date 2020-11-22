@@ -45,7 +45,7 @@ public class activity_3_sign_in extends AppCompatActivity {
 
         if (!email.isEmpty() && !pass.isEmpty())
         {
-            Toast.makeText(getApplicationContext(), "저장된 로그인 정보가 있습니다." + email,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "저장된 로그인 정보가 있습니다.",Toast.LENGTH_SHORT).show();
             et_email.setText(email);
             et_pass.setText(pass);
             login(email, pass);

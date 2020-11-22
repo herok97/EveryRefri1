@@ -1,16 +1,24 @@
 package com.example.everyrefri;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class activity_4_main extends AppCompatActivity {
 
@@ -19,6 +27,7 @@ public class activity_4_main extends AppCompatActivity {
     private ImageButton ibt_back,ibt_board,ibt_alarm,ibt_setting,ibt_chat;
     private TextView tv_div_num,tv_name;//사용자profile의 나눔수와 이름표시
     private ImageView iv_prof;//사용자의 사진표시
+    private FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +46,8 @@ public class activity_4_main extends AppCompatActivity {
         tv_name =findViewById(R.id.tv_fullname);//사용자정보와연결
         iv_prof= findViewById(R.id.iv_profile);//사용자정보와연결
 
+        // 파이어베이스 스토리지
+        storage = FirebaseStorage.getInstance();
 
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
@@ -44,6 +55,10 @@ public class activity_4_main extends AppCompatActivity {
 
         // email에 해당하는 유저 정보 가져오기.
         User me = get_user(email);
+
+        // 프로필 가져오기
+        get_profile(email);
+
 
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +126,33 @@ public class activity_4_main extends AppCompatActivity {
 
 
     }
+
+    private void get_profile(String email)
+    {
+        // 프로필 사진 가져오기
+        StorageReference storageRef = storage.getReference();
+        StorageReference pathReference = storageRef.child("images/" + email + "_profile.PNG");
+        final long ONE_MEGABYTE = 1024 * 1024;
+        pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bit = BitmapFactory.decodeByteArray( bytes , 0 , bytes.length);
+                iv_prof.setImageBitmap(bit);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getApplicationContext(), "프로필 사진을 가져오지 못했습니다.." + exception.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        // 이름 가져오기
+
+        //
+
+    }
+
 
     private User get_user(String email)
     {
