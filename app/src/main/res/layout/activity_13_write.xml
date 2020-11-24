@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_13_write">
+
+    <TextView
+        android:id="@+id/tv_write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="175dp"
+        android:text="게시물 작성"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ibt_back13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="104dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_write"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test" />
+
+    <ImageButton
+        android:id="@+id/ibt_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?android:attr/textCheckMark" />
+
+    <LinearLayout
+        android:layout_width="414dp"
+        android:layout_height="625dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:hint="제목을 입력하세요." />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_essential"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="필수 기재 사항" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_category"
+                            android:layout_width="112dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="1. 카테고리" />
+
+                        <Spinner
+                            android:id="@+id/sp_category"
+                            android:layout_width="384dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70sp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_buy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="2. 구입일시"
+                            android:gravity="center"/>
+
+                        <DatePicker
+                            android:id="@+id/dp_buy"
+                            android:layout_width="343dp"
+                            android:layout_height="match_parent"
+                            android:calendarViewShown="false"
+                            android:datePickerMode="spinner" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70sp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_exp"
+                            android:layout_width="328dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="3. 유통기한"
+                            android:gravity="center"/>
+
+                        <DatePicker
+                            android:id="@+id/dp_exp"
+                            android:layout_width="343dp"
+                            android:layout_height="match_parent"
+                            android:calendarViewShown="false"
+                            android:datePickerMode="spinner" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_storage"
+                            android:layout_width="294dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="4. 보관방법"
+                            android:gravity="center"/>
+
+                        <Spinner
+                            android:id="@+id/sp_storage"
+                            android:layout_width="566dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_add"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="추가설명" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_inst"
+                                android:layout_width="match_parent"
+                                android:layout_height="74dp"
+                                android:hint="추가설명입력" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/iv_pic"
+                                android:layout_width="match_parent"
+                                android:layout_height="158dp"
+                                app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+                            <Button
+                                android:id="@+id/bt_choice"
+                                android:layout_width="152dp"
+                                android:layout_height="wrap_content"
+                                android:text="사진선택" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

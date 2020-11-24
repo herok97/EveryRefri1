@@ -11,7 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EveryRefri">
-        <activity android:name=".activity_7_myprofile"></activity>
+        <activity android:name=".activity_10_chat_room"></activity>
+        <activity android:name=".activity_13_write" />
+        <activity android:name=".activity_12_profile_change" />
+        <activity android:name=".activity_11_location" />
+        <activity android:name=".activity_9_alarm_list" />
+        <activity android:name=".activity_8_myrefri" />
+        <activity android:name=".activity_7_myprofile" />
         <activity android:name=".activity_6_board" />
         <activity android:name=".activity_5_chat_list" />
         <activity android:name=".activity_4_main" />
