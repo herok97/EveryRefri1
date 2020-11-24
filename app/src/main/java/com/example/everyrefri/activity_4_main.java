@@ -62,11 +62,13 @@ public class activity_4_main extends AppCompatActivity {
 
         // 파이어베이스 스토리지
         storage = FirebaseStorage.getInstance();
-
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
         String email = intent.getExtras().getString("email");
 
+        // 프로필 사진 가져오기
+        get_profile(email);
+        
         // email에 해당하는 유저 정보 가져오기.
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf("@")));
 
