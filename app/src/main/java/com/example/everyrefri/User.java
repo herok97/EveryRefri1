@@ -8,15 +8,26 @@ public class User {
     public int follower;
     public float grade;
 
-    public User() {
+    public User()
+    {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String id, String email) {
+    public User(String id, String email, int follower, int following, float grade)
+    {
         this.id = id;
         this.email = email;
-        this.following = following;
         this.follower = follower;
+        this.following = following;
+        this.grade = grade;
+    }
+
+    public void setValue(String id, String email, int follower, int following, float grade)
+    {
+        this.id = id;
+        this.email = email;
+        this.follower = follower;
+        this.following = following;
         this.grade = grade;
     }
 

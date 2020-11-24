@@ -70,7 +70,7 @@ public class activity_2_sign_up extends AppCompatActivity {
                 // 제대로 정보를 입력했다면.
                 else
                 {
-                    signIn(id, email, pass);
+                    signUp(id, email, pass);
                 }
 
             }
@@ -98,7 +98,7 @@ public class activity_2_sign_up extends AppCompatActivity {
             return et.getText().toString();
     }
 
-    private void signIn(String id, String email, String pass){
+    private void signUp(String id, String email, String pass){
         // 진행 상황 알려주기
         final ProgressDialog mDialog = new ProgressDialog(this);
         mDialog.setMessage("가입중..잠시만 기다려주세요.");
@@ -142,7 +142,7 @@ public class activity_2_sign_up extends AppCompatActivity {
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference reference = database.getReference("Users");
-                            reference.child(id).setValue(userInfo);
+                            reference.child(email.substring(0, email.indexOf("@"))).setValue(userInfo);
 
 
                             //가입이 이루어져을시 가입 화면을 빠져나감.

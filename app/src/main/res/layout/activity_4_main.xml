@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_main4" />
 
     <TextView
-        android:id="@+id/tv_fullname"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -73,11 +73,27 @@
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="34dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="name"
         app:layout_constraintBottom_toTopOf="@+id/bt_follower"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/tv_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="34dp"
+        android:gravity="center"
+        android:text="grade"
+        app:layout_constraintBottom_toTopOf="@+id/bt_follower"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.207"
+        app:layout_constraintStart_toEndOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/bt_follower"
@@ -87,7 +103,7 @@
         android:layout_marginEnd="46dp"
         android:text="팔로워"
         app:layout_constraintEnd_toStartOf="@+id/bt_following"
-        app:layout_constraintTop_toBottomOf="@+id/tv_fullname" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     <Button
         android:id="@+id/bt_following"
