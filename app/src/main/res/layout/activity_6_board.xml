@@ -56,4 +56,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:layout_width="135dp"
+        android:layout_height="122dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="상품 등록하기" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_write"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:alpha="0.4"
+            android:clickable="true"
+            app:backgroundTint="#000000"
+            app:rippleColor="#783535"
+            app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

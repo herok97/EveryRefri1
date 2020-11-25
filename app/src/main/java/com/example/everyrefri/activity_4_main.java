@@ -4,9 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -39,8 +43,11 @@ public class activity_4_main extends AppCompatActivity {
     private int follower;
     private int following;
     private float grade;
+    private String email;
     private String id;
     private User user;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,26 +69,16 @@ public class activity_4_main extends AppCompatActivity {
 
         // 파이어베이스 스토리지
         storage = FirebaseStorage.getInstance();
+
         // 이전 액티비티의 데이터 수신
-        Intent intent =getIntent();
-        String email = intent.getExtras().getString("email");
+        Intent intent = getIntent();
+        email = intent.getExtras().getString("email");
 
         // 프로필 사진 가져오기
         get_profile(email);
         
         // email에 해당하는 유저 정보 가져오기.
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf("@")));
-
-        // 마지막 접속 기록 생성
-        // 현재시간을 msec 으로 구한다.
-        long now = System.currentTimeMillis();
-        // 현재시간을 date 변수에 저장한다.
-        Date date = new Date(now);
-        // 시간을 나타냇 포맷을 정한다 ( yyyy/MM/dd 같은 형태로 변형 가능 )
-        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        // nowDate 변수에 값을 저장한다.
-        String formatDate = sdfNow.format(date);
-        ref.child("last").setValue(formatDate);
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -95,6 +92,7 @@ public class activity_4_main extends AppCompatActivity {
                     tv_grade.setText(String.valueOf(grade));
                     tv_name.setText(id);
                     user = new User(id, email, follower, following, grade);
+                    Log.e("onDataChange 실행", "!");
             }
 
             @Override
@@ -107,8 +105,16 @@ public class activity_4_main extends AppCompatActivity {
 
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { // back 버튼 클릭시 첫main으로 이동(?)
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            public void onClick(View view) { // back 버튼 클릭시 로그인 화면으로 이동
+
+                //로그인 화면으로 이동하면서, 저장된 로그인 정보를 지워야함
+                preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                editor = preferences.edit();
+                editor.putString("email", "");
+                editor.putString("pass", "");
+                editor.commit();
+
+                Intent intent = new Intent(getApplicationContext(), activity_3_sign_in.class);
                 startActivityForResult(intent,1);
             }
         });
@@ -117,12 +123,9 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // board 이미지 버튼 클릭시 게시판이동
                 Intent intent = new Intent(getApplicationContext(), activity_6_board.class);
-                intent.putExtra("id", user.id);
-                intent.putExtra("follower", user.follower);
-                intent.putExtra("following", user.following);
-                intent.putExtra("grade", user.grade);
-                intent.putExtra("email", user.email);
+                intent = setUser(intent);
                 startActivityForResult(intent,6);//requestcode이게맞는지 다시 확인
+                finish();
             }
         });
 
@@ -130,12 +133,9 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // alarm 이미지 버튼 클릭시 alarm_list로 이동
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);//alarmlist로 나중에 수정!
-                intent.putExtra("id", user.id);
-                intent.putExtra("follower", user.follower);
-                intent.putExtra("following", user.following);
-                intent.putExtra("grade", user.grade);
-                intent.putExtra("email", user.email);
+                intent = setUser(intent);
                 startActivityForResult(intent,1);
+                finish();
             }
         });
 
@@ -143,12 +143,9 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // setting이미지 버튼 클릭시 프로필 설정(내프로필)화면으로 이동
                 Intent intent = new Intent(getApplicationContext(), activity_7_myprofile.class);
-                intent.putExtra("id", user.id);
-                intent.putExtra("follower", user.follower);
-                intent.putExtra("following", user.following);
-                intent.putExtra("grade", user.grade);
-                intent.putExtra("email", user.email);
+                intent = setUser(intent);
                 startActivityForResult(intent,7);
+                finish();
             }
         });
 
@@ -156,12 +153,9 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // chat이미지 버튼 클릭시 chat_list로 이동
                 Intent intent = new Intent(getApplicationContext(), activity_5_chat_list.class);
-                intent.putExtra("id", user.id);
-                intent.putExtra("follower", user.follower);
-                intent.putExtra("following", user.following);
-                intent.putExtra("grade", user.grade);
-                intent.putExtra("email", user.email);
+                intent = setUser(intent);
                 startActivityForResult(intent,5);
+                finish();
             }
         });
 
@@ -169,12 +163,9 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_5_chat_list.class);//follower목록페이지 만들고 변경
-                intent.putExtra("id", user.id);
-                intent.putExtra("follower", user.follower);
-                intent.putExtra("following", user.following);
-                intent.putExtra("grade", user.grade);
-                intent.putExtra("email", user.email);
+                intent = setUser(intent);
                 startActivityForResult(intent,5);
+                finish();
             }
         });
 
@@ -182,25 +173,19 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_5_chat_list.class);//following목록페이지 만들고 변경
-                intent.putExtra("id", user.id);
-                intent.putExtra("follower", user.follower);
-                intent.putExtra("following", user.following);
-                intent.putExtra("grade", user.grade);
-                intent.putExtra("email", user.email);
+                intent = setUser(intent);
                 startActivityForResult(intent,5);
+                finish();
             }
         });
 
         bt_refrigerator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_5_chat_list.class);//나의 냉장고페이지 만들고 변경
-                intent.putExtra("id", user.id);
-                intent.putExtra("follower", user.follower);
-                intent.putExtra("following", user.following);
-                intent.putExtra("grade", user.grade);
-                intent.putExtra("email", user.email);
+                Intent intent = new Intent(getApplicationContext(), activity_8_myrefri.class);//나의 냉장고페이지 만들고 변경
+                intent = setUser(intent);
                 startActivityForResult(intent,5);
+                finish();
             }
         });
 
@@ -225,7 +210,39 @@ public class activity_4_main extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "프로필 사진을 가져오지 못했습니다.." + exception.toString(),Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
+    private User getUser(Intent intent)
+    {
+        User user = new User(
+                intent.getExtras().getString("id"),
+                intent.getExtras().getString("email"),
+                intent.getExtras().getInt("follower"),
+                intent.getExtras().getInt("following"),
+                intent.getExtras().getFloat("grade"));
+        return user;
+    }
+
+    private Intent setUser(Intent intent)
+    {
+        intent.putExtra("id", user.id);
+        intent.putExtra("follower", user.follower);
+        intent.putExtra("following", user.following);
+        intent.putExtra("grade", user.grade);
+        intent.putExtra("email", user.email);
+        return intent;
+    }
+
+    private void log_last_login(DatabaseReference ref)
+    {
+        // 현재시간을 msec 으로 구한다.
+        long now = System.currentTimeMillis();
+        // 현재시간을 date 변수에 저장한다.
+        Date date = new Date(now);
+        // 시간을 나타냇 포맷을 정한다 ( yyyy/MM/dd 같은 형태로 변형 가능 )
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        // nowDate 변수에 값을 저장한다.
+        String formatDate = sdfNow.format(date);
+        ref.child("last").setValue(formatDate);
+    }
 }

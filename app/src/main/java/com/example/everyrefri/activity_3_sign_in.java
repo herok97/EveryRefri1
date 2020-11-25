@@ -96,7 +96,8 @@ public class activity_3_sign_in extends AppCompatActivity {
 
                             // 유저 정보 전달 객체 생성
                             Intent intent = new Intent(getApplicationContext(), activity_4_main.class);
-                            intent.putExtra("email", (String) email);
+                            intent.putExtra("email", email);
+                            intent.putExtra("id", "");
                             startActivity(intent);
                             finish();
                         }else{

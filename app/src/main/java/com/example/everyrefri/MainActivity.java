@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_2_sign_up.class);
                 startActivityForResult(intent,2);
+                finish();
             }
         });
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_3_sign_in.class);
                 startActivityForResult(intent,3);
+                finish();
             }
         });
 
