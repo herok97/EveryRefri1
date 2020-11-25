@@ -51,16 +51,16 @@ public class activity_7_myprofile extends AppCompatActivity {
         bt_follower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_4_main.class);//follower목록페이지 만들고 변경
-                startActivityForResult(intent,5);
+                Intent intent = new Intent(getApplicationContext(), activity_16_follower.class);
+                startActivityForResult(intent,16);
             }
         });
 
         bt_following.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_4_main.class);//following목록페이지 만들고 변경
-                startActivityForResult(intent,5);
+                Intent intent = new Intent(getApplicationContext(), activity_17_following.class);
+                startActivityForResult(intent,17);
             }
         });
 
@@ -68,16 +68,16 @@ public class activity_7_myprofile extends AppCompatActivity {
         bt_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_4_main.class);//프로필사진변경페이지 만들고 변경
-                startActivityForResult(intent,5);
+                Intent intent = new Intent(getApplicationContext(), activity_12_profile_change.class);
+                startActivityForResult(intent,12);
             }
         });
 
         bt_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_4_main.class);//위치설정페이지 만들고 변경
-                startActivityForResult(intent,5);
+                Intent intent = new Intent(getApplicationContext(), activity_11_location.class);
+                startActivityForResult(intent,11);
             }
         });
     }

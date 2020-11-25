@@ -4,42 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_9_alarm_list">
+    tools:context=".activity_17_following">
 
     <TextView
-        android:id="@+id/tv_alarm"
+        android:id="@+id/tv_follower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
+        android:layout_marginStart="185dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="193dp"
-        android:text="알림"
+        android:layout_marginEnd="185dp"
+        android:text="팔로잉"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/ibt_back9"
+        android:id="@+id/ibt_back17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="128dp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_alarm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/abc_vector_test" />
 
     <LinearLayout
-        android:layout_width="405dp"
-        android:layout_height="639dp"
-        android:layout_marginTop="30dp"
+        android:id="@+id/linearLayout5"
+        android:layout_width="416dp"
+        android:layout_height="617dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ibt_back9">
+        app:layout_constraintStart_toStartOf="parent"></LinearLayout>
 
-    </LinearLayout>
-
+    <SearchView
+        android:id="@+id/sv_following"
+        android:layout_width="322dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ibt_back16"
+        app:layout_constraintTop_toBottomOf="@+id/tv_follower" />
 </androidx.constraintlayout.widget.ConstraintLayout>

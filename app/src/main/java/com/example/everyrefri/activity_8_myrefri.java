@@ -14,7 +14,7 @@ public class activity_8_myrefri extends AppCompatActivity {
 
     private FloatingActionButton fab_write;
     private User user;
-    private ImageButton ibt_back;
+    private ImageButton ibt_back, ibt_alarm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class activity_8_myrefri extends AppCompatActivity {
         // 객체 할당
         fab_write = findViewById(R.id.fab_write);
         ibt_back = findViewById(R.id.ibt_back8);
+        ibt_alarm=findViewById(R.id.ibt_alarm8);
 
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
@@ -46,6 +47,16 @@ public class activity_8_myrefri extends AppCompatActivity {
                 startActivityForResult(intent,4);
             }
         });
+
+        ibt_alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), activity_9_alarm_list.class);
+                intent = setUser(intent);
+                startActivityForResult(intent,9);
+            }
+        });
+
 
     }
 

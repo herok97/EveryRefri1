@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.everyrefri">
     <!-- firebase storage사용 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -11,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EveryRefri">
-        <activity android:name=".activity_10_chat_room"></activity>
+        <activity android:name=".activity_17_following"></activity>
+        <activity android:name=".activity_16_follower" />
+        <activity android:name=".activity_15_post" />
+        <activity android:name=".activity_14_member" />
+        <activity android:name=".activity_10_chat_room" />
         <activity android:name=".activity_13_write" />
         <activity android:name=".activity_12_profile_change" />
         <activity android:name=".activity_11_location" />

@@ -5,32 +5,56 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
-
-//파이어베이스에서 이미지 뷰로 보여서 선택하는것같은데..후...
-public class activity_12_profile_change extends AppCompatActivity {
+public class activity_15_post extends AppCompatActivity {
 
     private User user;
-    private ImageButton ibt_back;
+    private ImageButton ibt_back, ibt_alarm, ibt_chat;
+    private Button bt_ask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_12_profile_change);
+        setContentView(R.layout.activity_15_post);
+
+        ibt_back = findViewById(R.id.ibt_back15);
+        ibt_alarm=findViewById(R.id.ibt_alarm15);
+        ibt_chat=findViewById(R.id.ibt_chat15);
+        bt_ask=findViewById(R.id.bt_ask);
 
         Intent intent =getIntent();
         user = getUser(intent);
-        ibt_back=findViewById(R.id.ibt_back12);
 
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), activity_7_myprofile.class);
+                Intent intent = new Intent(getApplicationContext(), activity_6_board.class);
                 intent = setUser(intent);
-                startActivityForResult(intent,7);
+                startActivityForResult(intent,6);
             }
         });
+
+        ibt_alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), activity_9_alarm_list.class);
+                intent = setUser(intent);
+                startActivityForResult(intent,9);
+            }
+        });
+
+        ibt_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), activity_10_chat_room.class);
+                intent = setUser(intent);
+                startActivityForResult(intent, 10);
+            }
+        });
+
+
 
     }
 

@@ -132,9 +132,9 @@ public class activity_4_main extends AppCompatActivity {
         ibt_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // alarm 이미지 버튼 클릭시 alarm_list로 이동
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);//alarmlist로 나중에 수정!
+                Intent intent = new Intent(getApplicationContext(), activity_9_alarm_list.class);
                 intent = setUser(intent);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent,9);
                 finish();
             }
         });
@@ -162,9 +162,9 @@ public class activity_4_main extends AppCompatActivity {
         bt_follower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_5_chat_list.class);//follower목록페이지 만들고 변경
+                Intent intent = new Intent(getApplicationContext(), activity_16_follower.class);//follower목록페이지 만들고 변경
                 intent = setUser(intent);
-                startActivityForResult(intent,5);
+                startActivityForResult(intent,16);
                 finish();
             }
         });
@@ -172,9 +172,9 @@ public class activity_4_main extends AppCompatActivity {
         bt_following.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_5_chat_list.class);//following목록페이지 만들고 변경
+                Intent intent = new Intent(getApplicationContext(), activity_17_following.class);//following목록페이지 만들고 변경
                 intent = setUser(intent);
-                startActivityForResult(intent,5);
+                startActivityForResult(intent,17);
                 finish();
             }
         });
@@ -184,7 +184,7 @@ public class activity_4_main extends AppCompatActivity {
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_8_myrefri.class);//나의 냉장고페이지 만들고 변경
                 intent = setUser(intent);
-                startActivityForResult(intent,5);
+                startActivityForResult(intent,8);
                 finish();
             }
         });
