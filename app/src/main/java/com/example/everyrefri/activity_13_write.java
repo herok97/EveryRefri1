@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -25,6 +26,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -33,18 +36,23 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class activity_13_write extends AppCompatActivity {
-
+//    String text = spinner.getSelectedItem().toString();
     private User user;
     private Spinner sp_category, sp_storage;
     private Button bt_choice;
     private ImageButton ibt_save;
     private ImageView iv_pic;
     private ArrayAdapter<String> adapter;
+    private String buy, exp;
     private String[] items = {"채소류", "과일류", "인스턴트류", "기타"};
     private String[] methods = {"냉장", "냉동", "실온"};
     private Uri filePath;
+    private EditText et_title , et_inst;
+    private DatePicker dp_buy, dp_exp;
+    private DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,11 @@ public class activity_13_write extends AppCompatActivity {
         bt_choice = findViewById(R.id.bt_choice);
         ibt_save = findViewById(R.id.ibt_save);
         iv_pic = findViewById(R.id.iv_pic);
+        et_title = findViewById(R.id.et_title);
+        et_inst = findViewById(R.id.et_inst);
+        dp_buy = findViewById(R.id.dp_buy);
+        dp_exp = findViewById(R.id.dp_exp);
+
 
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
@@ -110,15 +123,49 @@ public class activity_13_write extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //업로드
-                uploadFile();
-
-                // 게시판으로 돌아가기
-                Intent intent = new Intent(getApplicationContext(), activity_6_board.class);
-                intent = setUser(intent);
-                startActivityForResult(intent,6);//requestcode이게맞는지 다시 확인
-                finish();
+                upload();
             }
         });
+
+
+
+        dp_buy.init(dp_buy.getYear(), dp_buy.getMonth(), dp_buy.getDayOfMonth(),
+                new DatePicker.OnDateChangedListener() {
+                    String year, mon, day;
+                    @Override
+                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                        if (monthOfYear < 10)
+                            mon = "0" + Integer.toString(monthOfYear+1);
+                        else
+                            mon = Integer.toString(monthOfYear+1);
+                        if (dayOfMonth < 10)
+                            day = '0' + Integer.toString(dayOfMonth);
+                        else
+                            day = Integer.toString(dayOfMonth);
+
+                        buy = Integer.toString(year) + mon + day;
+                    }
+                });
+        dp_exp.init(dp_exp.getYear(), dp_exp.getMonth(), dp_exp.getDayOfMonth(),
+                new DatePicker.OnDateChangedListener() {
+                    String year, mon, day;
+                    @Override
+                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                        if (monthOfYear < 10)
+                            mon = "0" + Integer.toString(monthOfYear+1);
+                        else
+                            mon = Integer.toString(monthOfYear+1);
+                        if (dayOfMonth < 10)
+                            day = '0' + Integer.toString(dayOfMonth);
+                        else
+                            day = Integer.toString(dayOfMonth);
+
+                        exp = Integer.toString(year) + mon + day;
+                    }
+                });
+
     }
 
 
@@ -143,7 +190,7 @@ public class activity_13_write extends AppCompatActivity {
     }
 
     //upload the file
-    private void uploadFile() {
+    private void upload() {
         //업로드할 파일이 있으면 수행
         if (filePath != null) {
             //업로드 진행 Dialog 보이기
@@ -154,21 +201,50 @@ public class activity_13_write extends AppCompatActivity {
             //storage
             FirebaseStorage storage = FirebaseStorage.getInstance();
 
-            //Unique한 파일명을 만들자.  파일명은  현재 날짜 + 시간 + 아이디 + .png 형태로 구성
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmss");
+            //Unique한 파일명을 만들자.  파일명은  현재 날짜 + 시간 + 이메일 앞부분 + .png 형태로 구성
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmm");
             Date now = new Date();
-            String filename = formatter.format(now) + user.id + ".png";
+            String postName = formatter.format(now) + user.email.substring(0, user.email.indexOf("@"));
 
             //storage 주소와 폴더 파일명을 지정해 준다.
-            StorageReference storageRef = storage.getReferenceFromUrl("gs://database-f0589.appspot.com/images").child(filename);
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://database-f0589.appspot.com/images").child(postName + ".png");
             //올라가거라...
             storageRef.putFile(filePath)
-                    //성공시
+                    //이미지 업로드 성공시 -> 데이터도 저장
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // 데이터 저장
+                            ref = FirebaseDatabase.getInstance().getReference().child("Posts").child(postName);
+
+                            // post 데이터 생성
+                            try{
+                                HashMap<String, Object> postInfo = new HashMap<>();
+                                postInfo.put("id", user.id);
+                                postInfo.put("email", user.email);
+                                postInfo.put("title", et_title.getText().toString());
+                                postInfo.put("category", sp_category.getSelectedItem().toString());
+                                postInfo.put("buy", buy);
+                                postInfo.put("exp", exp);
+                                postInfo.put("isSold", 0);
+                                postInfo.put("storage", sp_storage.getSelectedItem().toString());
+                                postInfo.put("inst", et_inst.getText().toString());
+
+                                ref.setValue(postInfo);
+                            }catch (Exception e){
+                                Toast.makeText(getApplicationContext(), "데이터 생성 실패!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
                             progressDialog.dismiss(); //업로드 진행 Dialog 상자 닫기
                             Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
+
+                            // 게시판으로 이동하기
+                            Intent intent = new Intent(getApplicationContext(), activity_6_board.class);
+                            intent = setUser(intent);
+                            startActivityForResult(intent,6);//requestcode이게맞는지 다시 확인
+                            finish();
+
                         }
                     })
                     //실패시
