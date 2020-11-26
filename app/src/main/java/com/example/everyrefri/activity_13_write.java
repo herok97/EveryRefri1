@@ -131,12 +131,12 @@ public class activity_13_write extends AppCompatActivity {
 
         dp_buy.init(dp_buy.getYear(), dp_buy.getMonth(), dp_buy.getDayOfMonth(),
                 new DatePicker.OnDateChangedListener() {
-                    String year, mon, day;
+                    String  mon, day;
                     @Override
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
                         if (monthOfYear < 10)
-                            mon = "0" + Integer.toString(monthOfYear+1);
+                            mon = "0" + monthOfYear+1;
                         else
                             mon = Integer.toString(monthOfYear+1);
                         if (dayOfMonth < 10)
@@ -144,17 +144,18 @@ public class activity_13_write extends AppCompatActivity {
                         else
                             day = Integer.toString(dayOfMonth);
 
-                        buy = Integer.toString(year) + mon + day;
+                        buy = year + "년 " + mon +"월 " + day + "일";
+
                     }
                 });
+
         dp_exp.init(dp_exp.getYear(), dp_exp.getMonth(), dp_exp.getDayOfMonth(),
                 new DatePicker.OnDateChangedListener() {
-                    String year, mon, day;
+                    String  mon, day;
                     @Override
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
                         if (monthOfYear < 10)
-                            mon = "0" + Integer.toString(monthOfYear+1);
+                            mon = "0" + monthOfYear+1;
                         else
                             mon = Integer.toString(monthOfYear+1);
                         if (dayOfMonth < 10)
@@ -162,7 +163,7 @@ public class activity_13_write extends AppCompatActivity {
                         else
                             day = Integer.toString(dayOfMonth);
 
-                        exp = Integer.toString(year) + mon + day;
+                        exp = year + "년 " + mon +"월 " + day + "일";
                     }
                 });
 
@@ -224,8 +225,8 @@ public class activity_13_write extends AppCompatActivity {
                                 postInfo.put("email", user.email);
                                 postInfo.put("title", et_title.getText().toString());
                                 postInfo.put("category", sp_category.getSelectedItem().toString());
-                                postInfo.put("buy", buy);
                                 postInfo.put("exp", exp);
+                                postInfo.put("buy", buy);
                                 postInfo.put("isSold", 0);
                                 postInfo.put("storage", sp_storage.getSelectedItem().toString());
                                 postInfo.put("inst", et_inst.getText().toString());
