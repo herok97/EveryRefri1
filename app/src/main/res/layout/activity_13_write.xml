@@ -189,8 +189,8 @@
 
                             <ImageView
                                 android:id="@+id/iv_pic"
-                                android:layout_width="match_parent"
-                                android:layout_height="158dp"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
                                 app:srcCompat="@android:drawable/ic_menu_gallery" />
 
                             <Button
