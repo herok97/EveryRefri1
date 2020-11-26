@@ -23,39 +23,39 @@ public class activity_13_write extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_13_write);
 
-        Spinner spinner1 = findViewById(R.id.sp_category);
-        Spinner spinner2 = findViewById(R.id.sp_storage);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-//                this, android.R.layout.simple_spinner_item, items
-//        );
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-//        spinner1.setAdapter(adapter);
-//        spinner1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                textView.setText(items[position]);
-//            }
-//
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                textView.setText("종류");
-//            }
-//        });
-//
-//        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(
-//                this, android.R.layout.simple_spinner_item, methods
-//        );
-//        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item);
-//        spinner2.setAdapter(adapter1);
-//        spinner2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                textView.setText(methods[position]);
-//            }
-//
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                textView.setText("방법");
-//            }
-//        });
+        Spinner sp_category = findViewById(R.id.sp_category);
+        Spinner sp_storage = findViewById(R.id.sp_storage);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, items
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        sp_category.setAdapter(adapter);
+        sp_category.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                textView.setText(items[position]);
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+                textView.setText("종류");
+            }
+        });
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, methods
+        );
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        sp_storage.setAdapter(adapter1);
+        sp_storage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                textView.setText(methods[position]);
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+                textView.setText("방법");
+            }
+        });
 
 
     }
