@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,7 +18,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -30,7 +35,7 @@ public class activity_15_post extends AppCompatActivity {
     private ImageView iv_profile, iv_postItem;
     private FirebaseStorage storage;
     private TextView tv_category, tv_buy, tv_exp, tv_storage, tv_content, tv_title, tv_id;
-
+    private DatabaseReference ref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,24 +61,56 @@ public class activity_15_post extends AppCompatActivity {
         // 이전 액티비티 데이터 수신
         Intent intent =getIntent();
         user = getUser(intent);
-        post = getPost(intent);
+        String postName = intent.getExtras().getString("postName");
+        Log.e("getPost함수시작, postName",postName);
 
-        // 게시글 정보 가져오기
-        get_profile(post.email);
-        tv_category.setText(post.category);
-        tv_buy.setText(post.buy);
-        tv_exp.setText(post.exp);
-        tv_storage.setText(post.storage);
-        tv_content.setText(post.inst);
-        tv_title.setText(post.title);
-        tv_id.setText(post.id);
-
-        // 만약 거래된 게시물이라면 버튼 못누르게
-        if (post.isSold)
+        // email에 해당하는 유저 정보 가져오기.
+        ref = FirebaseDatabase.getInstance().getReference().child("Posts").child(postName);
+        ref.addListenerForSingleValueEvent(new ValueEventListener()
         {
-            bt_ask.setEnabled(false);
-            ibt_chat.setEnabled(false);
-        }
+            @Override
+            public void onDataChange(DataSnapshot tasksSnapshot)
+            {
+                Post _post = new Post(
+                        tasksSnapshot.child("postName").getValue().toString(),
+                        tasksSnapshot.child("postId").getValue().toString(),
+                        tasksSnapshot.child("postEmail").getValue().toString(),
+                        tasksSnapshot.child("postTitle").getValue().toString(),
+                        tasksSnapshot.child("postCategory").getValue().toString(),
+                        tasksSnapshot.child("postBuy").getValue().toString(),
+                        tasksSnapshot.child("postExp").getValue().toString(),
+                        (boolean) tasksSnapshot.child("postIsSold").getValue(),
+                        tasksSnapshot.child("postStorage").getValue().toString(),
+                        tasksSnapshot.child("postInst").getValue().toString());
+                post = _post;
+
+                // 게시글 정보 가져오기
+                get_profile(post.email);
+                get_postImage(post.name);
+                tv_category.setText(post.category);
+                tv_buy.setText(post.buy);
+                tv_exp.setText(post.exp);
+                tv_storage.setText(post.storage);
+                tv_content.setText(post.inst);
+                tv_title.setText(post.title);
+                tv_id.setText(post.id);
+
+                // 만약 거래된 게시물이라면 버튼 못누르게
+                if (post.isSold)
+                {
+                    bt_ask.setEnabled(false);
+                    ibt_chat.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("게시물 정보를 가져오지 못했습니다.", "!");
+                Toast.makeText(getApplicationContext(), "게시물 정보를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         // 게시글
 
@@ -127,7 +164,7 @@ public class activity_15_post extends AppCompatActivity {
 
     private void get_postImage(String postName)
     {
-        // 프로필 사진 가져오기
+        // 게시물 사진 가져오기
         StorageReference storageRef = storage.getReferenceFromUrl("gs://database-f0589.appspot.com/images").child(postName + ".png");
         final long ONE_MEGABYTE = 2048 * 2048;
         storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -181,36 +218,4 @@ public class activity_15_post extends AppCompatActivity {
 
         return intent;
     }
-
-    private Post getPost(Intent intent)
-    {
-        Post _post = new Post(
-                intent.getExtras().getString("postName"),
-        intent.getExtras().getString("postId"),
-        intent.getExtras().getString("postEmail"),
-        intent.getExtras().getString("postTitle"),
-        intent.getExtras().getString("postCategory"),
-        intent.getExtras().getString("postBuy"),
-        intent.getExtras().getString("postExp"),
-        intent.getExtras().getBoolean("postIsSold"),
-        intent.getExtras().getString("postStorage"),
-        intent.getExtras().getString("postInst"));
-        return _post;
-    }
-
-    private Intent setPost(Intent intent)
-    {
-        intent.putExtra("postName", post.postId);
-        intent.putExtra("postId", post.id);
-        intent.putExtra("postEmail", post.email);
-        intent.putExtra("postTitle", post.title);
-        intent.putExtra("postCategory", post.category);
-        intent.putExtra("postBuy", post.buy);
-        intent.putExtra("postExp", post.exp);
-        intent.putExtra("postIsSold", post.isSold);
-        intent.putExtra("postStorage", post.storage);
-        intent.putExtra("postInst", post.inst);
-        return intent;
-    }
-
 }

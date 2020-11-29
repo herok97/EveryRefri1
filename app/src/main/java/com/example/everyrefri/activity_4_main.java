@@ -80,7 +80,6 @@ public class activity_4_main extends AppCompatActivity {
         
         // email에 해당하는 유저 정보 가져오기.
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf("@")));
-
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot tasksSnapshot) {
@@ -111,8 +110,8 @@ public class activity_4_main extends AppCompatActivity {
                 //로그인 화면으로 이동하면서, 저장된 로그인 정보를 지워야함
                 preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 editor = preferences.edit();
-                editor.putString("email", "");
-                editor.putString("pass", "");
+                editor.putString("userEmail", "");
+                editor.putString("userPass", "");
                 editor.commit();
 
                 Intent intent = new Intent(getApplicationContext(), activity_3_sign_in.class);
