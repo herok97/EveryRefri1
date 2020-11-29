@@ -73,7 +73,7 @@ public class activity_4_main extends AppCompatActivity {
 
         // 이전 액티비티의 데이터 수신
         Intent intent = getIntent();
-        email = intent.getExtras().getString("email");
+        email = intent.getExtras().getString("userEmail");
 
         // 프로필 사진 가져오기
         get_profile(email);
@@ -84,10 +84,10 @@ public class activity_4_main extends AppCompatActivity {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot tasksSnapshot) {
-                    follower = new Integer(tasksSnapshot.child("follower").getValue().toString());
-                    following = new Integer(tasksSnapshot.child("following").getValue().toString());
-                    grade = new Float(tasksSnapshot.child("grade").getValue().toString());
-                    id = (String) tasksSnapshot.child("id").getValue();
+                    follower = new Integer(tasksSnapshot.child("userFollower").getValue().toString());
+                    following = new Integer(tasksSnapshot.child("userFollowing").getValue().toString());
+                    grade = new Float(tasksSnapshot.child("userGrade").getValue().toString());
+                    id = (String) tasksSnapshot.child("userId").getValue();
                     bt_follower.setText("팔로워\n" + follower);
                     bt_following.setText("팔로잉\n" + following);
                     tv_grade.setText(String.valueOf(grade));

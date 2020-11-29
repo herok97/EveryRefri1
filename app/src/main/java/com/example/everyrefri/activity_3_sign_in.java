@@ -113,8 +113,8 @@ public class activity_3_sign_in extends AppCompatActivity {
 
                             // 유저 정보 전달 객체 생성
                             Intent intent = new Intent(getApplicationContext(), activity_4_main.class);
-                            intent.putExtra("email", email);
-                            intent.putExtra("id", "");
+                            intent.putExtra("userEmail", email);
+                            intent.putExtra("userId", "");
                             startActivity(intent);
                             finish();
                         }else{
@@ -142,16 +142,16 @@ public class activity_3_sign_in extends AppCompatActivity {
 
         // SharedPreferences 수정을 위한 Editor 객체를 얻어옵니다.
         editor = preferences.edit();
-        editor.putString("email", email);
-        editor.putString("pass", pass);
+        editor.putString("userEmail", email);
+        editor.putString("userPass", pass);
         editor.commit();
     }
 
     private String[] load_login_info()
     {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String email = preferences.getString("email", "");
-        String pass = preferences.getString("pass","");
+        String email = preferences.getString("userEmail", "");
+        String pass = preferences.getString("userPass","");
         String[] email_and_pass = {email, pass};
         return email_and_pass;
     }
