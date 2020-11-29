@@ -2,6 +2,7 @@ package com.example.everyrefri;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.icu.text.SimpleDateFormat;
@@ -32,15 +33,19 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.ViewHolder> {
     private DatabaseReference ref;
     private ArrayList<String> PostIds = null;
-
+    private Context mContext;
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_id_recy, tv_grade_recy, tv_time_recy, tv_title_recy, tv_content_recy;
         ImageView iv_pic_recy, iv_profile_recy;
-        FloatingActionButton fab_go_to_content_recy;
+        FloatingActionButton fab_moveToPost;
+
+
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -53,13 +58,30 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
             tv_content_recy = itemView.findViewById(R.id.tv_content_recy);
             iv_pic_recy = itemView.findViewById(R.id.iv_pic_recy);
             iv_profile_recy = itemView.findViewById(R.id.iv_profile_recy);
-            fab_go_to_content_recy = itemView.findViewById(R.id.fab_go_to_content_recy);
+            fab_moveToPost = itemView.findViewById(R.id.fab_go_to_content_recy);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION)
+                    {
+                        String PostId = PostIds.get(pos);
+                        Intent intent = new Intent(v.getContext(), activity_15_post.class);
+                        intent.putExtra("postName", PostId);
+
+                        mContext.startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
+                    }
+                }
+            });
         }
+
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    CustomAdapterClass(ArrayList<String> _PostIds) {
-        PostIds = _PostIds;
+    CustomAdapterClass(Context mContext, ArrayList<String> _PostIds) {
+        this.mContext = mContext;
+        this.PostIds = _PostIds;
         Log.e("CustomAdapterClass객체 생성", "!");
     }
 

@@ -33,7 +33,7 @@ public class activity_6_board extends AppCompatActivity {
     private ImageButton ibt_back;
     private SearchView searchView;//searchview이용
     private User user;
-    private FloatingActionButton fab_write;
+    private FloatingActionButton fab_write, fab_moveToPost;
     private DatabaseReference ref;
     private Post post;
     @SuppressLint("LongLogTag")
@@ -72,7 +72,7 @@ public class activity_6_board extends AppCompatActivity {
                 Collections.sort(PostIds, new Ascending());
 
                 // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-                CustomAdapterClass adapter = new CustomAdapterClass(PostIds);
+                CustomAdapterClass adapter = new CustomAdapterClass(getApplicationContext(), PostIds);
                 recyclerView.setAdapter(adapter) ;
             }
 
@@ -83,6 +83,8 @@ public class activity_6_board extends AppCompatActivity {
         });
 
 
+
+
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // back 버튼 클릭시 main으로 이동(?)
@@ -91,7 +93,7 @@ public class activity_6_board extends AppCompatActivity {
                 startActivityForResult(intent,4);
             }
         });
-        
+
 
         // 상품 올리기 버튼
         fab_write.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +104,9 @@ public class activity_6_board extends AppCompatActivity {
                 startActivityForResult(intent,13);
             }
         });
+
+
+
 
     }
 
@@ -161,7 +166,7 @@ public class activity_6_board extends AppCompatActivity {
 
     private Intent setPost(Intent intent)
     {
-        intent.putExtra("postName", post.postId);
+        intent.putExtra("postName", post.name);
         intent.putExtra("postId", post.id);
         intent.putExtra("postEmail", post.email);
         intent.putExtra("postTitle", post.title);
