@@ -42,6 +42,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
+        <FrameLayout
+            android:layout_width="55dp"
+            android:layout_height="52dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_content_recy"
+            app:layout_constraintEnd_toEndOf="@+id/tv_content_recy">
+
+            <TextView
+                android:id="@+id/tv_move"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="더보기"
+                android:textAlignment="center" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_go_to_content_recy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:alpha="0.2"
+                android:clickable="true" />
+
+        </FrameLayout>
+
         <TextView
             android:id="@+id/tv_content_recy"
             android:layout_width="259dp"
@@ -64,16 +88,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_launcher_background" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_go_to_content_recy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_content_recy"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
-
         <TextView
             android:id="@+id/tv_title_recy"
             android:layout_width="259dp"
@@ -81,5 +95,6 @@
             android:text="제목"
             app:layout_constraintStart_toStartOf="@+id/tv_content_recy"
             app:layout_constraintTop_toTopOf="@+id/iv_pic_recy" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

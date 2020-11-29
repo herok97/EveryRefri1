@@ -35,7 +35,7 @@ public class activity_6_board extends AppCompatActivity {
     private User user;
     private FloatingActionButton fab_write;
     private DatabaseReference ref;
-
+    private Post post;
     @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,20 +91,7 @@ public class activity_6_board extends AppCompatActivity {
                 startActivityForResult(intent,4);
             }
         });
-
-        //좀더공부해봐야함..
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                TextView text = (TextView)findViewById(R.id.sv_board);
-                return false;//입력받은 문자열 처리
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
+        
 
         // 상품 올리기 버튼
         fab_write.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +140,37 @@ public class activity_6_board extends AppCompatActivity {
         intent.putExtra("userFollowing", user.following);
         intent.putExtra("userGrade", user.grade);
 
+        return intent;
+    }
+
+    private Post getPost(Intent intent)
+    {
+        Post _post = new Post(
+                intent.getExtras().getString("postName"),
+                intent.getExtras().getString("postId"),
+                intent.getExtras().getString("postEmail"),
+                intent.getExtras().getString("postTitle"),
+                intent.getExtras().getString("postCategory"),
+                intent.getExtras().getString("postBuy"),
+                intent.getExtras().getString("postExp"),
+                intent.getExtras().getBoolean("postIsSold"),
+                intent.getExtras().getString("postStorage"),
+                intent.getExtras().getString("postInst"));
+        return _post;
+    }
+
+    private Intent setPost(Intent intent)
+    {
+        intent.putExtra("postName", post.postId);
+        intent.putExtra("postId", post.id);
+        intent.putExtra("postEmail", post.email);
+        intent.putExtra("postTitle", post.title);
+        intent.putExtra("postCategory", post.category);
+        intent.putExtra("postBuy", post.buy);
+        intent.putExtra("postExp", post.exp);
+        intent.putExtra("postIsSold", post.isSold);
+        intent.putExtra("postStorage", post.storage);
+        intent.putExtra("postInst", post.inst);
         return intent;
     }
 

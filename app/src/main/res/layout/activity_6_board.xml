@@ -76,7 +76,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:alpha="0.4"
+            android:alpha="0.2"
             android:clickable="true"
             app:backgroundTint="#000000"
             app:rippleColor="#783535"

@@ -108,7 +108,7 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
                                     "보관방법:" + tasksSnapshot.child("postStorage").getValue().toString() + "\n" +
                                     "구매일자:" + tasksSnapshot.child("postBuy").getValue().toString()    + "\n" +
                                     "유통기한:" + tasksSnapshot.child("postExp").getValue().toString());
-                    holder.tv_id_recy.setText(tasksSnapshot.child("id").getValue().toString());
+                    holder.tv_id_recy.setText(tasksSnapshot.child("postId").getValue().toString());
                 }catch (Exception e){
 
                 }
@@ -131,9 +131,6 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
-        // 게시글이 올린지 얼마나 지났는지 가져오기
-
     }
 
     private void get_profile(String ImageName, ImageView profile)
