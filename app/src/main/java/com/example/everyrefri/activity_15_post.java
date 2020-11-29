@@ -47,10 +47,10 @@ public class activity_15_post extends AppCompatActivity {
         ibt_chat=findViewById(R.id.ibt_chat15);
         bt_ask=findViewById(R.id.bt_ask);
         iv_profile=findViewById(R.id.iv_pro15);
-        tv_category=findViewById(R.id.tv_category15);
+        tv_category=findViewById(R.id.tv_cate);
         tv_buy=findViewById(R.id.tv_buydate);
         tv_exp=findViewById(R.id.tv_expdate);
-        tv_storage=findViewById(R.id.tv_storage15);
+        tv_storage=findViewById(R.id.tv_storagemethod);
         tv_content=findViewById(R.id.tv_add15);
         tv_title=findViewById(R.id.tv_title15);
         tv_id=findViewById(R.id.tv_name15);
