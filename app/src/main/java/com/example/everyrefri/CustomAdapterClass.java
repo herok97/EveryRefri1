@@ -101,13 +101,13 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
 
                 try {
                     // 게시글 텍스트 가져오기
-                    holder.tv_title_recy.setText(tasksSnapshot.child("title").getValue().toString());
+                    holder.tv_title_recy.setText(tasksSnapshot.child("postTitle").getValue().toString());
                     Log.e("스냅샷종류",tasksSnapshot.getKey());
                     holder.tv_content_recy.setText(
-                            "종류:" + tasksSnapshot.child("category").getValue().toString() + "\n" +
-                                    "보관방법:" + tasksSnapshot.child("storage").getValue().toString() + "\n" +
-                                    "구매일자:" + tasksSnapshot.child("buy").getValue().toString()    + "\n" +
-                                    "유통기한:" + tasksSnapshot.child("exp").getValue().toString());
+                            "종류:" + tasksSnapshot.child("postCategory").getValue().toString() + "\n" +
+                                    "보관방법:" + tasksSnapshot.child("postStorage").getValue().toString() + "\n" +
+                                    "구매일자:" + tasksSnapshot.child("postBuy").getValue().toString()    + "\n" +
+                                    "유통기한:" + tasksSnapshot.child("postExp").getValue().toString());
                     holder.tv_id_recy.setText(tasksSnapshot.child("id").getValue().toString());
                 }catch (Exception e){
 
@@ -115,8 +115,8 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
 
                 // 프사 가져오기
                 try {
-                    get_profile(tasksSnapshot.child("email").getValue().toString() + "_profile.PNG", holder.iv_profile_recy);
-                    Log.e("프로필 사진 주소:", tasksSnapshot.child("email").getValue().toString() + "_profile.PNG");
+                    get_profile(tasksSnapshot.child("postEmail").getValue().toString() + "_profile.PNG", holder.iv_profile_recy);
+                    Log.e("프로필 사진 주소:", tasksSnapshot.child("postEmail").getValue().toString() + "_profile.PNG");
                 }catch (Exception e){
 
                 }
