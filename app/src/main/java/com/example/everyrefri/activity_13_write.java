@@ -183,6 +183,7 @@ public class activity_13_write extends AppCompatActivity {
             try {
                 //Uri 파일을 Bitmap으로 만들어서 ImageView에 집어 넣는다.
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                bitmap = resizeBitmap(bitmap);
                 iv_pic.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -292,5 +293,17 @@ public class activity_13_write extends AppCompatActivity {
         return intent;
     }
 
+    private Bitmap resizeBitmap(Bitmap original) {
+
+        int resizeWidth = 256;
+
+        double aspectRatio = (double) original.getHeight() / (double) original.getWidth();
+        int targetHeight = (int) (resizeWidth * aspectRatio);
+        Bitmap result = Bitmap.createScaledBitmap(original, resizeWidth, targetHeight, false);
+        if (result != original) {
+            original.recycle();
+        }
+        return result;
+    }
 
 }

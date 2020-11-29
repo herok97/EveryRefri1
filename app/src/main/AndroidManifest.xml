@@ -17,7 +17,6 @@
         <activity android:name=".activity_14_member" />
         <activity android:name=".activity_10_chat_room" />
         <activity android:name=".activity_13_write" />
-        <activity android:name=".activity_12_profile_change" />
         <activity android:name=".activity_11_location" />
         <activity android:name=".activity_9_alarm_list" />
         <activity android:name=".activity_8_myrefri" />

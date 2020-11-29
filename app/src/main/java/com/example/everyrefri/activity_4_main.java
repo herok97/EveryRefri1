@@ -197,7 +197,7 @@ public class activity_4_main extends AppCompatActivity {
         // 프로필 사진 가져오기
         StorageReference storageRef = storage.getReference();
         StorageReference pathReference = storageRef.child("images/" + email + "_profile.PNG");
-        final long ONE_MEGABYTE = 1024 * 1024;
+        final long ONE_MEGABYTE = 2048 * 2048;
         pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
