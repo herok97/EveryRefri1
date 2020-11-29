@@ -1,11 +1,13 @@
 package com.example.everyrefri;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     // 액티비티 요소들 선언
     private Button bt_sign_in;
     private Button bt_sign_up;
+    private long backBtnTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,20 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
+    @Override
+    public void onBackPressed() {
+        long curTime = System.currentTimeMillis();
+        long gapTime = curTime - backBtnTime;
+
+        if (0 <= gapTime && 2000 >= gapTime) {
+            ActivityCompat.finishAffinity(this);
+            System.exit(0);
+        } else {
+            backBtnTime = curTime;
+            Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

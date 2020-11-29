@@ -1,6 +1,7 @@
 package com.example.everyrefri;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -41,5 +43,21 @@ public class activity_5_chat_list extends AppCompatActivity {
                 startActivityForResult(intent,4);
             }
         });
+    }
+
+    // 뒤로가기 버튼 두 번 눌러 앱 종료
+    private long backBtnTime = 0;
+    @Override
+    public void onBackPressed() {
+        long curTime = System.currentTimeMillis();
+        long gapTime = curTime - backBtnTime;
+
+        if (0 <= gapTime && 2000 >= gapTime) {
+            ActivityCompat.finishAffinity(this);
+            System.exit(0);
+        } else {
+            backBtnTime = curTime;
+            Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

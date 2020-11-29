@@ -2,6 +2,7 @@ package com.example.everyrefri;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -253,6 +254,22 @@ public class activity_7_myprofile extends AppCompatActivity {
                     });
         } else {
             Toast.makeText(getApplicationContext(), "파일을 먼저 선택하세요.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // 뒤로가기 버튼 두 번 눌러 앱 종료
+    private long backBtnTime = 0;
+    @Override
+    public void onBackPressed() {
+        long curTime = System.currentTimeMillis();
+        long gapTime = curTime - backBtnTime;
+
+        if (0 <= gapTime && 2000 >= gapTime) {
+            ActivityCompat.finishAffinity(this);
+            System.exit(0);
+        } else {
+            backBtnTime = curTime;
+            Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
     }
 }
