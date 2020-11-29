@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_2_sign_up">
+    tools:context=".activity_2_sign_up"
+    android:theme="@style/Theme.EveryRefri"
+    android:background="?attr/Background_Blue">
 
     <Button
         android:id="@+id/bt_next"
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="회원가입"
+        style="@style/title_blue"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

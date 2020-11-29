@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_7_myprofile">
+    tools:context=".activity_7_myprofile"
+    style="@style/Theme.EveryRefri">
 
 
     <ImageButton
@@ -25,6 +26,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="178dp"
         android:text="내 프로필"
+        style="@style/title_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ibt_back7"
         app:layout_constraintTop_toTopOf="parent" />

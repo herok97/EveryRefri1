@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_4_main">
+    tools:context=".activity_4_main"
+    android:theme="@style/Theme.EveryRefri">
 
 
     <ImageButton
@@ -37,10 +38,10 @@
         android:layout_width="414dp"
         android:layout_height="256dp"
         android:orientation="horizontal"
+        android:background="@color/color_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
     </LinearLayout>
 
     <ImageButton
@@ -117,14 +118,14 @@
 
     <ImageButton
         android:id="@+id/ibt_list"
-        android:layout_width="104dp"
-        android:layout_height="104dp"
+        style="@style/button_4"
         android:layout_marginTop="29dp"
-        android:layout_marginEnd="69dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="34dp"
         app:layout_constraintBottom_toTopOf="@+id/ibt_pfs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_follower"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="?attr/actionModePasteDrawable" />
 
     <TextView
@@ -139,31 +140,29 @@
 
     <ImageButton
         android:id="@+id/ibt_chat"
-        android:layout_width="104sp"
-        android:layout_height="104sp"
+        style="@style/button_4"
         android:layout_marginStart="69dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginBottom="69dp"
+        android:layout_marginBottom="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ibt_pfs"
+        app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/sym_action_chat" />
 
     <ImageButton
         android:id="@+id/ibt_pfs"
-        android:layout_width="104sp"
-        android:layout_height="104sp"
-        android:layout_marginEnd="69dp"
-        android:layout_marginBottom="69dp"
+        style="@style/button_4"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_preferences" />
 
-    <Button
+    <ImageButton
         android:id="@+id/bt_refri"
-        android:layout_width="104sp"
-        android:layout_height="104sp"
-        android:layout_marginStart="76dp"
+        style="@style/button_4"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="29dp"
         android:layout_marginBottom="34dp"
         android:text="냉장고"

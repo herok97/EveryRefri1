@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_2_sign_up">
+    tools:context=".activity_2_sign_up"
+    android:theme="@style/Blue_Background">
 
 <!-- 레이아웃 화면 비율 수정본 - 김민서 -->
 
@@ -25,15 +26,17 @@
             android:gravity="center"
             android:layout_weight="2"
             android:text="회원가입"
-            android:textSize="20sp"
+            style="@style/title_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_gravity='center'
             android:layout_weight="6"
+            android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
@@ -43,8 +46,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
+                android:background="@color/white"
                 android:gravity="center"
                 android:text="회원 정보 입력"
+                android:textColor="@color/color_blue"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -7,15 +7,20 @@
         <item name="windowNoTitle">true</item>
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/color_blue</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondary">@color/color_blue2</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="Background_Gray">@color/background_gray</item>
+        <item name="Background_Blue">@color/background_blue</item>
+    </style>
+    <style name="Blue_Background" parent="Theme.EveryRefri">
+        <item name="android:background">@color/white_blue</item>
     </style>
 </resources>
