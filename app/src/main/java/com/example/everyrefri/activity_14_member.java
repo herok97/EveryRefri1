@@ -102,21 +102,22 @@ public class activity_14_member extends AppCompatActivity {
     private User getUser(Intent intent)
     {
         User _user = new User(
-                intent.getExtras().getString("id"),
-                intent.getExtras().getString("email"),
-                intent.getExtras().getInt("follower"),
-                intent.getExtras().getInt("following"),
-                intent.getExtras().getFloat("grade"));
+                intent.getExtras().getString("userId"),
+                intent.getExtras().getString("userEmail"),
+                intent.getExtras().getInt("userFollower"),
+                intent.getExtras().getInt("userFollowing"),
+                intent.getExtras().getFloat("userGrade"));
         return _user;
     }
 
     private Intent setUser(Intent intent)
     {
-        intent.putExtra("id", user.id);
-        intent.putExtra("follower", user.follower);
-        intent.putExtra("following", user.following);
-        intent.putExtra("grade", user.grade);
-        intent.putExtra("email", user.email);
+        intent.putExtra("userId", user.id);
+        intent.putExtra("userEmail", user.email);
+        intent.putExtra("userFollower", user.follower);
+        intent.putExtra("userFollowing", user.following);
+        intent.putExtra("userGrade", user.grade);
+
         return intent;
     }
 

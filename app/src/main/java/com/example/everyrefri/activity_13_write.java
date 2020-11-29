@@ -223,15 +223,16 @@ public class activity_13_write extends AppCompatActivity {
                             // post 데이터 생성
                             try{
                                 HashMap<String, Object> postInfo = new HashMap<>();
-                                postInfo.put("id", user.id);
-                                postInfo.put("email", user.email);
-                                postInfo.put("title", et_title.getText().toString());
-                                postInfo.put("category", sp_category.getSelectedItem().toString());
-                                postInfo.put("exp", exp);
-                                postInfo.put("buy", buy);
-                                postInfo.put("isSold", 0);
-                                postInfo.put("storage", sp_storage.getSelectedItem().toString());
-                                postInfo.put("inst", et_inst.getText().toString());
+                                postInfo.put("postName", postName);
+                                postInfo.put("postId", user.id);
+                                postInfo.put("postEmail", user.email);
+                                postInfo.put("postTitle", et_title.getText().toString());
+                                postInfo.put("postCategory", sp_category.getSelectedItem().toString());
+                                postInfo.put("postExp", exp);
+                                postInfo.put("postBuy", buy);
+                                postInfo.put("postIsSold", false);
+                                postInfo.put("postStorage", sp_storage.getSelectedItem().toString());
+                                postInfo.put("postInst", et_inst.getText().toString());
 
                                 ref.setValue(postInfo);
                             }catch (Exception e){
@@ -292,21 +293,22 @@ public class activity_13_write extends AppCompatActivity {
     private User getUser(Intent intent)
     {
         User _user = new User(
-                intent.getExtras().getString("id"),
-                intent.getExtras().getString("email"),
-                intent.getExtras().getInt("follower"),
-                intent.getExtras().getInt("following"),
-                intent.getExtras().getFloat("grade"));
+                intent.getExtras().getString("userId"),
+                intent.getExtras().getString("userEmail"),
+                intent.getExtras().getInt("userFollower"),
+                intent.getExtras().getInt("userFollowing"),
+                intent.getExtras().getFloat("userGrade"));
         return _user;
     }
 
     private Intent setUser(Intent intent)
     {
-        intent.putExtra("id", user.id);
-        intent.putExtra("follower", user.follower);
-        intent.putExtra("following", user.following);
-        intent.putExtra("grade", user.grade);
-        intent.putExtra("email", user.email);
+        intent.putExtra("userId", user.id);
+        intent.putExtra("userEmail", user.email);
+        intent.putExtra("userFollower", user.follower);
+        intent.putExtra("userFollowing", user.following);
+        intent.putExtra("userGrade", user.grade);
+
         return intent;
     }
 

@@ -11,13 +11,15 @@ public class Post {
     public Boolean isSold;
     public String storage;
     public String inst;
+    public String postId;
 
     public Post()
     {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Post(String id,
+    public Post(String postId,
+                String id,
                 String email,
                 String title,
                 String category,
@@ -27,6 +29,7 @@ public class Post {
                 String storage,
                 String inst)
     {
+        this.postId = postId;
         this.id = id;
         this.email = email;
         this.title = title;
@@ -38,7 +41,8 @@ public class Post {
         this.inst = inst;
     }
 
-    public void setValue(String id,
+    public void setValue(String postId,
+                         String id,
                          String email,
                          String title,
                          String category,
@@ -48,6 +52,7 @@ public class Post {
                          String storage,
                          String inst)
     {
+        this.postId = postId;
         this.id = id;
         this.email = email;
         this.title = title;

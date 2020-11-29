@@ -3,10 +3,12 @@ package com.example.everyrefri;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 public class activity_10_chat_room extends AppCompatActivity {
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,5 +30,27 @@ public class activity_10_chat_room extends AppCompatActivity {
             backBtnTime = curTime;
             Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private User getUser(Intent intent)
+    {
+        User _user = new User(
+                intent.getExtras().getString("userId"),
+                intent.getExtras().getString("userEmail"),
+                intent.getExtras().getInt("userFollower"),
+                intent.getExtras().getInt("userFollowing"),
+                intent.getExtras().getFloat("userGrade"));
+        return _user;
+    }
+
+    private Intent setUser(Intent intent)
+    {
+        intent.putExtra("userId", user.id);
+        intent.putExtra("userEmail", user.email);
+        intent.putExtra("userFollower", user.follower);
+        intent.putExtra("userFollowing", user.following);
+        intent.putExtra("userGrade", user.grade);
+
+        return intent;
     }
 }

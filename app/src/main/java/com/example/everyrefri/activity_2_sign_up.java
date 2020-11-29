@@ -146,14 +146,14 @@ public class activity_2_sign_up extends AppCompatActivity {
                             // nowDate 변수에 값을 저장한다.
                             String formatDate = sdfNow.format(date);
 
-                            userInfo.put("email", email);
-                            userInfo.put("id", id);
-                            userInfo.put("pass", pass);
-                            userInfo.put("start", formatDate);
+                            userInfo.put("userEmail", email);
+                            userInfo.put("userId", id);
+                            userInfo.put("userPass", pass);
+                            userInfo.put("userStart", formatDate);
 
-                            userInfo.put("following", 0);
-                            userInfo.put("follower", 0);
-                            userInfo.put("grade", 0);
+                            userInfo.put("userFollowing", 0);
+                            userInfo.put("userFollower", 0);
+                            userInfo.put("userGrade", 0);
 
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
