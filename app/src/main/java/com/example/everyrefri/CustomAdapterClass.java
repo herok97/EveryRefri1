@@ -49,17 +49,6 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
 
         ViewHolder(View itemView) {
             super(itemView);
-
-            // 뷰 객체에 대한 참조. (hold strong reference)
-            tv_id_recy = itemView.findViewById(R.id.tv_id_recy);
-//            tv_grade_recy = itemView.findViewById(R.id.tv_grade_recy);
-//            tv_time_recy = itemView.findViewById(R.id.tv_time_recy);
-            tv_title_recy = itemView.findViewById(R.id.tv_title_recy);
-            tv_content_recy = itemView.findViewById(R.id.tv_content_recy);
-            iv_pic_recy = itemView.findViewById(R.id.iv_pic_recy);
-            iv_profile_recy = itemView.findViewById(R.id.iv_profile_recy);
-            fab_moveToPost = itemView.findViewById(R.id.fab_go_to_content_recy);
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
