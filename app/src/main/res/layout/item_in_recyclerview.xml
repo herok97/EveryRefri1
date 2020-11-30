@@ -51,25 +51,7 @@
             android:layout_height="52dp"
             android:background="#00000000"
             app:layout_constraintBottom_toBottomOf="@+id/tv_content_recy"
-            app:layout_constraintEnd_toEndOf="@+id/tv_content_recy">
-
-            <TextView
-                android:id="@+id/tv_move"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="더보기"
-                android:textAlignment="center" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_go_to_content_recy"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:alpha="0.2"
-                android:clickable="true" />
-
-        </FrameLayout>
+            app:layout_constraintEnd_toEndOf="@+id/tv_content_recy"/>
 
         <TextView
             android:id="@+id/tv_content_recy"
