@@ -22,7 +22,8 @@ public class activity_14_member extends AppCompatActivity {
         setContentView(R.layout.activity_14_member);
 
         Intent intent =getIntent();
-        user = getUser(intent);
+        user = new User();
+        user.getUserFromIntent(intent);
 
         ibt_back=findViewById(R.id.ibt_back14);
         bt_follower=findViewById(R.id.bt_follower14);
@@ -36,6 +37,7 @@ public class activity_14_member extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), activity_15_post.class);
                 intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,15);
+                finish();
             }
         });
 
@@ -97,17 +99,6 @@ public class activity_14_member extends AppCompatActivity {
             backBtnTime = curTime;
             Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
     }
 
 

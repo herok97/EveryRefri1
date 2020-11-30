@@ -30,7 +30,8 @@ public class activity_8_myrefri extends AppCompatActivity {
 
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
-        user = getUser(intent);
+        user = new User();
+        user.getUserFromIntent(intent);
 
         fab_write.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,17 +77,6 @@ public class activity_8_myrefri extends AppCompatActivity {
             backBtnTime = curTime;
             Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
     }
 
 

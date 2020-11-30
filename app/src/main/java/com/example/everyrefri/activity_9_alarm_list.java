@@ -22,7 +22,8 @@ public class activity_9_alarm_list extends AppCompatActivity {
         ibt_back = findViewById(R.id.ibt_back8);
 
         Intent intent =getIntent();
-        user = getUser(intent);
+        user = new User();
+        user.getUserFromIntent(intent);
 
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,17 +50,6 @@ public class activity_9_alarm_list extends AppCompatActivity {
             backBtnTime = curTime;
             Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
     }
 
 }

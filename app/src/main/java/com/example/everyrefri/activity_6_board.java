@@ -47,7 +47,8 @@ public class activity_6_board extends AppCompatActivity {
         fab_write = findViewById(R.id.fab_write);
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
-        user = getUser(intent);
+        user = new User();
+        user.getUserFromIntent(intent);
 
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
@@ -83,14 +84,13 @@ public class activity_6_board extends AppCompatActivity {
         });
 
 
-
-
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // back 버튼 클릭시 main으로 이동(?)
                 Intent intent = new Intent(getApplicationContext(), activity_4_main.class);
                 intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,4);
+                finish();
             }
         });
 
@@ -102,6 +102,7 @@ public class activity_6_board extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), activity_13_write.class);
                 intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,13);
+                finish();
             }
         });
 
@@ -125,18 +126,6 @@ public class activity_6_board extends AppCompatActivity {
             Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
     }
-
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
-    }
-
 
     private Post getPost(Intent intent)
     {

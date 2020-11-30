@@ -63,7 +63,8 @@ public class activity_7_myprofile extends AppCompatActivity {
 
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
-        user = getUser(intent);
+        user = new User();
+        user.getUserFromIntent(intent);
 
 
         // 프로필 사진 가져오기
@@ -116,18 +117,6 @@ public class activity_7_myprofile extends AppCompatActivity {
             }
         });
     }
-
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
-    }
-
 
     private void get_profile(String email)
     {

@@ -39,6 +39,7 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
     private DatabaseReference ref;
     private ArrayList<String> PostIds = null;
     private Context mContext;
+    private User user;
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_id_recy, tv_grade_recy, tv_time_recy, tv_title_recy, tv_content_recy;
@@ -51,12 +52,11 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
             super(itemView);
             // 뷰 객체에 대한 참조. (hold strong reference)
             tv_id_recy = itemView.findViewById(R.id.tv_id_recy);
-//            tv_grade_recy = itemView.findViewById(R.id.tv_grade_recy);
-//            tv_time_recy = itemView.findViewById(R.id.tv_time_recy);
             tv_title_recy = itemView.findViewById(R.id.tv_title_recy);
             tv_content_recy = itemView.findViewById(R.id.tv_content_recy);
             iv_pic_recy = itemView.findViewById(R.id.iv_pic_recy);
             iv_profile_recy = itemView.findViewById(R.id.iv_profile_recy);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -67,7 +67,6 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
                         String PostId = PostIds.get(pos);
                         Intent intent = new Intent(v.getContext(), activity_15_post.class);
                         intent.putExtra("postName", PostId);
-
                         mContext.startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
                     }
                 }
