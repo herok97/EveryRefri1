@@ -1,124 +1,140 @@
 package com.example.everyrefri;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-import android.location.Address;
-import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationProvider;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraUpdate;
+import com.naver.maps.map.LocationTrackingMode;
+import com.naver.maps.map.MapFragment;
+import com.naver.maps.map.MapView;
+import com.naver.maps.map.NaverMap;
+import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.UiSettings;
+import com.naver.maps.map.internal.HTTPRequest;
+import com.naver.maps.map.util.FusedLocationSource;
 
-import java.io.IOException;
-import java.util.List;
-
-public class activity_11_location extends FragmentActivity implements OnMapReadyCallback {
-    private GoogleMap mMap;
-    private Geocoder geocoder;
-    private Button button;
-    private EditText editText;
-
-    //https://m.blog.naver.com/qbxlvnf11/221183308547 일단 베껴놓은상태임
-
+public class activity_11_location extends AppCompatActivity implements OnMapReadyCallback{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onMapReady(@NonNull NaverMap naverMap) {
+
+    }
+
+    // static final String TAG="LOCATION";
+    //MapFragment mapFragment;
+    //NaverMap map;
+
+    //위치 검색해서 지도에서 넣는건 쉽지 않아보여서
+    // 현재 위치 파악으로 버튼눌러 그위치를 저장하는 식으로 하려고하는 중인데 원래나오던 지도도 안나오는중..
+    //오류 더 찾고 확인해야함
+
+    public class MapApi extends AppCompatActivity implements OnMapReadyCallback {
+
+        private MapView mapView;
+
+        private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
+        private FusedLocationSource locationSource;
+        private NaverMap naverMap;
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_11_location);
+
+
+            mapView = findViewById(R.id.mapView);
+            mapView.onCreate(savedInstanceState);
+            mapView.getMapAsync(this);
+
+            locationSource =
+                    new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
+
+
+
+        }
+        //위치정보 권한 설정
+        @Override
+        public void onRequestPermissionsResult(int requestCode,
+                                               @NonNull String[] permissions,  @NonNull int[] grantResults) {
+            if (locationSource.onRequestPermissionsResult(
+                    requestCode, permissions, grantResults)) {
+                return;
+            }
+            super.onRequestPermissionsResult(
+                    requestCode, permissions, grantResults);
+        }
+
+        @Override
+        public void onMapReady(@NonNull NaverMap naverMap) {
+            this.naverMap = naverMap;
+            // NaverMap 객체 받아서 NaverMap 객체에 위치 소스 지정
+            naverMap.setLocationSource(locationSource);
+            naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+
+            UiSettings uiSettings = naverMap.getUiSettings();
+            uiSettings.setCompassEnabled(true); // 나침반
+            uiSettings.setScaleBarEnabled(true); // 거리
+            uiSettings.setZoomControlEnabled(true); // 줌
+            uiSettings.setLocationButtonEnabled(true); // 내가 있는곳
+
+
+        }
+    }
+
+
+    /*protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_11_location);
-        editText = (EditText) findViewById(R.id.et_location);
-        button=(Button)findViewById(R.id.bt_search);
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-    }
-
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    @Override
-    public void onMapReady(final GoogleMap googleMap) {
-        mMap = googleMap;
-        geocoder = new Geocoder(this);
-
-        // 맵 터치 이벤트 구현 //
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener(){
+       mapFragment=(MapFragment)getSupportFragmentManager().findFragmentById(R.id.mapView);
+        //mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.mapView);
+        mapFragment.getMapAsync(new OnMapReadyCallback(){
             @Override
-            public void onMapClick(LatLng point) {
-                MarkerOptions mOptions = new MarkerOptions();
-                // 마커 타이틀
-                mOptions.title("마커 좌표");
-                Double latitude = point.latitude; // 위도
-                Double longitude = point.longitude; // 경도
-                // 마커의 스니펫(간단한 텍스트) 설정
-                mOptions.snippet(latitude.toString() + ", " + longitude.toString());
-                // LatLng: 위도 경도 쌍을 나타냄
-                mOptions.position(new LatLng(latitude, longitude));
-                // 마커(핀) 추가
-                googleMap.addMarker(mOptions);
+            public void onMapReady(@NonNull NaverMap naverMap) {
+                Log.d(TAG,"Naver MAP is ready");
+                map=naverMap;
             }
         });
-        ////////////////////
 
-        // 버튼 이벤트
-        button.setOnClickListener(new Button.OnClickListener(){
-            @Override
+        try{
+            MapsInitializer.initialize(this);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Button button = (Button)findViewById(R.id.bt_locationsave);
+        button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                String str=editText.getText().toString();
-                List<Address> addressList = null;
-                try {
-                    // editText에 입력한 텍스트(주소, 지역, 장소 등)을 지오 코딩을 이용해 변환
-                    addressList = geocoder.getFromLocationName(
-                            str, // 주소
-                            10); // 최대 검색 결과 개수
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                System.out.println(addressList.get(0).toString());
-                // 콤마를 기준으로 split
-                String []splitStr = addressList.get(0).toString().split(",");
-                String address = splitStr[0].substring(splitStr[0].indexOf("\"") + 1,splitStr[0].length() - 2); // 주소
-                System.out.println(address);
-
-                String latitude = splitStr[10].substring(splitStr[10].indexOf("=") + 1); // 위도
-                String longitude = splitStr[12].substring(splitStr[12].indexOf("=") + 1); // 경도
-                System.out.println(latitude);
-                System.out.println(longitude);
-
-                // 좌표(위도, 경도) 생성
-                LatLng point = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
-                // 마커 생성
-                MarkerOptions mOptions2 = new MarkerOptions();
-                mOptions2.title("search result");
-                mOptions2.snippet(address);
-                mOptions2.position(point);
-                // 마커 추가
-                mMap.addMarker(mOptions2);
-                // 해당 좌표로 화면 줌
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,15));
+                new LocationRequest();
             }
-        });
-        ////////////////////
+        });*/
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
-}
+
+    /*public void onLocationChanged(Location location){
+
+    }
+
+
+    private void showCurrentLocation(double latitude,double longitude){
+        LatLng curPoint = new LatLng(latitude,longitude);
+        map.moveCamera(CameraUpdate.scrollAndZoomTo(curPoint,15));
+
+    }*/
+
+/*
+    @Override
+    public void onMapReady(@NonNull NaverMap naverMap) {
+
+    }
+}*/
