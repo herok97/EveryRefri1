@@ -43,14 +43,4 @@ public class activity_10_chat_room extends AppCompatActivity {
         return _user;
     }
 
-    private Intent setUser(Intent intent)
-    {
-        intent.putExtra("userId", user.id);
-        intent.putExtra("userEmail", user.email);
-        intent.putExtra("userFollower", user.follower);
-        intent.putExtra("userFollowing", user.following);
-        intent.putExtra("userGrade", user.grade);
-
-        return intent;
-    }
 }

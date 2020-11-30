@@ -49,6 +49,15 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
 
         ViewHolder(View itemView) {
             super(itemView);
+            // 뷰 객체에 대한 참조. (hold strong reference)
+            tv_id_recy = itemView.findViewById(R.id.tv_id_recy);
+//            tv_grade_recy = itemView.findViewById(R.id.tv_grade_recy);
+//            tv_time_recy = itemView.findViewById(R.id.tv_time_recy);
+            tv_title_recy = itemView.findViewById(R.id.tv_title_recy);
+            tv_content_recy = itemView.findViewById(R.id.tv_content_recy);
+            iv_pic_recy = itemView.findViewById(R.id.iv_pic_recy);
+            iv_profile_recy = itemView.findViewById(R.id.iv_profile_recy);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -151,11 +160,15 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
         storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference pathReference = storageRef.child("images/" + ImageName);
+        Log.e("이미지 경로", "images/" + ImageName);
         final long ONE_MEGABYTE = 2048 * 2048;
         pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
+                Log.e("이미지 가져오기 성공", "!");
                 Bitmap bit = BitmapFactory.decodeByteArray( bytes , 0 , bytes.length);
+                Log.e("bit 텍스트로", bit.toString());
+                Log.e("bytes 텍스트로", bytes.toString());
                 profile.setImageBitmap(bit);
             }
         }).addOnFailureListener(new OnFailureListener() {

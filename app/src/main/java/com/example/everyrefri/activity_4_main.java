@@ -123,7 +123,7 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // board 이미지 버튼 클릭시 게시판이동
                 Intent intent = new Intent(getApplicationContext(), activity_6_board.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,6);//requestcode이게맞는지 다시 확인
                 finish();
             }
@@ -133,7 +133,7 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // alarm 이미지 버튼 클릭시 alarm_list로 이동
                 Intent intent = new Intent(getApplicationContext(), activity_9_alarm_list.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,9);
                 finish();
             }
@@ -143,7 +143,7 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // setting이미지 버튼 클릭시 프로필 설정(내프로필)화면으로 이동
                 Intent intent = new Intent(getApplicationContext(), activity_7_myprofile.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,7);
                 finish();
             }
@@ -153,7 +153,7 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // chat이미지 버튼 클릭시 chat_list로 이동
                 Intent intent = new Intent(getApplicationContext(), activity_5_chat_list.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,5);
                 finish();
             }
@@ -163,7 +163,7 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_16_follower.class);//follower목록페이지 만들고 변경
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,16);
                 finish();
             }
@@ -173,7 +173,7 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_17_following.class);//following목록페이지 만들고 변경
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,17);
                 finish();
             }
@@ -183,7 +183,7 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_8_myrefri.class);//나의 냉장고페이지 만들고 변경
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,8);
                 finish();
             }
@@ -218,6 +218,8 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap bit = BitmapFactory.decodeByteArray( bytes , 0 , bytes.length);
+                Log.e("bit 텍스트로", bit.toString());
+                Log.e("bytes 텍스트로", bytes.toString());
                 iv_prof.setImageBitmap(bit);
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -228,27 +230,6 @@ public class activity_4_main extends AppCompatActivity {
         });
     }
 
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
-    }
-
-    private Intent setUser(Intent intent)
-    {
-        intent.putExtra("userId", user.id);
-        intent.putExtra("userEmail", user.email);
-        intent.putExtra("userFollower", user.follower);
-        intent.putExtra("userFollowing", user.following);
-        intent.putExtra("userGrade", user.grade);
-
-        return intent;
-    }
 
     private void log_last_login(DatabaseReference ref)
     {

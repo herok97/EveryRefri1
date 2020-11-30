@@ -245,7 +245,7 @@ public class activity_13_write extends AppCompatActivity {
 
                             // 게시판으로 이동하기
                             Intent intent = new Intent(getApplicationContext(), activity_6_board.class);
-                            intent = setUser(intent);
+                            intent = user.setUserToIntent(intent);
                             startActivityForResult(intent,6);//requestcode이게맞는지 다시 확인
                             finish();
 
@@ -301,16 +301,6 @@ public class activity_13_write extends AppCompatActivity {
         return _user;
     }
 
-    private Intent setUser(Intent intent)
-    {
-        intent.putExtra("userId", user.id);
-        intent.putExtra("userEmail", user.email);
-        intent.putExtra("userFollower", user.follower);
-        intent.putExtra("userFollowing", user.following);
-        intent.putExtra("userGrade", user.grade);
-
-        return intent;
-    }
 
     private Bitmap resizeBitmap(Bitmap original) {
 

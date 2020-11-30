@@ -73,7 +73,7 @@ public class activity_7_myprofile extends AppCompatActivity {
             @Override
             public void onClick(View view) { // back 버튼 클릭시 main으로 이동
                 Intent intent = new Intent(getApplicationContext(), activity_4_main.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,4);
             }
         });
@@ -128,16 +128,6 @@ public class activity_7_myprofile extends AppCompatActivity {
         return _user;
     }
 
-    private Intent setUser(Intent intent)
-    {
-        intent.putExtra("userId", user.id);
-        intent.putExtra("userEmail", user.email);
-        intent.putExtra("userFollower", user.follower);
-        intent.putExtra("userFollowing", user.following);
-        intent.putExtra("userGrade", user.grade);
-
-        return intent;
-    }
 
     private void get_profile(String email)
     {

@@ -34,7 +34,7 @@ public class activity_14_member extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), activity_15_post.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,15);
             }
         });
@@ -45,7 +45,7 @@ public class activity_14_member extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_16_follower.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,16);
                 finish();
             }
@@ -55,7 +55,7 @@ public class activity_14_member extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_17_following.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,17);
                 finish();
             }
@@ -65,7 +65,7 @@ public class activity_14_member extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_16_follower.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,5);
                 finish();
             }
@@ -108,17 +108,6 @@ public class activity_14_member extends AppCompatActivity {
                 intent.getExtras().getInt("userFollowing"),
                 intent.getExtras().getFloat("userGrade"));
         return _user;
-    }
-
-    private Intent setUser(Intent intent)
-    {
-        intent.putExtra("userId", user.id);
-        intent.putExtra("userEmail", user.email);
-        intent.putExtra("userFollower", user.follower);
-        intent.putExtra("userFollowing", user.following);
-        intent.putExtra("userGrade", user.grade);
-
-        return intent;
     }
 
 
