@@ -30,13 +30,14 @@ public class activity_8_myrefri extends AppCompatActivity {
 
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
-        user = getUser(intent);
+        user = new User();
+        user.getUserFromIntent(intent);
 
         fab_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), activity_13_write.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,13);
             }
         });
@@ -45,7 +46,7 @@ public class activity_8_myrefri extends AppCompatActivity {
             @Override
             public void onClick(View view) { // back 버튼 클릭시 main으로 이동(?)
                 Intent intent = new Intent(getApplicationContext(), activity_4_main.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,4);
             }
         });
@@ -54,7 +55,7 @@ public class activity_8_myrefri extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), activity_9_alarm_list.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,9);
             }
         });
@@ -78,27 +79,6 @@ public class activity_8_myrefri extends AppCompatActivity {
         }
     }
 
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
-    }
-
-    private Intent setUser(Intent intent)
-    {
-        intent.putExtra("userId", user.id);
-        intent.putExtra("userEmail", user.email);
-        intent.putExtra("userFollower", user.follower);
-        intent.putExtra("userFollowing", user.following);
-        intent.putExtra("userGrade", user.grade);
-
-        return intent;
-    }
 
 
 

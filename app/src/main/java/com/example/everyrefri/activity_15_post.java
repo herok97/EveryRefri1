@@ -60,7 +60,8 @@ public class activity_15_post extends AppCompatActivity {
 
         // 이전 액티비티 데이터 수신
         Intent intent =getIntent();
-        user = getUser(intent);
+        user = new User();
+        user.getUserFromIntent(intent);
         String postName = intent.getExtras().getString("postName");
         Log.e("getPost함수시작, postName",postName);
 
@@ -113,13 +114,13 @@ public class activity_15_post extends AppCompatActivity {
 
 
         // 게시글
-
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), activity_6_board.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,6);
+                finish();
             }
         });
 
@@ -127,8 +128,9 @@ public class activity_15_post extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), activity_9_alarm_list.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,9);
+                finish();
             }
         });
 
@@ -136,8 +138,9 @@ public class activity_15_post extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), activity_10_chat_room.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent, 10);
+                finish();
             }
         });
     }
@@ -197,25 +200,4 @@ public class activity_15_post extends AppCompatActivity {
         }
     }
 
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
-    }
-
-    private Intent setUser(Intent intent)
-    {
-        intent.putExtra("userId", user.id);
-        intent.putExtra("userEmail", user.email);
-        intent.putExtra("userFollower", user.follower);
-        intent.putExtra("userFollowing", user.following);
-        intent.putExtra("userGrade", user.grade);
-
-        return intent;
-    }
 }

@@ -31,10 +31,6 @@ public class activity_5_chat_list extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);//recyclerview 일정한 크기 사용
         layoutManager = new LinearLayoutManager(this);//레이아웃타입
 
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerViewA();
-        recyclerView.setAdapter(adapter);
-
 
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override

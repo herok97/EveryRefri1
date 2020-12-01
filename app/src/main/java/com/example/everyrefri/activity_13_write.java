@@ -44,7 +44,7 @@ public class activity_13_write extends AppCompatActivity {
     private User user;
     private Spinner sp_category, sp_storage;
     private Button bt_choice;
-    private ImageButton ibt_save;
+    private ImageButton ibt_save, ibt_back;
     private ImageView iv_pic;
     private ArrayAdapter<String> adapter;
     private String buy, exp;
@@ -70,43 +70,36 @@ public class activity_13_write extends AppCompatActivity {
         et_inst = findViewById(R.id.et_inst);
         dp_buy = findViewById(R.id.dp_buy);
         dp_exp = findViewById(R.id.dp_exp);
-
+        ibt_back =findViewById(R.id.ibt_back13);
 
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
-        user = getUser(intent);
+        user = new User();
+        user.getUserFromIntent(intent);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, items
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         sp_category.setAdapter(adapter);
-//        sp_category.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                textView.setText(items[position]);
-//            }
-//
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                textView.setText("종류");
-//            }
-//        });
+
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, methods
         );
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item);
         sp_storage.setAdapter(adapter1);
-//        sp_storage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                textView.setText(methods[position]);
-//            }
-//
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                textView.setText("방법");
-//            }
-//        });
+
+
+        ibt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), activity_15_post.class);
+                intent = user.setUserToIntent(intent);
+                startActivityForResult(intent,13);
+                finish();
+            }
+        });
 
         // 사진 선택 버튼 클릭시
         bt_choice.setOnClickListener(new View.OnClickListener() {
@@ -245,7 +238,7 @@ public class activity_13_write extends AppCompatActivity {
 
                             // 게시판으로 이동하기
                             Intent intent = new Intent(getApplicationContext(), activity_6_board.class);
-                            intent = setUser(intent);
+                            intent = user.setUserToIntent(intent);
                             startActivityForResult(intent,6);//requestcode이게맞는지 다시 확인
                             finish();
 
@@ -290,27 +283,7 @@ public class activity_13_write extends AppCompatActivity {
         }
     }
 
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
-    }
 
-    private Intent setUser(Intent intent)
-    {
-        intent.putExtra("userId", user.id);
-        intent.putExtra("userEmail", user.email);
-        intent.putExtra("userFollower", user.follower);
-        intent.putExtra("userFollowing", user.following);
-        intent.putExtra("userGrade", user.grade);
-
-        return intent;
-    }
 
     private Bitmap resizeBitmap(Bitmap original) {
 

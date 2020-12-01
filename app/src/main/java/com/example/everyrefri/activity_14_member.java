@@ -22,7 +22,8 @@ public class activity_14_member extends AppCompatActivity {
         setContentView(R.layout.activity_14_member);
 
         Intent intent =getIntent();
-        user = getUser(intent);
+        user = new User();
+        user.getUserFromIntent(intent);
 
         ibt_back=findViewById(R.id.ibt_back14);
         bt_follower=findViewById(R.id.bt_follower14);
@@ -34,8 +35,9 @@ public class activity_14_member extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), activity_15_post.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,15);
+                finish();
             }
         });
 
@@ -45,7 +47,7 @@ public class activity_14_member extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_16_follower.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,16);
                 finish();
             }
@@ -55,7 +57,7 @@ public class activity_14_member extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_17_following.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,17);
                 finish();
             }
@@ -65,7 +67,7 @@ public class activity_14_member extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_16_follower.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,5);
                 finish();
             }
@@ -97,28 +99,6 @@ public class activity_14_member extends AppCompatActivity {
             backBtnTime = curTime;
             Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
-    }
-
-    private Intent setUser(Intent intent)
-    {
-        intent.putExtra("userId", user.id);
-        intent.putExtra("userEmail", user.email);
-        intent.putExtra("userFollower", user.follower);
-        intent.putExtra("userFollowing", user.following);
-        intent.putExtra("userGrade", user.grade);
-
-        return intent;
     }
 
 

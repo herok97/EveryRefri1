@@ -63,7 +63,8 @@ public class activity_7_myprofile extends AppCompatActivity {
 
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
-        user = getUser(intent);
+        user = new User();
+        user.getUserFromIntent(intent);
 
 
         // 프로필 사진 가져오기
@@ -73,7 +74,7 @@ public class activity_7_myprofile extends AppCompatActivity {
             @Override
             public void onClick(View view) { // back 버튼 클릭시 main으로 이동
                 Intent intent = new Intent(getApplicationContext(), activity_4_main.class);
-                intent = setUser(intent);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,4);
             }
         });
@@ -115,28 +116,6 @@ public class activity_7_myprofile extends AppCompatActivity {
                 startActivityForResult(intent,11);
             }
         });
-    }
-
-    private User getUser(Intent intent)
-    {
-        User _user = new User(
-                intent.getExtras().getString("userId"),
-                intent.getExtras().getString("userEmail"),
-                intent.getExtras().getInt("userFollower"),
-                intent.getExtras().getInt("userFollowing"),
-                intent.getExtras().getFloat("userGrade"));
-        return _user;
-    }
-
-    private Intent setUser(Intent intent)
-    {
-        intent.putExtra("userId", user.id);
-        intent.putExtra("userEmail", user.email);
-        intent.putExtra("userFollower", user.follower);
-        intent.putExtra("userFollowing", user.following);
-        intent.putExtra("userGrade", user.grade);
-
-        return intent;
     }
 
     private void get_profile(String email)
