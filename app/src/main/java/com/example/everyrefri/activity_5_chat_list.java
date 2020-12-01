@@ -20,6 +20,7 @@ public class activity_5_chat_list extends AppCompatActivity {
     private RecyclerView recyclerView;
     public RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +32,15 @@ public class activity_5_chat_list extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);//recyclerview 일정한 크기 사용
         layoutManager = new LinearLayoutManager(this);//레이아웃타입
 
+        Intent intent =getIntent();
+        user = new User();
+        user.getUserFromIntent(intent);
 
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { // back 버튼 클릭시 main으로 이동(?)
                 Intent intent = new Intent(getApplicationContext(), activity_4_main.class);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,4);
             }
         });
