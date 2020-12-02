@@ -58,6 +58,8 @@ public class activity_6_board extends AppCompatActivity {
         Log.e("recyclerView.setLayoutManager(new LinearLayoutManager(this))","!");
 
 
+
+
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         ArrayList<String> PostIds = new ArrayList<>();
         ref = FirebaseDatabase.getInstance().getReference().child("Posts");
@@ -75,6 +77,21 @@ public class activity_6_board extends AppCompatActivity {
                 // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
                 CustomAdapterClass adapter = new CustomAdapterClass(getApplicationContext(), PostIds);
                 recyclerView.setAdapter(adapter) ;
+
+                // 게시물  클릭 이벤트
+                adapter.setOnItemListener(
+                        new CustomAdapterClass.OnItemClickListener(){
+                            @Override
+                            public void onItemClick(View v, int pos, ArrayList<String> PostIds)
+                            {
+                                String PostId = PostIds.get(pos);
+                                Intent intent = new Intent(getApplicationContext(), activity_15_post.class);
+                                intent.putExtra("postName", PostId);
+                                intent = user.setUserToIntent(intent);
+                                startActivity(intent);
+                            }
+                        }
+                );
             }
 
             @Override
@@ -105,6 +122,8 @@ public class activity_6_board extends AppCompatActivity {
                 finish();
             }
         });
+
+
 
 
 

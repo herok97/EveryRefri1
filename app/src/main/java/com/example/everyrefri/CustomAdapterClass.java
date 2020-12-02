@@ -40,6 +40,18 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
     private ArrayList<String> PostIds = null;
     private Context mContext;
     private User user;
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, int pos, ArrayList<String> PostIds);
+    }
+
+    private OnItemClickListener mListener = null;
+
+    public void setOnItemListener(OnItemClickListener listener)
+    {
+        this.mListener = listener;
+    }
+
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_id_recy, tv_grade_recy, tv_time_recy, tv_title_recy, tv_content_recy;
@@ -64,10 +76,14 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION)
                     {
-                        String PostId = PostIds.get(pos);
-                        Intent intent = new Intent(v.getContext(), activity_15_post.class);
-                        intent.putExtra("postName", PostId);
-                        mContext.startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
+                        if(mListener != null)
+                        {
+                            mListener.onItemClick(v, pos, PostIds);
+                        }
+//                        String PostId = PostIds.get(pos);
+//                        Intent intent = new Intent(v.getContext(), activity_15_post.class);
+//                        intent.putExtra("postName", PostId);
+//                        mContext.startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
                     }
                 }
             });
