@@ -83,11 +83,11 @@ public class activity_5_chat_list extends AppCompatActivity {
 //                );
 //            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("데이터 리스트 생성 실패","!");
-            }
-        });
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Log.e("데이터 리스트 생성 실패","!");
+//            }
+//        });
 
 
 
