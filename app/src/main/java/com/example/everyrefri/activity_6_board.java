@@ -123,11 +123,6 @@ public class activity_6_board extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
 
     // 뒤로가기 버튼 두 번 눌러 앱 종료
@@ -146,35 +141,5 @@ public class activity_6_board extends AppCompatActivity {
         }
     }
 
-    private Post getPost(Intent intent)
-    {
-        Post _post = new Post(
-                intent.getExtras().getString("postName"),
-                intent.getExtras().getString("postId"),
-                intent.getExtras().getString("postEmail"),
-                intent.getExtras().getString("postTitle"),
-                intent.getExtras().getString("postCategory"),
-                intent.getExtras().getString("postBuy"),
-                intent.getExtras().getString("postExp"),
-                intent.getExtras().getBoolean("postIsSold"),
-                intent.getExtras().getString("postStorage"),
-                intent.getExtras().getString("postInst"));
-        return _post;
-    }
-
-    private Intent setPost(Intent intent)
-    {
-        intent.putExtra("postName", post.name);
-        intent.putExtra("postId", post.id);
-        intent.putExtra("postEmail", post.email);
-        intent.putExtra("postTitle", post.title);
-        intent.putExtra("postCategory", post.category);
-        intent.putExtra("postBuy", post.buy);
-        intent.putExtra("postExp", post.exp);
-        intent.putExtra("postIsSold", post.isSold);
-        intent.putExtra("postStorage", post.storage);
-        intent.putExtra("postInst", post.inst);
-        return intent;
-    }
 
 }
