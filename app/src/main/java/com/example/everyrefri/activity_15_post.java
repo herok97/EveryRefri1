@@ -26,6 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class activity_15_post extends AppCompatActivity {
 
     private User user;
@@ -63,7 +66,6 @@ public class activity_15_post extends AppCompatActivity {
         user = new User();
         user.getUserFromIntent(intent);
         String postName = intent.getExtras().getString("postName");
-        Log.e("getPost함수시작, postName",postName);
 
         // email에 해당하는 유저 정보 가져오기.
         ref = FirebaseDatabase.getInstance().getReference().child("Posts").child(postName);
@@ -134,11 +136,28 @@ public class activity_15_post extends AppCompatActivity {
             }
         });
 
+        // 채팅 버튼 누르면
         ibt_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // 현재 시간 확인
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+                Date now = new Date();
+                String time = formatter.format(now);
+
+
+                // 채팅방 만듬
+                String chatName = user.email.substring(0, user.email.indexOf("@")) + "_and_" + post.email.substring(0, user.email.indexOf("@"));
+                ref = FirebaseDatabase.getInstance().getReference().child("Chats").child(chatName);
+
+                // 시스템 메세지 생성
+                ref.child(time).child("type").setValue("system");
+                ref.child(time).child("msg").setValue("채팅방이 생성되었습니다.");
+
                 Intent intent = new Intent(getApplicationContext(), activity_10_chat_room.class);
                 intent = user.setUserToIntent(intent);
+                intent.putExtra("chatName", chatName);
                 startActivityForResult(intent, 10);
                 finish();
             }

@@ -98,6 +98,7 @@ public class activity_4_main extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getApplicationContext(), "사용자 정보를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
+                Log.e(error.toString(), error.toString());
             }
         });
 

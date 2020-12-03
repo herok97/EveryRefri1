@@ -45,6 +45,7 @@ public class activity_6_board extends AppCompatActivity {
         ibt_back = findViewById(R.id.ibt_back6);
         searchView= findViewById(R.id.sv_board);
         fab_write = findViewById(R.id.fab_write);
+
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
         user = new User();
