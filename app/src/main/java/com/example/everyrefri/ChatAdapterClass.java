@@ -50,7 +50,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_msg, tv_time;
+        TextView tv_msg, tv_time, tv_id;
         LinearLayout ll_msg;
 
 
@@ -60,6 +60,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
             tv_msg = itemView.findViewById(R.id.tv_msg);
             tv_time = itemView.findViewById(R.id.tv_time);
             ll_msg = itemView.findViewById(R.id.ll_msg);
+            tv_id = itemView.findViewById(R.id.tv_id);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -83,7 +84,6 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
         this.msgs = _msgs;
         this.chatName = _chatName;
         this.user = _user;
-        Log.e("CustomAdapterClass객체 생성", "!");
     }
 
     // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
@@ -102,9 +102,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(ChatAdapterClass.ViewHolder holder, int position) {
-        Log.e("onBindViewHolder 함수 호출", "!");
         String msg = msgs.get(position);
-        Log.e("msg", msg);
 
 
         // 게시글 정보 가져오기
@@ -128,18 +126,21 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                         Log.e("시스템 메세지입니다.", msg);
                         holder.tv_msg.setText(msg);
                         holder.tv_time.setText(time);
+                        holder.tv_id.setText(user);
                         holder.ll_msg.setGravity(Gravity.CENTER_HORIZONTAL);
 
                     } else if (type.equals(user)) {
                         Log.e("유저 메세지입니다.", msg);
                         holder.tv_msg.setText(msg);
                         holder.tv_time.setText(time);
+                        holder.tv_id.setText(user);
                         holder.ll_msg.setGravity(Gravity.RIGHT);
 
                     } else {
                         Log.e("상대방의 메세지입니다.", msg);
                         holder.tv_msg.setText(msg);
                         holder.tv_time.setText(time);
+                        holder.tv_id.setText(user);
                         holder.ll_msg.setGravity(Gravity.LEFT);
                     }
 
@@ -155,36 +156,17 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
         });
     }
 
-//    private void get_profile(String ImageName, ImageView profile)
-//    {
-//        // 프로필 사진 가져오기
-//        FirebaseStorage storage;
-//        storage = FirebaseStorage.getInstance();
-//        StorageReference storageRef = storage.getReference();
-//        StorageReference pathReference = storageRef.child("images/" + ImageName);
-//        Log.e("이미지 경로", "images/" + ImageName);
-//        final long ONE_MEGABYTE = 2048 * 2048;
-//        pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-//            @Override
-//            public void onSuccess(byte[] bytes) {
-//                Log.e("이미지 가져오기 성공", "!");
-//                Bitmap bit = BitmapFactory.decodeByteArray( bytes , 0 , bytes.length);
-//                Log.e("bit 텍스트로", bit.toString());
-//                Log.e("bytes 텍스트로", bytes.toString());
-//                profile.setImageBitmap(bit);
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception exception) {
-//
-//            }
-//        });
-//    }
-
     // getItemCount() - 전체 데이터 갯수 리턴.
     @Override
     public int getItemCount() {
         return msgs.size();
+    }
+
+    public void addMsg(String msg)
+    {
+        msgs.add(0, msg);
+
+        notifyItemInserted(0);
     }
 }
 
