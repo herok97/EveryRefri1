@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,7 +37,7 @@ public class activity_2_sign_up extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_2_sign_up);
+        setContentView(R.layout.activity_2_sign_up_1);
 
         bt_next = findViewById(R.id.bt_next);
         ibt_back = findViewById(R.id.ibt_back);
