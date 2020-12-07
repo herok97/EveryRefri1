@@ -126,21 +126,21 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                         Log.e("시스템 메세지입니다.", msg);
                         holder.tv_msg.setText(msg);
                         holder.tv_time.setText(time);
-                        holder.tv_id.setText(user);
+                        holder.tv_id.setText(type);
                         holder.ll_msg.setGravity(Gravity.CENTER_HORIZONTAL);
 
                     } else if (type.equals(user)) {
                         Log.e("유저 메세지입니다.", msg);
                         holder.tv_msg.setText(msg);
                         holder.tv_time.setText(time);
-                        holder.tv_id.setText(user);
+                        holder.tv_id.setText(type);
                         holder.ll_msg.setGravity(Gravity.RIGHT);
 
                     } else {
                         Log.e("상대방의 메세지입니다.", msg);
                         holder.tv_msg.setText(msg);
                         holder.tv_time.setText(time);
-                        holder.tv_id.setText(user);
+                        holder.tv_id.setText(type);
                         holder.ll_msg.setGravity(Gravity.LEFT);
                     }
 
