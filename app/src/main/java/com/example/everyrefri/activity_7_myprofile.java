@@ -201,7 +201,7 @@ public class activity_7_myprofile extends AppCompatActivity {
             String postName = formatter.format(now) + user.email.substring(0, user.email.indexOf("@"));
 
             //storage 주소와 폴더 파일명을 지정해 준다.
-            StorageReference storageRef = storage.getReferenceFromUrl("gs://database-f0589.appspot.com/images").child(user.email + "_profile.PNG");
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://everyrefri.appspot.com/images").child(user.email + "_profile.PNG");
 
 
             // 이전에 올린 데이터가 있으면

@@ -187,7 +187,7 @@ public class activity_15_post extends AppCompatActivity {
     private void get_postImage(String postName)
     {
         // 게시물 사진 가져오기
-        StorageReference storageRef = storage.getReferenceFromUrl("gs://database-f0589.appspot.com/images").child(postName + ".png");
+        StorageReference storageRef = storage.getReferenceFromUrl("gs://everyrefri.appspot.com/images").child(postName + ".png");
         final long ONE_MEGABYTE = 2048 * 2048;
         storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override

@@ -17,8 +17,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="Background_Gray">@color/background_gray</item>
-        <item name="Background_Blue">@color/white_blue</item>
     </style>
     <style name="Blue_Background" parent="Theme.EveryRefri">
         <item name="android:background">@color/white_blue</item>

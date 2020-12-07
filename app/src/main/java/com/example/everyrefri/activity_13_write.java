@@ -203,7 +203,7 @@ public class activity_13_write extends AppCompatActivity {
             String postName = formatter.format(now) + user.email.substring(0, user.email.indexOf("@"));
 
             //storage 주소와 폴더 파일명을 지정해 준다.
-            StorageReference storageRef = storage.getReferenceFromUrl("gs://database-f0589.appspot.com/images").child(postName + ".png");
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://everyrefri.appspot.com/images").child(postName + ".png");
             //올라가거라...
             storageRef.putFile(filePath)
                     //이미지 업로드 성공시 -> 데이터도 저장

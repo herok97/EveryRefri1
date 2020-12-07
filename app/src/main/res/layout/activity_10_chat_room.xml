@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_10_chat_room"
-    android:background="@color/post_background">
+    tools:context=".activity_10_chat_room">
 
     <TextView
         android:id="@+id/tv_chatroom"
