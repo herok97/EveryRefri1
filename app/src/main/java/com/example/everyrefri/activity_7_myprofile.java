@@ -79,6 +79,13 @@ public class activity_7_myprofile extends AppCompatActivity {
             }
         });
 
+        bt_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //업로드
+                upload();
+            }
+        });
 
 
         bt_follower.setOnClickListener(new View.OnClickListener() {

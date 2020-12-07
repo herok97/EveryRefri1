@@ -1,5 +1,7 @@
 package com.example.everyrefri;
 
+import android.content.Intent;
+
 public class Post {
 
     public String id;
@@ -62,6 +64,36 @@ public class Post {
         this.isSold = isSold;
         this.storage = storage;
         this.inst = inst;
+    }
+
+    public void getPostFromIntent(Intent intent)
+    {
+        this.setValue(
+                intent.getExtras().getString("postName"),
+                intent.getExtras().getString("postId"),
+                intent.getExtras().getString("postEmail"),
+                intent.getExtras().getString("postTitle"),
+                intent.getExtras().getString("postCategory"),
+                intent.getExtras().getString("postBuy"),
+                intent.getExtras().getString("postExp"),
+                intent.getExtras().getBoolean("postIsSold"),
+                intent.getExtras().getString("postStorage"),
+                intent.getExtras().getString("postInst"));
+    }
+
+    public Intent setPostToIntent(Intent intent)
+    {
+        intent.putExtra("postName", this.name);
+        intent.putExtra("postId", this.id);
+        intent.putExtra("postEmail", this.email);
+        intent.putExtra("postTitle", this.title);
+        intent.putExtra("postCategory", this.category);
+        intent.putExtra("postBuy", this.buy);
+        intent.putExtra("postExp", this.exp);
+        intent.putExtra("postIsSold", this.isSold);
+        intent.putExtra("postStorage", this.storage);
+        intent.putExtra("postInst", this.inst);
+        return intent;
     }
 
 }

@@ -45,6 +45,7 @@ public class activity_6_board extends AppCompatActivity {
         ibt_back = findViewById(R.id.ibt_back6);
         searchView= findViewById(R.id.sv_board);
         fab_write = findViewById(R.id.fab_write);
+
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
         user = new User();
@@ -56,6 +57,8 @@ public class activity_6_board extends AppCompatActivity {
         Log.e("recyclerView 할당","!");
         recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
         Log.e("recyclerView.setLayoutManager(new LinearLayoutManager(this))","!");
+
+
 
 
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
@@ -75,6 +78,21 @@ public class activity_6_board extends AppCompatActivity {
                 // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
                 CustomAdapterClass adapter = new CustomAdapterClass(getApplicationContext(), PostIds);
                 recyclerView.setAdapter(adapter) ;
+
+                // 게시물  클릭 이벤트
+                adapter.setOnItemListener(
+                        new CustomAdapterClass.OnItemClickListener(){
+                            @Override
+                            public void onItemClick(View v, int pos, ArrayList<String> PostIds)
+                            {
+                                String PostId = PostIds.get(pos);
+                                Intent intent = new Intent(getApplicationContext(), activity_15_post.class);
+                                intent.putExtra("postName", PostId);
+                                intent = user.setUserToIntent(intent);
+                                startActivity(intent);
+                            }
+                        }
+                );
             }
 
             @Override
@@ -106,9 +124,6 @@ public class activity_6_board extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
     // 뒤로가기 버튼 두 번 눌러 앱 종료
@@ -127,35 +142,5 @@ public class activity_6_board extends AppCompatActivity {
         }
     }
 
-    private Post getPost(Intent intent)
-    {
-        Post _post = new Post(
-                intent.getExtras().getString("postName"),
-                intent.getExtras().getString("postId"),
-                intent.getExtras().getString("postEmail"),
-                intent.getExtras().getString("postTitle"),
-                intent.getExtras().getString("postCategory"),
-                intent.getExtras().getString("postBuy"),
-                intent.getExtras().getString("postExp"),
-                intent.getExtras().getBoolean("postIsSold"),
-                intent.getExtras().getString("postStorage"),
-                intent.getExtras().getString("postInst"));
-        return _post;
-    }
-
-    private Intent setPost(Intent intent)
-    {
-        intent.putExtra("postName", post.name);
-        intent.putExtra("postId", post.id);
-        intent.putExtra("postEmail", post.email);
-        intent.putExtra("postTitle", post.title);
-        intent.putExtra("postCategory", post.category);
-        intent.putExtra("postBuy", post.buy);
-        intent.putExtra("postExp", post.exp);
-        intent.putExtra("postIsSold", post.isSold);
-        intent.putExtra("postStorage", post.storage);
-        intent.putExtra("postInst", post.inst);
-        return intent;
-    }
 
 }

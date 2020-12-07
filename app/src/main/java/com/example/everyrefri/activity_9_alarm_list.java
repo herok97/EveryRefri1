@@ -19,7 +19,7 @@ public class activity_9_alarm_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_9_alarm_list);
-        ibt_back = findViewById(R.id.ibt_back8);
+        ibt_back = findViewById(R.id.ibt_back9);
 
         Intent intent =getIntent();
         user = new User();
