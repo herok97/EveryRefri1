@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "684114807194",
+    "project_id": "everyrefri",
+    "storage_bucket": "everyrefri.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684114807194:android:00da9e656786ef09165223",
+        "android_client_info": {
+          "package_name": "com.example.everyrefri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684114807194-ij472tbupuset6d81cc6b5ggts6c6dlh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtz7AbymCezIh9pDeBpYEcyKo25L979s0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684114807194-ij472tbupuset6d81cc6b5ggts6c6dlh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
