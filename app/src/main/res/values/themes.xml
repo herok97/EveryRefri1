@@ -23,4 +23,5 @@
     <style name="Blue_Background" parent="Theme.EveryRefri">
         <item name="android:background">@color/white_blue</item>
     </style>
+
 </resources>

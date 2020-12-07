@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="title_blue">
         <item name="android:textColor">@color/color_blue</item>
         <item name="android:textSize">20sp</item>
@@ -8,5 +8,9 @@
         <item name="android:layout_width"> 160dp </item>
         <item name="android:layout_height"> 130dp </item>
         <item name="android:background">@drawable/button_on_activity4</item>
+    </style>
+    <style name="input_signup">
+        <item name="android:textColorHint">@color/color_blue2</item>
+        <item name="android:background">@drawable/border_ex</item>
     </style>
 </resources>

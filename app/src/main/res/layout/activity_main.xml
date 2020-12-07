@@ -14,10 +14,19 @@
         android:foregroundGravity="center_vertical"
         android:gravity="center"
         android:text="모두의 냉장고"
-        android:textSize="30dp"
+        android:textSize="30sp"
+        android:textColor="@color/color_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:background="@color/white_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/tv_main_logo_child"
@@ -25,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="더 나은 식생활을 위해 나눕니다."
+        android:textColor="@color/color_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +55,7 @@
         android:id="@+id/bt_sign_up"
         android:layout_width="298dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="44dp"
         android:text="회원가입"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

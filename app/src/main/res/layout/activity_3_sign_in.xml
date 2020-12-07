@@ -5,17 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity_3_sign_in">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@color/color_blue"
+        tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/tv_activity_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="로그인"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="144dp"
+        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
@@ -24,6 +41,7 @@
         android:layout_marginStart="72dp"
         android:layout_marginTop="230dp"
         android:layout_marginEnd="69dp"
+        android:background="@drawable/round_border_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_activity_name">
@@ -31,14 +49,15 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email3"
             android:layout_width="match_parent"
-            android:layout_height="71dp"
-            android:hint="이메일" />
+            android:layout_height="wrap_content"
+            android:hint="이메일"
+            android:background="@drawable/round_border_blue"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
-        android:layout_width="244dp"
-        android:layout_height="59dp"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
         android:layout_marginStart="87dp"
         android:layout_marginTop="55dp"
         android:layout_marginEnd="84dp"
@@ -48,9 +67,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_pass3"
-            android:layout_width="251dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="비밀번호"
+            android:background="@drawable/round_border_blue"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,22 +80,22 @@
         android:layout_height="53dp"
         android:layout_marginStart="53dp"
         android:layout_marginEnd="38dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="60dp"
         android:text="next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/ibt_back3"
-        android:layout_width="wrap_content"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bt_white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
