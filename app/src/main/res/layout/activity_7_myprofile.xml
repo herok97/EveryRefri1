@@ -5,18 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity_7_myprofile"
-    style="@style/Theme.EveryRefri">
+    style="@style/Theme.EveryRefri"
+    android:background="@color/background_gray">
 
 
     <ImageButton
         android:id="@+id/ibt_back7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test" />
+        style="@style/bt_back_blue"/>
+
+    <ImageButton
+        style="@style/bt_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="346dp"
+        tools:layout_editor_absoluteY="28dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tv_mypr"
@@ -36,7 +41,7 @@
         android:layout_width="78dp"
         android:layout_height="96dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="104dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toStartOf="@+id/tv_mypro"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +53,7 @@
         android:layout_width="177dp"
         android:layout_height="94dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,14 +68,15 @@
         android:layout_marginTop="23dp"
         android:layout_marginEnd="180dp"
         android:text="자기소개"
+        android:textColor="@color/color_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_mypro" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="335dp"
-        android:layout_height="68dp"
+        android:layout_width="340dp"
+        android:layout_height="100dp"
         android:layout_marginStart="37dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="37dp"
@@ -82,11 +88,14 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_self"
-        android:layout_width="336dp"
-        android:layout_height="65dp"
+        android:layout_width="340dp"
+        android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="33dp"
         android:hint="자기소개 입력"
+        android:gravity="center"
+        android:textColorHint="@color/color_blue"
+        android:background="@drawable/round_rectangle_whiteblue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_self" />
 
@@ -98,6 +107,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="33dp"
         android:text="저장"
+        android:background="@color/color_blue2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
@@ -158,9 +168,9 @@
         android:text="위치 정보 변경"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_pic"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.382" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
