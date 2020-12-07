@@ -30,9 +30,9 @@
         android:text="Login"
         android:textColor="@color/white"
         android:textSize="40sp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="144dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="141dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"

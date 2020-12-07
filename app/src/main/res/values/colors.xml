@@ -11,5 +11,5 @@
     <color name="background_gray">#EEEEEE</color>
     <color name="color_blue">#2E9AFE</color>
     <color name="color_blue2">#A1E1FD</color>
-
+    <color name="post_background">#FFFFFFFF</color>
 </resources>
