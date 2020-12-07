@@ -22,12 +22,8 @@
     </LinearLayout>
     <TextView
         android:id="@+id/tv_activity_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:text="로그인"
-        android:textSize="20sp"
-        android:textColor="@color/white"
+       style="@style/title_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

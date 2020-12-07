@@ -9,11 +9,6 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="170dp"
         android:text="나눔게시판"
         style="@style/title_blue"
         app:layout_constraintEnd_toEndOf="parent"
