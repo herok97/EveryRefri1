@@ -26,8 +26,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class activity_15_post extends AppCompatActivity {
 
@@ -142,9 +145,12 @@ public class activity_15_post extends AppCompatActivity {
             public void onClick(View view) {
 
                 // 현재 시간 확인
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss");
+                TimeZone tz;                                        // 객체 생성
+                DateFormat dateFormat = new SimpleDateFormat("MMdd_HHmmss", Locale.KOREAN);
+                tz = TimeZone.getTimeZone("Asia/Seoul");  // TimeZone에 표준시 설정
+                dateFormat.setTimeZone(tz);
                 Date now = new Date();
-                String time = formatter.format(now);
+                String time = dateFormat.format(now);
 
 
                 // 채팅방 만듬
@@ -153,7 +159,7 @@ public class activity_15_post extends AppCompatActivity {
 
                 // 시스템 메세지 생성
                 ref.child(time).child("type").setValue("system");
-                ref.child(time).child("msg").setValue("채팅방이 생성되었습니다.");
+                ref.child(time).child("msg").setValue("채팅을 요청하였습니다.");
 
                 Intent intent = new Intent(getApplicationContext(), activity_10_chat_room.class);
                 intent = user.setUserToIntent(intent);
