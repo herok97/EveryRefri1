@@ -26,18 +26,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_myrefr"
         android:layout_width="407dp"
-        android:layout_height="552dp"
-        android:layout_marginTop="13dp"
-        android:orientation="vertical"
+        android:layout_height="664dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ibt_alarm8">
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/tv_myrefri"
+        tools:layout_editor_absoluteX="0dp" />
 
     <FrameLayout
         android:layout_width="135dp"

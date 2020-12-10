@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -37,6 +38,7 @@ public class activity_4_main extends AppCompatActivity {
     private DatabaseReference ref;
     private Button bt_follower,bt_following, bt_refrigerator;
     private ImageButton ibt_back,ibt_board,ibt_alarm,ibt_setting,ibt_chat;
+    private Button ibt_myrefri;
     private TextView tv_div_num,tv_name, tv_grade;//사용자profile의 나눔수와 이름표시
     private ImageView iv_prof;//사용자의 사진표시
     private FirebaseStorage storage;
@@ -50,11 +52,13 @@ public class activity_4_main extends AppCompatActivity {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_4_main);
 
+        ibt_myrefri = findViewById(R.id.bt_refri);
         ibt_back = findViewById(R.id.ibt_back4);
         ibt_board = findViewById(R.id.ibt_list);
         ibt_alarm = findViewById(R.id.ibt_alarm);
@@ -62,7 +66,6 @@ public class activity_4_main extends AppCompatActivity {
         ibt_chat=findViewById(R.id.ibt_chat);
         bt_follower=findViewById(R.id.bt_follower);
         bt_following=findViewById(R.id.bt_following);
-//        bt_refrigerator=findViewById(R.id.bt_refri);
         tv_div_num = findViewById(R.id.tv_div_num);//사용자정보와연결
         tv_name =findViewById(R.id.tv_name);//사용자정보와연결
         tv_grade =findViewById(R.id.tv_grade);//사용자정보와연결
@@ -102,7 +105,15 @@ public class activity_4_main extends AppCompatActivity {
             }
         });
 
-
+        ibt_myrefri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { // board 이미지 버튼 클릭시 게시판이동
+                Intent intent = new Intent(getApplicationContext(), activity_8_myrefri.class);
+                intent = user.setUserToIntent(intent);
+                startActivityForResult(intent,6);//requestcode이게맞는지 다시 확인
+                finish();
+            }
+        });
 
         ibt_back.setOnClickListener(new View.OnClickListener() {
             @Override

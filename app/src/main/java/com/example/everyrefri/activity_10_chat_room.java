@@ -37,13 +37,15 @@ public class activity_10_chat_room extends AppCompatActivity {
     private User user;
     private DatabaseReference ref;
     private String chatName;
-    private ImageButton ib_send;
+    private ImageButton ib_send, ib_back;
     private EditText et_message;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_10_chat_room);
         ib_send = findViewById(R.id.ibt_send);
+        ib_back = findViewById(R.id.ibt_back10);
+
         et_message = findViewById(R.id.et_chat);
         // 이전 액티비티의 데이터 수신
         Intent intent =getIntent();
@@ -54,6 +56,15 @@ public class activity_10_chat_room extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.rv_chat) ;
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
 
+        // 뒤로가기
+        ib_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), activity_5_chat_list.class);
+                intent = user.setUserToIntent(intent);
+                startActivityForResult(intent,4);
+            }
+        });
 
         // 입력버튼
         ib_send.setOnClickListener(new View.OnClickListener() {
