@@ -16,20 +16,15 @@
         style="@style/bt_back_blue"/>
 
     <ImageButton
+        android:id="@+id/ibt_alarm7"
         style="@style/bt_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="346dp"
-        tools:layout_editor_absoluteY="28dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tv_mypr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="114dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="178dp"
         android:text="내 프로필"
         style="@style/title_blue"
         app:layout_constraintEnd_toEndOf="parent"

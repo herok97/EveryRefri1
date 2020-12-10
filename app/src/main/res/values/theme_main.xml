@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="title_blue">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:gravity">center</item>
         <item name="android:textColor">@color/color_blue</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">22sp</item>
         </style>
+    <style name="title_white">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">22sp</item>
+    </style>
     <style name="button_4">
         <item name="android:layout_width"> 160dp </item>
         <item name="android:layout_height"> 130dp </item>
@@ -12,5 +24,29 @@
     <style name="input_signup">
         <item name="android:textColorHint">@color/color_blue2</item>
         <item name="android:background">@drawable/border_ex</item>
+    </style>
+    <style name="Blue_Background" parent="Theme.EveryRefri">
+        <item name="android:background">@color/white_blue</item>
+    </style>
+    <style name="bt_back_blue">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:background">@drawable/bt_back</item>
+    </style>
+    <style name="bt_alarm">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:background">@android:drawable/ic_popup_reminder</item>
+    </style>
+    <style name="bt_check">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:background">@drawable/check</item>
     </style>
 </resources>

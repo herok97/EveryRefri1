@@ -8,11 +8,7 @@
 
     <TextView
         android:id="@+id/tv_member"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="186dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="186dp"
+        style="@style/title_blue"
         android:text="프로필"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,13 +16,9 @@
 
     <ImageButton
         android:id="@+id/ibt_back14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        style="@style/bt_back_blue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -61,6 +53,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
+        android:background="@drawable/round_rectangle_whiteblue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
@@ -72,23 +65,24 @@
         android:layout_marginStart="42dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
+        android:background="@drawable/round_rectangle_whiteblue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_self14" />
 
     <Button
         android:id="@+id/bt_follower14"
-        android:layout_width="75sp"
-        android:layout_height="75sp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="팔로워"
         android:layout_marginStart="53dp"
         android:layout_marginTop="16dp"
-        android:text="팔로워"
         app:layout_constraintStart_toEndOf="@+id/tv_div_num14"
         app:layout_constraintTop_toBottomOf="@+id/tv_self14" />
 
     <Button
         android:id="@+id/bt_following14"
-        android:layout_width="75sp"
-        android:layout_height="75sp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_marginStart="53dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="42dp"

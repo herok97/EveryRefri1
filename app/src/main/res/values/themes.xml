@@ -7,7 +7,7 @@
         <item name="windowNoTitle">true</item>
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/color_blue</item>
+        <item name="colorPrimary">@color/color_blue2</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -18,21 +18,5 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="Blue_Background" parent="Theme.EveryRefri">
-        <item name="android:background">@color/white_blue</item>
-    </style>
-    <style name="bt_back_blue">
-        <item name="android:layout_width">32dp</item>
-        <item name="android:layout_height">32dp</item>
-        <item name="android:layout_marginStart">32dp</item>
-        <item name="android:layout_marginTop">32dp</item>
-        <item name="android:background">@drawable/bt_back</item>
-    </style>
-    <style name="bt_alarm">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">32dp</item>
-        <item name="android:layout_marginEnd">32dp</item>
-        <item name="android:background">@android:drawable/ic_popup_reminder</item>
-    </style>
+
 </resources>

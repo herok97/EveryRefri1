@@ -8,41 +8,23 @@
 
     <TextView
         android:id="@+id/tv_write"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="175dp"
+        style="@style/title_blue"
         android:text="게시물 작성"
+        app:layout_constraintVertical_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/ibt_back13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="104dp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_write"
+        style="@style/bt_back_blue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/abc_vector_test" />
-
-    <ImageButton
-        android:id="@+id/ibt_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?android:attr/textCheckMark" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="414dp"
-        android:layout_height="625dp"
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="675dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +38,8 @@
                 android:id="@+id/et_title"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
-                android:hint="제목을 입력하세요." />
+                android:hint="제목을 입력하세요."
+                android:background="@drawable/border_blue"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,13 +69,15 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="1. 카테고리" />
+                            android:text="1. 카테고리"
+                            android:textColor="@color/color_blue"/>
 
                         <Spinner
                             android:id="@+id/sp_category"
                             android:layout_width="384dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:background="@drawable/round_border_whiteblue"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -105,15 +90,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="2. 구입일시"
-                            android:gravity="center"/>
+                            android:textColor="@color/color_blue"/>
 
                         <DatePicker
                             android:id="@+id/dp_buy"
                             android:layout_width="343dp"
                             android:layout_height="match_parent"
                             android:calendarViewShown="false"
-                            android:datePickerMode="spinner" />
+                            android:datePickerMode="spinner"
+                            android:background="@drawable/round_border_whiteblue"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -126,15 +113,17 @@
                             android:layout_width="328dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="3. 유통기한"
-                            android:gravity="center"/>
+                            android:textColor="@color/color_blue"/>
 
                         <DatePicker
                             android:id="@+id/dp_exp"
                             android:layout_width="343dp"
                             android:layout_height="match_parent"
                             android:calendarViewShown="false"
-                            android:datePickerMode="spinner" />
+                            android:datePickerMode="spinner"
+                            android:background="@drawable/round_border_whiteblue"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -147,14 +136,16 @@
                             android:layout_width="294dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="4. 보관방법"
-                            android:gravity="center"/>
+                            android:textColor="@color/color_blue"/>
 
                         <Spinner
                             android:id="@+id/sp_storage"
                             android:layout_width="566dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:background="@drawable/round_border_whiteblue"/>
 
                     </LinearLayout>
 
@@ -184,8 +175,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:id="@+id/iv_pic"
@@ -208,5 +199,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ibt_save"
+        style="@style/bt_check"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
