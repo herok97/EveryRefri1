@@ -157,7 +157,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_preferences" />
 
-    <ImageButton
+    <Button
         android:id="@+id/bt_refri"
         style="@style/button_4"
         android:layout_marginStart="32dp"
