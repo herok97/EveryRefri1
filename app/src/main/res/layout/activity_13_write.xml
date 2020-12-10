@@ -20,12 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/ibt_save"
-        style="@style/bt_alarm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="414dp"
@@ -43,7 +37,8 @@
                 android:id="@+id/et_title"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
-                android:hint="제목을 입력하세요." />
+                android:hint="제목을 입력하세요."
+                android:background="@drawable/border_blue"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,13 +68,15 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="1. 카테고리" />
+                            android:text="1. 카테고리"
+                            android:textColor="@color/color_blue"/>
 
                         <Spinner
                             android:id="@+id/sp_category"
                             android:layout_width="384dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:background="@drawable/round_border_whiteblue"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -93,14 +90,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="2. 구입일시" />
+                            android:text="2. 구입일시"
+                            android:textColor="@color/color_blue"/>
 
                         <DatePicker
                             android:id="@+id/dp_buy"
                             android:layout_width="343dp"
                             android:layout_height="match_parent"
                             android:calendarViewShown="false"
-                            android:datePickerMode="spinner" />
+                            android:datePickerMode="spinner"
+                            android:background="@drawable/round_border_whiteblue"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -114,14 +113,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="3. 유통기한" />
+                            android:text="3. 유통기한"
+                            android:textColor="@color/color_blue"/>
 
                         <DatePicker
                             android:id="@+id/dp_exp"
                             android:layout_width="343dp"
                             android:layout_height="match_parent"
                             android:calendarViewShown="false"
-                            android:datePickerMode="spinner" />
+                            android:datePickerMode="spinner"
+                            android:background="@drawable/round_border_whiteblue"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -135,13 +136,15 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="4. 보관방법" />
+                            android:text="4. 보관방법"
+                            android:textColor="@color/color_blue"/>
 
                         <Spinner
                             android:id="@+id/sp_storage"
                             android:layout_width="566dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:background="@drawable/round_border_whiteblue"/>
 
                     </LinearLayout>
 
@@ -195,5 +198,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ibt_save"
+        style="@style/bt_check"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

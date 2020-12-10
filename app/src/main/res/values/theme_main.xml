@@ -3,18 +3,18 @@
     <style name="title_blue">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginTop">30dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/color_blue</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">22sp</item>
         </style>
     <style name="title_white">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginTop">30dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">22sp</item>
     </style>
     <style name="button_4">
         <item name="android:layout_width"> 160dp </item>
@@ -41,5 +41,12 @@
         <item name="android:layout_marginTop">32dp</item>
         <item name="android:layout_marginEnd">32dp</item>
         <item name="android:background">@android:drawable/ic_popup_reminder</item>
+    </style>
+    <style name="bt_check">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:background">@drawable/check</item>
     </style>
 </resources>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
+    android:background="@color/white_blue"
     tools:context=".activity_15_post">
 
     <TextView
@@ -80,17 +81,19 @@
 
                         <ImageButton
                             android:id="@+id/ibt_chat15"
-                            android:layout_width="71dp"
-                            android:layout_height="66dp"
-                            android:layout_weight="1"
-                            app:srcCompat="@android:drawable/sym_action_chat" />
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="10dp"
+                            app:srcCompat="@android:drawable/sym_action_chat"
+                            android:background="@drawable/circle_blue"/>
 
                         <Button
                             android:id="@+id/bt_ask"
-                            android:layout_width="wrap_content"
-                            android:layout_height="66dp"
-                            android:layout_weight="1"
-                            android:text="나눔요청" />
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:text="나눔요청"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/circle_whiteblue"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -100,7 +103,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="209dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/round_rectangle_vi"
+                >
 
                 <TextView
                     android:id="@+id/tv_need"

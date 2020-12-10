@@ -53,6 +53,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
+        android:background="@drawable/round_rectangle_whiteblue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
@@ -64,23 +65,24 @@
         android:layout_marginStart="42dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
+        android:background="@drawable/round_rectangle_whiteblue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_self14" />
 
     <Button
         android:id="@+id/bt_follower14"
-        android:layout_width="75sp"
-        android:layout_height="75sp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="팔로워"
         android:layout_marginStart="53dp"
         android:layout_marginTop="16dp"
-        android:text="팔로워"
         app:layout_constraintStart_toEndOf="@+id/tv_div_num14"
         app:layout_constraintTop_toBottomOf="@+id/tv_self14" />
 
     <Button
         android:id="@+id/bt_following14"
-        android:layout_width="75sp"
-        android:layout_height="75sp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_marginStart="53dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="42dp"

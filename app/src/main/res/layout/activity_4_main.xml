@@ -23,7 +23,7 @@
             android:layout_width="195dp"
             android:layout_height="180dp"
             android:background="@drawable/img_profile_none"
-            android:scaleType="fitCenter" />
+            android:scaleType="centerCrop" />
     </LinearLayout>
 
     <LinearLayout
@@ -163,10 +163,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="34dp"
-        android:text="냉장고"
         app:layout_constraintBottom_toTopOf="@+id/ibt_chat"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_div_num"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_div_num" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
