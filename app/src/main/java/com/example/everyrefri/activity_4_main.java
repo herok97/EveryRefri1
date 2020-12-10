@@ -62,7 +62,7 @@ public class activity_4_main extends AppCompatActivity {
         ibt_chat=findViewById(R.id.ibt_chat);
         bt_follower=findViewById(R.id.bt_follower);
         bt_following=findViewById(R.id.bt_following);
-        bt_refrigerator=findViewById(R.id.bt_refri);
+//        bt_refrigerator=findViewById(R.id.bt_refri);
         tv_div_num = findViewById(R.id.tv_div_num);//사용자정보와연결
         tv_name =findViewById(R.id.tv_name);//사용자정보와연결
         tv_grade =findViewById(R.id.tv_grade);//사용자정보와연결
@@ -180,15 +180,15 @@ public class activity_4_main extends AppCompatActivity {
             }
         });
 
-        bt_refrigerator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
-                Intent intent = new Intent(getApplicationContext(), activity_8_myrefri.class);//나의 냉장고페이지 만들고 변경
-                intent = user.setUserToIntent(intent);
-                startActivityForResult(intent,8);
-                finish();
-            }
-        });
+//        bt_refrigerator.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
+//                Intent intent = new Intent(getApplicationContext(), activity_8_myrefri.class);//나의 냉장고페이지 만들고 변경
+//                intent = user.setUserToIntent(intent);
+//                startActivityForResult(intent,8);
+//                finish();
+//            }
+//        });
 
 
     }
