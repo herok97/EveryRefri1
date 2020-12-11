@@ -19,6 +19,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:background="@drawable/round_rectangle_blue"
             android:orientation="vertical"
             android:paddingLeft="5dp"
             android:paddingTop="10dp"
@@ -47,9 +48,10 @@
                     android:id="@+id/tv_msg_self"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/msg_background"
+                    android:background="parent"
                     android:padding="5dp"
                     android:text="message"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -63,6 +65,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="3dp"
+                android:textColor="@color/white"
                 android:text="time"
                 android:textSize="10sp" />
 
@@ -78,7 +81,8 @@
             android:paddingTop="10dp"
             android:paddingRight="5dp"
             android:paddingBottom="10dp"
-            android:visibility="visible">
+            android:visibility="visible"
+            android:background="@drawable/round_rectangle_whiteblue">
 
             <TextView
                 android:id="@+id/tv_id_counter"
@@ -101,9 +105,10 @@
                     android:id="@+id/tv_msg_counter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/msg_background"
+                    android:background="parent"
                     android:padding="5dp"
                     android:text="message"
+                    android:textColor="@color/color_blue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -118,6 +123,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="3dp"
                 android:text="time"
+                android:textColor="@color/color_blue"
                 android:textSize="10sp" />
 
         </LinearLayout>
@@ -132,7 +138,7 @@
             android:paddingTop="10dp"
             android:paddingRight="5dp"
             android:paddingBottom="10dp"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_id_system"
