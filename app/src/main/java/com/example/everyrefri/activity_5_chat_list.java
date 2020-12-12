@@ -39,58 +39,60 @@ public class activity_5_chat_list extends AppCompatActivity {
         setContentView(R.layout.activity_5_chat_list);
 
         ibt_back = findViewById(R.id.ibt_back5);
-        recyclerView = findViewById(R.id.rcv_chat);
-        recyclerView.setHasFixedSize(true);//recyclerview 일정한 크기 사용
-        layoutManager = new LinearLayoutManager(this);//레이아웃타입
 
         Intent intent =getIntent();
         user = new User();
         user.getUserFromIntent(intent);
 
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+        RecyclerView recyclerView = findViewById(R.id.rcv_chat) ;
+        Log.e("recyclerView 할당","!");
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
 
 
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
-//        ArrayList<String> chatIds = new ArrayList<>();
-//        ref = FirebaseDatabase.getInstance().getReference().child("Chats");
-//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot tasksSnapshot) {
-//                for (DataSnapshot dis : tasksSnapshot.getChildren()) {
-//                    PostIds.add(dis.getKey());
-//                    Log.e("조사할 PostId:", dis.getKey());
-//                }
-//
-//                // 게시물 시간순서에따라 정렬
-//                Collections.sort(PostIds, new Ascending());
-//
-//                // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-//                CustomAdapterClass adapter = new CustomAdapterClass(getApplicationContext(), PostIds);
-//                recyclerView.setAdapter(adapter) ;
-//
-//                // 게시물  클릭 이벤트
-//                adapter.setOnItemListener(
-//                        new CustomAdapterClass.OnItemClickListener(){
-//                            @Override
-//                            public void onItemClick(View v, int pos, ArrayList<String> PostIds)
-//                            {
-//                                String PostId = PostIds.get(pos);
-//                                Intent intent = new Intent(getApplicationContext(), activity_15_post.class);
-//                                intent.putExtra("postName", PostId);
-//                                intent = user.setUserToIntent(intent);
-//                                startActivity(intent);
-//                            }
-//                        }
-//                );
-//            }
+        ArrayList<String> ChatIds = new ArrayList<>();
+        ref = FirebaseDatabase.getInstance().getReference().child("Chats");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot tasksSnapshot) {
+                for (DataSnapshot dis : tasksSnapshot.getChildren()) {
+                    // 유저 이름을 포함하고 있으면
+                    if (dis.getKey().indexOf(user.email.substring(0, user.email.indexOf("@"))) > -1)
+                    {
+                        ChatIds.add(dis.getKey());
+                        Log.e("조사할 ChatIds:", dis.getKey());
+                    }
+                }
 
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Log.e("데이터 리스트 생성 실패","!");
-//            }
-//        });
+                // 게시물 시간순서에따라 정렬
+                Collections.sort(ChatIds, new Ascending());
 
+                // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+                ChatListAdapterClass adapter = new ChatListAdapterClass(getApplicationContext(), ChatIds, user);
+                recyclerView.setAdapter(adapter) ;
 
+                // 게시물  클릭 이벤트
+                adapter.setOnItemListener(
+                        new ChatListAdapterClass.OnItemClickListener(){
+                            @Override
+                            public void onItemClick(View v, int pos, ArrayList<String> ChatIds)
+                            {
+                                String chatName = ChatIds.get(pos);
+                                Intent intent = new Intent(getApplicationContext(), activity_10_chat_room.class);
+                                intent.putExtra("chatName", chatName);
+                                intent = user.setUserToIntent(intent);
+                                startActivity(intent);
+                            }
+                        }
+                );
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("데이터 리스트 생성 실패","!");
+            }
+        });
 
 
         ibt_back.setOnClickListener(new View.OnClickListener() {

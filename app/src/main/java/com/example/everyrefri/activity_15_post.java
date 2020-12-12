@@ -168,6 +168,36 @@ public class activity_15_post extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        // 나눔요청 버튼 누르면
+        bt_ask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // 현재 시간 확인
+                TimeZone tz;                                        // 객체 생성
+                DateFormat dateFormat = new SimpleDateFormat("MMdd_HHmmss", Locale.KOREAN);
+                tz = TimeZone.getTimeZone("Asia/Seoul");  // TimeZone에 표준시 설정
+                dateFormat.setTimeZone(tz);
+                Date now = new Date();
+                String time = dateFormat.format(now);
+                
+                // 채팅방 접속
+                String chatName = user.email.substring(0, user.email.indexOf("@")) + "_and_" + post.email.substring(0, user.email.indexOf("@"));
+                ref = FirebaseDatabase.getInstance().getReference().child("Chats").child(chatName);
+
+                // 시스템 메세지 생성
+                ref.child(time).child("type").setValue("ask" + "_" + user.email.substring(0, user.email.indexOf("@")));
+                ref.child(time).child("msg").setValue("해당 게시물의 나눔을 요청합니다.");
+                ref.child(time).child("postName").setValue(postName);
+                Intent intent = new Intent(getApplicationContext(), activity_10_chat_room.class);
+                intent = user.setUserToIntent(intent);
+                intent.putExtra("chatName", chatName);
+                startActivityForResult(intent, 10);
+                finish();
+            }
+        });
     }
 
     private void get_profile(String email)

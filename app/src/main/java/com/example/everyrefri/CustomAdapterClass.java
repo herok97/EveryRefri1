@@ -2,10 +2,8 @@ package com.example.everyrefri;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -31,9 +28,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.Date;
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.ViewHolder> {
     private DatabaseReference ref;
@@ -63,11 +57,11 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
         ViewHolder(View itemView) {
             super(itemView);
             // 뷰 객체에 대한 참조. (hold strong reference)
-            tv_id_recy = itemView.findViewById(R.id.tv_id_recy);
+            tv_id_recy = itemView.findViewById(R.id.tv_id_recy_chat_list);
             tv_title_recy = itemView.findViewById(R.id.tv_title_recy);
             tv_content_recy = itemView.findViewById(R.id.tv_content_recy);
             iv_pic_recy = itemView.findViewById(R.id.iv_pic_recy);
-            iv_profile_recy = itemView.findViewById(R.id.iv_profile_recy);
+            iv_profile_recy = itemView.findViewById(R.id.iv_pic_recy_chat_list);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

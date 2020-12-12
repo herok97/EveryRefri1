@@ -10,9 +10,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -38,6 +40,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
     private String chatName;
     private String user;
     private String type;
+    private FirebaseStorage storage;
     public interface OnItemClickListener {
         void onItemClick(View v, int pos, ArrayList<String> msgs);
     }
@@ -54,7 +57,15 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
         TextView tv_msg_counter, tv_time_counter, tv_id_counter;
         TextView tv_msg_self, tv_time_self, tv_id_self;
         TextView tv_msg_system, tv_time_system, tv_id_system;
-        LinearLayout ll_msg_counter, ll_msg_self, ll_msg_system;
+
+
+        TextView tv_msg_ask, tv_time_ask, tv_waiting;
+        ImageView iv_ask_pic;
+        Button bt_yes, bt_no;
+
+
+        LinearLayout ll_msg_counter, ll_msg_self, ll_msg_system, ll_msg_ask;
+
 
 
         ViewHolder(View itemView) {
@@ -74,6 +85,14 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
             tv_time_system = itemView.findViewById(R.id.tv_time_system);
             tv_id_system = itemView.findViewById(R.id.tv_id_system);
             ll_msg_system = itemView.findViewById(R.id.ll_msg_system);
+
+            tv_msg_ask = itemView.findViewById(R.id.tv_msg_ask);
+            tv_time_ask = itemView.findViewById(R.id.tv_time_ask);
+            iv_ask_pic = itemView.findViewById(R.id.iv_ask_pic);
+            ll_msg_ask = itemView.findViewById(R.id.ll_msg_ask);
+            tv_waiting = itemView.findViewById(R.id.tv_waiting);
+            bt_yes = itemView.findViewById(R.id.bt_yes);
+            bt_no = itemView.findViewById(R.id.bt_no);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -148,6 +167,33 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                         holder.tv_id_self.setText(type);
 //                        holder.ll_msg_self.setGravity(Gravity.RIGHT);
 
+                        // 나눔 요청 메세지
+                    } else if (type.indexOf("ask_") > -1) {
+
+                        // 내가 보낸 나눔 요청 메세지인 경우
+                        if (type.equals("ask" + "_" + user))
+                        {
+                            holder.ll_msg_ask.setVisibility(View.VISIBLE);
+                            Log.e("나눔 요청 메세지입니다.", msg);
+                            holder.tv_msg_ask.setText(msg);
+                            holder.tv_time_ask.setText(time);
+                            Log.e("postName",tasksSnapshot.child("postName").getValue().toString());
+                            get_postImage(tasksSnapshot.child("postName").getValue().toString(), holder.iv_ask_pic);
+                            holder.bt_no.setVisibility(View.GONE);
+                            holder.bt_yes.setVisibility(View.GONE);
+                        }
+                        // 상대방이 보낸 나눔 요청 메세지인 경우
+                        else{
+                            holder.ll_msg_ask.setVisibility(View.VISIBLE);
+                            holder.tv_waiting.setVisibility(View.GONE);
+                            Log.e("나눔 요청 메세지입니다.", msg);
+                            holder.tv_msg_ask.setText(msg);
+                            holder.tv_time_ask.setText(time);
+                            Log.e("postName",tasksSnapshot.child("postName").getValue().toString());
+                            get_postImage(tasksSnapshot.child("postName").getValue().toString(), holder.iv_ask_pic);
+                        }
+
+
                     } else {
                         holder.ll_msg_counter.setVisibility(View.VISIBLE);
                         Log.e("상대방의 메세지입니다.", msg);
@@ -180,6 +226,26 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
         msgs.add(0, msg);
 
         notifyItemInserted(0);
+    }
+
+    private void get_postImage(String postName, ImageView imageView)
+    {
+        // 게시물 사진 가져오기
+        storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReferenceFromUrl("gs://everyrefri.appspot.com/images").child(postName + ".png");
+        final long ONE_MEGABYTE = 2048 * 2048;
+        storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bit = BitmapFactory.decodeByteArray( bytes , 0 , bytes.length);
+                imageView.setImageBitmap(bit);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.e("onFailure", "게시물 사진을 가져오는데 실패하였습니다.");
+            }
+        });
     }
 }
 

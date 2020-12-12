@@ -58,9 +58,6 @@ public class activity_6_board extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
         Log.e("recyclerView.setLayoutManager(new LinearLayoutManager(this))","!");
 
-
-
-
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         ArrayList<String> PostIds = new ArrayList<>();
         ref = FirebaseDatabase.getInstance().getReference().child("Posts");
