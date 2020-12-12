@@ -21,29 +21,70 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="406dp"
-        android:layout_height="581dp"
-        android:layout_marginTop="19dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="408dp"
+        android:layout_height="493dp"
+        android:layout_marginTop="68dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ibt_back11">
 
         <com.naver.maps.map.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
-            android:layout_height="481dp"
-
-            />
-
-        <Button
-            android:id="@+id/bt_locationsave"
-            android:layout_width="217dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="내 위치 확인하기" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_location"
+        android:layout_width="285dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="14dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/bt_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibt_back11" />
+
+    <Button
+        android:id="@+id/bt_search"
+        android:layout_width="64dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="19dp"
+        android:text="찾기"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
+    <Button
+        android:id="@+id/bt_locationsave"
+        android:layout_width="217dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="97dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="39dp"
+        android:text="내 위치 저장하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/bt_locationsave"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="2dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
