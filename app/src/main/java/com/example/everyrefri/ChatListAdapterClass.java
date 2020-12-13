@@ -127,7 +127,6 @@ public class ChatListAdapterClass extends RecyclerView.Adapter<ChatListAdapterCl
                         Log.e("상대방이름", counter);
                     }
 
-
                     // 상대방 이름 표시
                     holder.tv_id_recy_chat_list.setText(counter);
 

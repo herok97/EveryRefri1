@@ -90,7 +90,7 @@ public class activity_10_chat_room extends AppCompatActivity {
                     et_message.setText("");
                 }
 
-                recyclerView.scrollToPosition(0);
+
             }
         });
 
@@ -108,6 +108,7 @@ public class activity_10_chat_room extends AppCompatActivity {
                 String msg = snapshot.getKey();
                 Log.e("getKey", msg);
                 adapter.addMsg(msg);
+                recyclerView.scrollToPosition(0);
             }
 
             @Override

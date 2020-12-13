@@ -2,6 +2,7 @@ package com.example.everyrefri;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
@@ -32,7 +33,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.ViewHolder> {
     private DatabaseReference ref;
@@ -61,7 +68,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
 
         TextView tv_msg_ask, tv_time_ask, tv_waiting;
         ImageView iv_ask_pic;
-        Button bt_yes, bt_no;
+        Button bt_yes, bt_no, bt_complete, bt_emergency;
 
 
         LinearLayout ll_msg_counter, ll_msg_self, ll_msg_system, ll_msg_ask;
@@ -93,6 +100,8 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
             tv_waiting = itemView.findViewById(R.id.tv_waiting);
             bt_yes = itemView.findViewById(R.id.bt_yes);
             bt_no = itemView.findViewById(R.id.bt_no);
+            bt_complete = itemView.findViewById(R.id.bt_complete);
+            bt_emergency = itemView.findViewById(R.id.bt_emergency);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -169,18 +178,17 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
 
                         // 나눔 요청 메세지
                     } else if (type.indexOf("ask_") > -1) {
-
                         // 내가 보낸 나눔 요청 메세지인 경우
                         if (type.equals("ask" + "_" + user))
                         {
                             holder.ll_msg_ask.setVisibility(View.VISIBLE);
-                            Log.e("나눔 요청 메세지입니다.", msg);
                             holder.tv_msg_ask.setText(msg);
                             holder.tv_time_ask.setText(time);
-                            Log.e("postName",tasksSnapshot.child("postName").getValue().toString());
                             get_postImage(tasksSnapshot.child("postName").getValue().toString(), holder.iv_ask_pic);
                             holder.bt_no.setVisibility(View.GONE);
                             holder.bt_yes.setVisibility(View.GONE);
+                            holder.bt_complete.setVisibility(View.GONE);
+                            holder.bt_emergency.setVisibility(View.GONE);
                         }
                         // 상대방이 보낸 나눔 요청 메세지인 경우
                         else{
@@ -191,21 +199,97 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                             holder.tv_time_ask.setText(time);
                             Log.e("postName",tasksSnapshot.child("postName").getValue().toString());
                             get_postImage(tasksSnapshot.child("postName").getValue().toString(), holder.iv_ask_pic);
+                            holder.bt_complete.setVisibility(View.GONE);
+                            holder.bt_emergency.setVisibility(View.GONE);
                         }
 
+                        // 나눔 요청 수락 메세지
+                    } else if (type.indexOf("yes_") > -1) {
 
+                        holder.ll_msg_ask.setVisibility(View.VISIBLE);
+                        Log.e("나눔 요청 수락 메세지입니다.", msg);
+                        holder.tv_msg_ask.setText(msg);
+                        holder.tv_time_ask.setText(time);
+                        holder.iv_ask_pic.setVisibility(View.GONE);
+                        holder.bt_no.setVisibility(View.GONE);
+                        holder.bt_yes.setVisibility(View.GONE);
+                        holder.tv_waiting.setVisibility(View.GONE);
+
+                        // 나눔 완료 메세지
+                    }else if (type.indexOf("complete") > -1) {
+                        holder.ll_msg_ask.setVisibility(View.VISIBLE);
+                        Log.e("나눔 완료 메세지입니다.", msg);
+                        holder.tv_msg_ask.setText(msg);
+                        holder.tv_time_ask.setText(time);
+                        holder.iv_ask_pic.setVisibility(View.GONE);
+                        holder.bt_no.setVisibility(View.GONE);
+                        holder.bt_yes.setVisibility(View.GONE);
+                        holder.bt_emergency.setVisibility(View.GONE);
+                        holder.bt_complete.setVisibility(View.GONE);
+                        holder.tv_waiting.setVisibility(View.GONE);
+                        
                     } else {
                         holder.ll_msg_counter.setVisibility(View.VISIBLE);
                         Log.e("상대방의 메세지입니다.", msg);
                         holder.tv_msg_counter.setText(msg);
                         holder.tv_time_counter.setText(time);
                         holder.tv_id_counter.setText(type);
+                        holder.tv_waiting.setVisibility(View.GONE);
 //                        holder.ll_msg_counter.setGravity(Gravity.LEFT);
                     }
 
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
+
+
+                // 수락 버튼 클릭 이벤트 구현
+                holder.bt_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        holder.bt_yes.setClickable(false);
+                        holder.bt_no.setClickable(false);
+                        // 현재 시간 확인
+                        TimeZone tz;                                        // 객체 생성
+                        DateFormat dateFormat = new SimpleDateFormat("MMdd_HHmmss", Locale.KOREAN);
+                        tz = TimeZone.getTimeZone("Asia/Seoul");  // TimeZone에 표준시 설정
+                        dateFormat.setTimeZone(tz);
+                        Date now = new Date();
+                        String time = dateFormat.format(now);
+
+                        ref = FirebaseDatabase.getInstance().getReference().child("Chats").child(chatName);
+
+                        // 시스템 메세지 생성
+                        HashMap<String, String> message = new HashMap<String, String>();
+                        message.put("msg", "나눔 요청이 수락되었습니다. \n 나눔 완료 후 완료 버튼을 눌러주세요!");
+                        message.put("type", "yes" + "_" + user);
+                        ref.child(time).setValue(message);
+                    }
+                });
+
+                // 완료 버튼 클릭 이벤트 구현
+                holder.bt_complete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        holder.bt_complete.setClickable(false);
+                        holder.bt_emergency.setClickable(false);
+                        // 현재 시간 확인
+                        TimeZone tz;                                        // 객체 생성
+                        DateFormat dateFormat = new SimpleDateFormat("MMdd_HHmmss", Locale.KOREAN);
+                        tz = TimeZone.getTimeZone("Asia/Seoul");  // TimeZone에 표준시 설정
+                        dateFormat.setTimeZone(tz);
+                        Date now = new Date();
+                        String time = dateFormat.format(now);
+
+                        ref = FirebaseDatabase.getInstance().getReference().child("Chats").child(chatName);
+
+                        // 시스템 메세지 생성
+                        HashMap<String, String> message = new HashMap<String, String>();
+                        message.put("msg", "나눔이 성공적으로 완료되었습니다. \n 상대방을 평가해주세요!");
+                        message.put("type", "complete" + "_" + user);
+                        ref.child(time).setValue(message);
+                    }
+                });
             }
 
             @Override
