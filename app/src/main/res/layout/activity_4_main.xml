@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="408dp"
+        android:layout_width="match_parent"
         android:layout_height="232dp"
         android:background="@color/color_blue"
         android:gravity="center|bottom"
