@@ -56,44 +56,47 @@
 
                 <ImageView
                     android:id="@+id/iv_pro15"
-                    android:layout_width="190dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="85dp"
+                    android:layout_height="63dp"
                     android:layout_weight="1"
                     android:scaleType="centerCrop"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    tools:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="318dp"
+                    android:layout_height="82dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_name15"
                         android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:text="ID" />
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:text="ID"
+                        android:textColor="#2196F3" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="82dp"
+                        android:layout_gravity="end"
                         android:orientation="horizontal">
 
                         <ImageButton
                             android:id="@+id/ibt_chat15"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginStart="10dp"
-                            app:srcCompat="@android:drawable/sym_action_chat"
-                            android:background="@drawable/circle_blue"/>
+                            android:layout_width="55dp"
+                            android:layout_height="54dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/circle_blue"
+                            app:srcCompat="@android:drawable/sym_action_chat" />
 
                         <Button
                             android:id="@+id/bt_ask"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:text="나눔요청"
-                            android:layout_marginStart="10dp"
-                            android:background="@drawable/circle_whiteblue"/>
+                            android:layout_width="53dp"
+                            android:layout_height="53dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/circle_whiteblue"
+                            android:text="나눔요청" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -111,8 +114,12 @@
                     android:id="@+id/tv_need"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="필수기재사항" />
+                    android:text="※필수기재사항"
+                    android:textAlignment="textStart"
+                    android:textColor="#222F77"
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -126,17 +133,19 @@
 
                         <TextView
                             android:id="@+id/tv_category15"
-                            android:layout_width="309dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="1. 카테고리" />
+                            android:text="1. 카테고리"
+                            android:textColor="#222F77" />
 
                         <TextView
                             android:id="@+id/tv_cate"
                             android:layout_width="467dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:textColor="#222F77" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -158,17 +167,19 @@
 
                             <TextView
                                 android:id="@+id/tv_buy15"
-                                android:layout_width="432dp"
-                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="2. 구입일시" />
+                                android:text="2. 구입일시"
+                                android:textColor="#222F77" />
 
                             <TextView
                                 android:id="@+id/tv_buydate"
                                 android:layout_width="588dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textColor="#222F77" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -191,17 +202,19 @@
 
                             <TextView
                                 android:id="@+id/tv_exp15"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="339dp"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="3. 유통기한" />
+                                android:text="3. 유통기한"
+                                android:textColor="#222F77" />
 
                             <TextView
                                 android:id="@+id/tv_expdate"
                                 android:layout_width="566dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textColor="#222F77" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -224,17 +237,19 @@
 
                             <TextView
                                 android:id="@+id/tv_storage15"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="339dp"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="4. 보관방법" />
+                                android:text="4. 보관방법"
+                                android:textColor="#222F77" />
 
                             <TextView
                                 android:id="@+id/tv_storagemethod"
                                 android:layout_width="566dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="TextView" />
+                                android:text="TextView"
+                                android:textColor="#222F77" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -251,6 +266,7 @@
                     android:id="@+id/tv_add15"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
+                    android:layout_margin="10dp"
                     android:text="추가설명" />
 
             </LinearLayout>
@@ -260,7 +276,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:srcCompat="@android:drawable/ic_menu_gallery" />
+                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
         </LinearLayout>
     </ScrollView>

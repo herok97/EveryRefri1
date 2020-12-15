@@ -32,11 +32,11 @@
 
         <ImageView
             android:id="@+id/iv_pro"
-            android:layout_width="94dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="105dp"
             android:layout_weight="1"
             android:scaleType="centerCrop"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
         <TextView
             android:id="@+id/tv_name14"
@@ -53,8 +53,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="TextView"
         android:background="@drawable/round_rectangle_whiteblue"
+        android:text="자기소개 입력란"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
@@ -65,8 +65,10 @@
         android:layout_height="75sp"
         android:layout_marginStart="42dp"
         android:layout_marginTop="16dp"
-        android:text="TextView"
         android:background="@drawable/round_rectangle_whiteblue"
+        android:gravity="center"
+        android:text="나눔수"
+        android:textAlignment="gravity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_self14" />
 

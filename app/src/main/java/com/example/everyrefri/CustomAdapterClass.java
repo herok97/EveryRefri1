@@ -2,8 +2,12 @@ package com.example.everyrefri;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +18,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.rpc.context.AttributeContext;
 
 import java.util.ArrayList;
 
@@ -34,6 +41,7 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
     private ArrayList<String> PostIds = null;
     private Context mContext;
     private User user;
+    Resources mResources;
 
     public interface OnItemClickListener {
         void onItemClick(View v, int pos, ArrayList<String> PostIds);
@@ -90,6 +98,7 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
         this.mContext = mContext;
         this.PostIds = _PostIds;
         Log.e("CustomAdapterClass객체 생성", "!");
+        mResources = mContext.getResources();
     }
 
     // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
@@ -178,7 +187,8 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
                 Bitmap bit = BitmapFactory.decodeByteArray( bytes , 0 , bytes.length);
                 Log.e("bit 텍스트로", bit.toString());
                 Log.e("bytes 텍스트로", bytes.toString());
-                profile.setImageBitmap(bit);
+                RoundedBitmapDrawable bitt = createRoundedBitmapDrawableWithBorder(bit);
+                profile.setImageDrawable(bitt);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -192,6 +202,53 @@ public class CustomAdapterClass extends RecyclerView.Adapter<CustomAdapterClass.
     @Override
     public int getItemCount() {
         return PostIds.size();
+    }
+
+    private RoundedBitmapDrawable createRoundedBitmapDrawableWithBorder(Bitmap bitmap){
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+        int borderWidthHalf = 10; // In pixels
+        //Toast.makeText(mContext,""+bitmapWidth+"|"+bitmapHeight,Toast.LENGTH_SHORT).show();
+
+        // Calculate the bitmap radius
+        int bitmapRadius = Math.min(bitmapWidth,bitmapHeight)/4;
+
+        int bitmapSquareWidth = Math.min(bitmapWidth,bitmapHeight);
+        //Toast.makeText(mContext,""+bitmapMin,Toast.LENGTH_SHORT).show();
+
+        int newBitmapSquareWidth = bitmapSquareWidth+borderWidthHalf;
+        //Toast.makeText(mContext,""+newBitmapMin,Toast.LENGTH_SHORT).show();
+        Bitmap roundedBitmap = Bitmap.createBitmap(newBitmapSquareWidth,newBitmapSquareWidth,Bitmap.Config.ARGB_8888);
+
+        // Initialize a new Canvas to draw empty bitmap
+        Canvas canvas = new Canvas(roundedBitmap);
+
+        // Draw a solid color to canvas
+        canvas.drawColor(Color.RED);
+
+        // Calculation to draw bitmap at the circular bitmap center position
+        int x = borderWidthHalf + bitmapSquareWidth - bitmapWidth;
+        int y = borderWidthHalf + bitmapSquareWidth - bitmapHeight;
+
+        canvas.drawBitmap(bitmap, x, y, null);
+
+        // Initializing a new Paint instance to draw circular border
+//        Paint borderPaint = new Paint();
+//        borderPaint.setStyle(Paint.Style.STROKE);
+//        borderPaint.setStrokeWidth(borderWidthHalf*2);
+//        borderPaint.setColor(Color.rgb(34,47,119));
+
+
+//        canvas.drawCircle(canvas.getWidth()/2, canvas.getWidth()/2, newBitmapSquareWidth/2, borderPaint);
+
+        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(mResources, roundedBitmap);
+
+        // Set the corner radius of the bitmap drawable
+        roundedBitmapDrawable.setCornerRadius(bitmapRadius);
+
+        roundedBitmapDrawable.setAntiAlias(true);
+        // Return the RoundedBitmapDrawable
+        return roundedBitmapDrawable;
     }
 }
 

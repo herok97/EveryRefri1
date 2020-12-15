@@ -9,8 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="372dp"
+        android:layout_height="41dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,62 +19,64 @@
             android:id="@+id/iv_pic_recy_chat_list"
             android:layout_width="36dp"
             android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
         <TextView
             android:id="@+id/tv_id_recy_chat_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
             android:text="아이디"
-            app:layout_constraintStart_toEndOf="@+id/iv_pic_recy_chat_list"
-            app:layout_constraintTop_toTopOf="@+id/iv_pic_recy_chat_list" />
+            android:textColor="@color/color_blue"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_pic_recy_chat_list"
+            app:layout_constraintStart_toEndOf="@+id/iv_pic_recy_chat_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="#00000000"
         android:backgroundTint="#00000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <TextView
             android:id="@+id/tv_content_recy"
-            android:layout_width="259dp"
-            android:layout_height="91dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="필수기재사항"
-            android:textColor="#1E6197"
+            android:textColor="@color/color_blue"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.517"
             app:layout_constraintStart_toEndOf="@+id/iv_pic_recy"
             app:layout_constraintTop_toBottomOf="@+id/tv_title_recy" />
 
         <ImageView
             android:id="@+id/iv_pic_recy"
-            android:layout_width="99dp"
-            android:layout_height="116dp"
-            android:layout_marginStart="24dp"
+            android:layout_width="85dp"
+            android:layout_height="79dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
         <TextView
             android:id="@+id/tv_title_recy"
-            android:layout_width="259dp"
+            android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:text="제목"
+            android:textColor="#1B68A5"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/tv_content_recy"
             app:layout_constraintTop_toTopOf="@+id/iv_pic_recy" />
 

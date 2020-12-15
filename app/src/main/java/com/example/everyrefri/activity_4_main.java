@@ -3,12 +3,23 @@ package com.example.everyrefri;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
@@ -38,11 +49,11 @@ public class activity_4_main extends AppCompatActivity {
     private DatabaseReference ref;
     private Button bt_follower,bt_following, bt_refrigerator;
     private ImageButton ibt_back,ibt_board,ibt_alarm,ibt_setting,ibt_chat;
-    private Button ibt_myrefri;
+    private ImageButton ibt_myrefri;
     private TextView tv_div_num,tv_name, tv_grade;//사용자profile의 나눔수와 이름표시
     private ImageView iv_prof;//사용자의 사진표시
     private FirebaseStorage storage;
-
+    Resources mResources;
     private int follower;
     private int following;
     private float grade;
@@ -57,7 +68,7 @@ public class activity_4_main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_4_main);
-
+        mResources = getResources();
         ibt_myrefri = findViewById(R.id.bt_refri);
         ibt_back = findViewById(R.id.ibt_back4);
         ibt_board = findViewById(R.id.ibt_list);
@@ -71,6 +82,7 @@ public class activity_4_main extends AppCompatActivity {
         tv_grade =findViewById(R.id.tv_grade);//사용자정보와연결
         iv_prof= findViewById(R.id.iv_profile);//사용자정보와연결
 
+        출처: https://chocorolls.tistory.com/47 [초코롤의 개발이야기]
         // 파이어베이스 스토리지
         storage = FirebaseStorage.getInstance();
 
@@ -232,7 +244,8 @@ public class activity_4_main extends AppCompatActivity {
                 Bitmap bit = BitmapFactory.decodeByteArray( bytes , 0 , bytes.length);
                 Log.e("bit 텍스트로", bit.toString());
                 Log.e("bytes 텍스트로", bytes.toString());
-                iv_prof.setImageBitmap(bit);
+                RoundedBitmapDrawable bitt = createRoundedBitmapDrawableWithBorder(bit);
+                iv_prof.setImageDrawable(bitt);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -242,17 +255,49 @@ public class activity_4_main extends AppCompatActivity {
         });
     }
 
+    private RoundedBitmapDrawable createRoundedBitmapDrawableWithBorder(Bitmap bitmap){
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+        int borderWidthHalf = 10; // In pixels
+        //Toast.makeText(mContext,""+bitmapWidth+"|"+bitmapHeight,Toast.LENGTH_SHORT).show();
 
-    private void log_last_login(DatabaseReference ref)
-    {
-        // 현재시간을 msec 으로 구한다.
-        long now = System.currentTimeMillis();
-        // 현재시간을 date 변수에 저장한다.
-        Date date = new Date(now);
-        // 시간을 나타냇 포맷을 정한다 ( yyyy/MM/dd 같은 형태로 변형 가능 )
-        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        // nowDate 변수에 값을 저장한다.
-        String formatDate = sdfNow.format(date);
-        ref.child("last").setValue(formatDate);
+        // Calculate the bitmap radius
+        int bitmapRadius = Math.min(bitmapWidth,bitmapHeight)/2;
+
+        int bitmapSquareWidth = Math.min(bitmapWidth,bitmapHeight);
+        //Toast.makeText(mContext,""+bitmapMin,Toast.LENGTH_SHORT).show();
+
+        int newBitmapSquareWidth = bitmapSquareWidth+borderWidthHalf;
+        //Toast.makeText(mContext,""+newBitmapMin,Toast.LENGTH_SHORT).show();
+        Bitmap roundedBitmap = Bitmap.createBitmap(newBitmapSquareWidth,newBitmapSquareWidth,Bitmap.Config.ARGB_8888);
+
+        // Initialize a new Canvas to draw empty bitmap
+        Canvas canvas = new Canvas(roundedBitmap);
+
+        // Draw a solid color to canvas
+            canvas.drawColor(Color.RED);
+
+        // Calculation to draw bitmap at the circular bitmap center position
+        int x = borderWidthHalf + bitmapSquareWidth - bitmapWidth;
+        int y = borderWidthHalf + bitmapSquareWidth - bitmapHeight;
+
+            canvas.drawBitmap(bitmap, x, y, null);
+
+        // Initializing a new Paint instance to draw circular border
+        Paint borderPaint = new Paint();
+            borderPaint.setStyle(Paint.Style.STROKE);
+            borderPaint.setStrokeWidth(borderWidthHalf*2);
+            borderPaint.setColor(Color.WHITE);
+
+            canvas.drawCircle(canvas.getWidth()/2, canvas.getWidth()/2, newBitmapSquareWidth/2, borderPaint);
+
+        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(mResources, roundedBitmap);
+
+        // Set the corner radius of the bitmap drawable
+            roundedBitmapDrawable.setCornerRadius(bitmapRadius);
+
+            roundedBitmapDrawable.setAntiAlias(true);
+        // Return the RoundedBitmapDrawable
+        return roundedBitmapDrawable;
     }
 }
