@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -144,29 +146,40 @@ public class activity_15_post extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                AlertDialog.Builder builder=new AlertDialog.Builder(activity_15_post.this)
+                        .setMessage("나눔 장소는 되도록 사람이 있는 곳이나 편의점 등을 이용하세요!")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        TimeZone tz;                                        // 객체 생성
+                                        DateFormat dateFormat = new SimpleDateFormat("MMdd_HHmmss", Locale.KOREAN);
+                                        tz = TimeZone.getTimeZone("Asia/Seoul");  // TimeZone에 표준시 설정
+                                        dateFormat.setTimeZone(tz);
+                                        Date now = new Date();
+                                        String time = dateFormat.format(now);
+
+
+                                        // 채팅방 만듬
+                                        String chatName = user.email.substring(0, user.email.indexOf("@")) + "_and_" + post.email.substring(0, user.email.indexOf("@"));
+                                        ref = FirebaseDatabase.getInstance().getReference().child("Chats").child(chatName);
+
+                                        // 시스템 메세지 생성
+                                        ref.child(time).child("type").setValue("system");
+                                        ref.child(time).child("msg").setValue("채팅을 요청하였습니다.");
+
+                                        Intent intent = new Intent(getApplicationContext(), activity_10_chat_room.class);
+                                        intent = user.setUserToIntent(intent);
+                                        intent.putExtra("chatName", chatName);
+                                        startActivityForResult(intent, 10);
+                                        finish();
+                                    }
+                            });
                 // 현재 시간 확인
-                TimeZone tz;                                        // 객체 생성
-                DateFormat dateFormat = new SimpleDateFormat("MMdd_HHmmss", Locale.KOREAN);
-                tz = TimeZone.getTimeZone("Asia/Seoul");  // TimeZone에 표준시 설정
-                dateFormat.setTimeZone(tz);
-                Date now = new Date();
-                String time = dateFormat.format(now);
 
+                        AlertDialog dialog = builder.create();    // 알림창 객체 생성
 
-                // 채팅방 만듬
-                String chatName = user.email.substring(0, user.email.indexOf("@")) + "_and_" + post.email.substring(0, user.email.indexOf("@"));
-                ref = FirebaseDatabase.getInstance().getReference().child("Chats").child(chatName);
-
-                // 시스템 메세지 생성
-                ref.child(time).child("type").setValue("system");
-                ref.child(time).child("msg").setValue("채팅을 요청하였습니다.");
-
-                Intent intent = new Intent(getApplicationContext(), activity_10_chat_room.class);
-                intent = user.setUserToIntent(intent);
-                intent.putExtra("chatName", chatName);
-                startActivityForResult(intent, 10);
-                finish();
-            }
+                        dialog.show();
+                        }
         });
 
 
@@ -174,6 +187,7 @@ public class activity_15_post extends AppCompatActivity {
         bt_ask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 // 현재 시간 확인
                 TimeZone tz;                                        // 객체 생성
