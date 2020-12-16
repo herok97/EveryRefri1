@@ -58,9 +58,11 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
     private FirebaseAuth fireAuth;
     private FirebaseStorage storage;
     private Uri filePath;
-    private NaverMap naverMap;
+
     Marker marker=new Marker();
-    private CameraUpdate cameraUpdate;
+    CameraUpdate cameraUpdate;
+    private NaverMap nmap1;
+    private NaverMap nmap2;
     //private LatLng latLng;
 
 
@@ -111,6 +113,7 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
                 try{
                     addresses= geocoder.getFromLocationName(txt,3);
                     if(addresses!=null&&!addresses.equals("")){
+
                         search(addresses);
                     }
                 } catch (IOException e) {
@@ -123,6 +126,7 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
     }
 
 
+
     public void search(List<Address> addresses) {
         Address address= addresses.get(0);
         LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
@@ -133,23 +137,15 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
         );
         locationText.setVisibility(View.VISIBLE);
         locationText.setText("Latitude"+address.getLatitude()+"Longitude"+address.getLongitude()+"\n"+addressText);
-        //Marker marker=new Marker();
-
-        Marker marker1= new Marker();
-        marker1.setPosition(latLng);
-        marker1.setMap(naverMap);
-        cameraUpdate= CameraUpdate.scrollTo(latLng).animate(CameraAnimation.Fly,3000);
-//        naverMap.moveCamera(cameraUpdate);
-        CameraPosition cameraPosition = new CameraPosition(
-                new LatLng(address.getLatitude(),address.getLongitude())
-                ,16);
-
-        NaverMapOptions options = new NaverMapOptions().camera(cameraPosition);
 
 
-        //cameraUpdate = CameraUpdate.scrollTo(new LatLng(address.getLatitude(),address.getLongitude()));
-        //naverMap.moveCamera(cameraUpdate);
-        //CameraUpdate cameraupdate=new CameraUpdate(cameraPosition);
+        marker.setPosition(latLng);
+
+
+        cameraUpdate= CameraUpdate.scrollTo(latLng);
+
+        nmap2.moveCamera(cameraUpdate); //(이거땜에 오류뜸 진짜 개빡친다....
+        //}
 
     }
 
@@ -157,16 +153,15 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
 
-       // marker.setPosition(new LatLng(address.getLatitude(),address.getLongitude()));
-       // marker.setMap(naverMap);
-       // cameraUpdate = CameraUpdate.scrollTo(new LatLng(address.getLatitude(),address.getLongitude()));
-       // naverMap.moveCamera(cameraUpdate);
+        nmap1=naverMap;
+        nmap2=naverMap;
         LatLng def = new LatLng(37.24341208419288,127.08250012634373);
         marker.setPosition(def);
-        marker.setMap(naverMap);
+        marker.setMap(nmap1);
 
         cameraUpdate = CameraUpdate.scrollTo(def);
-        naverMap.moveCamera(cameraUpdate);
+        nmap1.moveCamera(cameraUpdate);
+
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -174,6 +169,8 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
 
 
     }
+
+
 
 
 
