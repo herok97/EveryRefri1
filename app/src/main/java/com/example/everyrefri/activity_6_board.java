@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -112,12 +115,25 @@ public class activity_6_board extends AppCompatActivity {
 
         // 상품 올리기 버튼
         fab_write.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), activity_13_write.class);
-                intent = user.setUserToIntent(intent);
-                startActivityForResult(intent,13);
-                finish();
+
+                AlertDialog.Builder builder=new Builder(activity_6_board.this)
+                        .setMessage("나눔은 유통기한이 임박했을 때 말고, 되도록 미리 나눔해주세요!")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(getApplicationContext(), activity_13_write.class);
+                                intent = user.setUserToIntent(intent);
+                                startActivityForResult(intent,13);
+                                finish();
+                                //Toast.makeText(getApplicationContext(),"확인완료",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                AlertDialog dialog = builder.create();    // 알림창 객체 생성
+
+                dialog.show();
             }
         });
 

@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -117,7 +119,21 @@ public class activity_13_write extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //업로드
-                upload();
+
+                //upload();
+                AlertDialog.Builder builder=new AlertDialog.Builder(activity_13_write.this)
+                        .setMessage("의도적으로 부패한 식품을 나눔하는 경우 회사로부터 소송을 받을 수 있습니다.")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                upload();
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();    // 알림창 객체 생성
+
+                dialog.show();
+
             }
         });
 
