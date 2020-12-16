@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -66,7 +68,18 @@ public class activity_3_sign_in extends AppCompatActivity {
                 }
                 // 제대로 정보를 입력했다면.
                 else
-                    login(email, pass);
+                { AlertDialog.Builder builder=new AlertDialog.Builder(activity_3_sign_in.this)
+                            .setMessage("나눔 장소에 주의하고 나눔 받은 식재료를 사용할 때에는 꼭 유통기한을 확인하고 깨끗이 세척해 사용해주세요!")
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which){
+                                    login(email, pass);
+                                }});
+                    AlertDialog dialog = builder.create();    // 알림창 객체 생성
+
+                    dialog.show();
+                }
+                   // login(email, pass);
             }
         });
 
