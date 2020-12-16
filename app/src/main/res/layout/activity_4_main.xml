@@ -151,6 +151,7 @@
         android:layout_marginEnd="45dp"
         android:gravity="center"
         android:text="나눔 수"
+        android:background="@drawable/round_rectangle_whiteblue"
         app:layout_constraintEnd_toStartOf="@id/bt_follower"
         app:layout_constraintTop_toTopOf="@+id/bt_follower" />
 

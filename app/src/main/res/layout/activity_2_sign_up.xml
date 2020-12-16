@@ -86,12 +86,12 @@
 
             <EditText
                 android:id="@+id/et_pass"
+                style="@style/input_signup"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="86dp"
                 android:layout_weight="4"
                 android:ems="10"
                 android:hint="비밀번호"
-                style="@style/input_signup"
                 android:inputType="textPassword"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"

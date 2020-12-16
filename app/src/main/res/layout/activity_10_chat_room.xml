@@ -60,7 +60,7 @@
             app:layout_constraintEnd_toStartOf="@+id/ibt_send"
             app:layout_constraintStart_toEndOf="@+id/ibt_pic">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/et_chat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

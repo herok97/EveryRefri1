@@ -59,6 +59,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="19dp"
         android:text="찾기"
+        android:background="@drawable/round_rectangle_blue2"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_location" />
