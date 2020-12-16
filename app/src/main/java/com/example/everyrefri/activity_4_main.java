@@ -51,14 +51,14 @@ public class activity_4_main extends AppCompatActivity {
     private Button bt_follower,bt_following, bt_refrigerator;
     private ImageButton ibt_back,ibt_board,ibt_alarm,ibt_setting,ibt_chat;
     private ImageButton ibt_myrefri;
-    private TextView tv_div_num,tv_name, tv_grade;//사용자profile의 나눔수와 이름표시
+    private TextView tv_div_num,tv_name, tv_grade, tv_location;//사용자profile의 나눔수와 이름표시
     private ImageView iv_prof;//사용자의 사진표시
     private FirebaseStorage storage;
     Resources mResources;
     private int follower;
     private int following;
     private float grade;
-    private String email;
+    private String email, location;
     private String id;
     private User user;
     private SharedPreferences preferences;
@@ -82,8 +82,8 @@ public class activity_4_main extends AppCompatActivity {
         tv_name =findViewById(R.id.tv_name);//사용자정보와연결
         tv_grade =findViewById(R.id.tv_grade);//사용자정보와연결
         iv_prof= findViewById(R.id.iv_profile);//사용자정보와연결
+        tv_location = findViewById(R.id.tv_location4);
 
-        //출처: https://chocorolls.tistory.com/47 [초코롤의 개발이야기]
         // 파이어베이스 스토리지
         storage = FirebaseStorage.getInstance();
 
@@ -103,11 +103,13 @@ public class activity_4_main extends AppCompatActivity {
                     following = new Integer(tasksSnapshot.child("userFollowing").getValue().toString());
                     grade = new Float(tasksSnapshot.child("userGrade").getValue().toString());
                     id = (String) tasksSnapshot.child("userId").getValue();
+                    location = (String) tasksSnapshot.child("location").getValue();
                     bt_follower.setText("팔로워\n" + follower);
                     bt_following.setText("팔로잉\n" + following);
                     tv_grade.setText(String.valueOf(grade));
                     tv_name.setText(id);
-                    user = new User(id, email, follower, following, grade);
+                    tv_location.setText(location);
+                    user = new User(id, email, follower, following, grade, location);
                     Log.e("onDataChange 실행", "!");
             }
 

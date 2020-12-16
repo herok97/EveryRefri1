@@ -149,7 +149,7 @@ public class activity_2_sign_up extends AppCompatActivity {
                             userInfo.put("userId", id);
                             userInfo.put("userPass", pass);
                             userInfo.put("userStart", formatDate);
-
+                            userInfo.put("location","");
                             userInfo.put("userFollowing", 0);
                             userInfo.put("userFollower", 0);
                             userInfo.put("userGrade", 0);

@@ -68,7 +68,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
 
         TextView tv_msg_ask, tv_time_ask, tv_waiting;
         ImageView iv_ask_pic;
-        Button bt_yes, bt_no, bt_complete, bt_emergency;
+        Button bt_yes, bt_no, bt_complete, bt_emergency, bt_rate;
 
 
         LinearLayout ll_msg_counter, ll_msg_self, ll_msg_system, ll_msg_ask;
@@ -102,6 +102,8 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
             bt_no = itemView.findViewById(R.id.bt_no);
             bt_complete = itemView.findViewById(R.id.bt_complete);
             bt_emergency = itemView.findViewById(R.id.bt_emergency);
+            bt_rate = itemView.findViewById(R.id.bt_rate);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -189,6 +191,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                             holder.bt_yes.setVisibility(View.GONE);
                             holder.bt_complete.setVisibility(View.GONE);
                             holder.bt_emergency.setVisibility(View.GONE);
+                            holder.bt_rate.setVisibility(View.GONE);
                         }
                         // 상대방이 보낸 나눔 요청 메세지인 경우
                         else{
@@ -201,6 +204,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                             get_postImage(tasksSnapshot.child("postName").getValue().toString(), holder.iv_ask_pic);
                             holder.bt_complete.setVisibility(View.GONE);
                             holder.bt_emergency.setVisibility(View.GONE);
+                            holder.bt_rate.setVisibility(View.GONE);
                         }
 
                         // 나눔 요청 수락 메세지
@@ -214,6 +218,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                         holder.bt_no.setVisibility(View.GONE);
                         holder.bt_yes.setVisibility(View.GONE);
                         holder.tv_waiting.setVisibility(View.GONE);
+                        holder.bt_rate.setVisibility(View.GONE);
 
                         // 나눔 완료 메세지
                     }else if (type.indexOf("complete") > -1) {
@@ -235,6 +240,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                         holder.tv_time_counter.setText(time);
                         holder.tv_id_counter.setText(type);
                         holder.tv_waiting.setVisibility(View.GONE);
+
 //                        holder.ll_msg_counter.setGravity(Gravity.LEFT);
                     }
 

@@ -30,7 +30,7 @@
             android:paddingTop="10dp"
             android:paddingRight="5dp"
             android:paddingBottom="10dp"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
@@ -49,59 +49,103 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:id="@+id/iv_ask_pic"
+                    android:layout_width="43dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_msg_ask"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <Button
+                    android:id="@+id/bt_yes"
+                    android:layout_width="40dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:text="수락"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_msg_ask"
+                    app:layout_constraintTop_toTopOf="@+id/iv_ask_pic" />
+
+                <Button
+                    android:id="@+id/bt_no"
+                    android:layout_width="40dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:text="거절"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/bt_yes"
+                    app:layout_constraintTop_toBottomOf="@+id/bt_yes" />
+
+                <Button
+                    android:id="@+id/bt_complete"
+                    android:layout_width="51dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:text="나눔완료"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_msg_ask"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_msg_ask" />
+
+                <Button
+                    android:id="@+id/bt_emergency"
+                    android:layout_width="41dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:text="긴급!"
+                    android:background="@drawable/round_rectangle_red"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_msg_ask"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_msg_ask" />
+
+                <Button
+                    android:id="@+id/bt_rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:text="평가"
+                    tools:layout_editor_absoluteY="327dp" />
+
+                <TextView
+                    android:id="@+id/tv_waiting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="상대방의 응답을 기다리는 중입니다."
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    tools:layout_editor_absoluteY="365dp" />
+
+                <TextView
+                    android:id="@+id/tv_time_ask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:text="time"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    tools:layout_editor_absoluteX="15dp"
+                    tools:layout_editor_absoluteY="381dp" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <ImageView
-                android:id="@+id/iv_ask_pic"
-                android:layout_width="185dp"
-                android:layout_height="145dp"
-                android:layout_gravity="center"
-                android:scaleType="fitXY"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <Button
-                android:id="@+id/bt_yes"
-                android:layout_width="212dp"
-                android:layout_height="38dp"
-                android:text="수락" />
-
-            <Button
-                android:id="@+id/bt_no"
-                android:layout_width="212dp"
-                android:layout_height="38dp"
-                android:text="거절" />
-
-            <Button
-                android:id="@+id/bt_complete"
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:text="완료" />
-
-            <Button
-                android:id="@+id/bt_emergency"
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:text="긴급!" />
-
-            <TextView
-                android:id="@+id/tv_waiting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="상대방의 응답을 기다리는 중입니다."
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_time_ask"
-                android:layout_width="wrap_content"
-                android:layout_height="16dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="3dp"
-                android:text="time"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
 
         </LinearLayout>
 

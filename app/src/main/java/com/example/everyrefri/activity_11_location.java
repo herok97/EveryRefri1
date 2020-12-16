@@ -20,12 +20,15 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraAnimation;
@@ -58,7 +61,7 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
     private FirebaseAuth fireAuth;
     private FirebaseStorage storage;
     private Uri filePath;
-
+    private DatabaseReference ref;
     Marker marker=new Marker();
     CameraUpdate cameraUpdate;
     private NaverMap nmap1;
@@ -80,7 +83,7 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
         storage = FirebaseStorage.getInstance();
         Intent intent =getIntent();
         user = new User();
-       // user.getUserFromIntent(intent);
+        user.getUserFromIntent(intent);
 
         bt_search= findViewById(R.id.bt_search);
         txtsearch=findViewById(R.id.et_location);
@@ -99,8 +102,19 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
             }
         });
 
+        bt_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                ref = FirebaseDatabase.getInstance().getReference().child("Users").child(user.email.substring(0, user.email.indexOf("@")));
+                ref.child("location").setValue(txtsearch.getText().toString());
 
-
+                Intent intent = new Intent(getApplicationContext(), activity_7_myprofile.class);
+                intent = user.setUserToIntent(intent);
+                startActivityForResult(intent,7);
+                Toast.makeText(getApplicationContext(), "위치정보를 저장했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         bt_search.setOnClickListener(new View.OnClickListener(){
 
@@ -167,8 +181,6 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-
-
     }
 
 

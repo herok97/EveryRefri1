@@ -120,6 +120,7 @@ public class activity_7_myprofile extends AppCompatActivity {
             @Override
             public void onClick(View view) { // 버튼 클릭시 아래 내용 수행
                 Intent intent = new Intent(getApplicationContext(), activity_11_location.class);
+                intent = user.setUserToIntent(intent);
                 startActivityForResult(intent,11);
             }
         });
