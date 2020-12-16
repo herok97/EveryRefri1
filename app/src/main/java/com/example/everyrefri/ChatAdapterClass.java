@@ -340,7 +340,8 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                 holder.bt_rate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        holder.bt_rate.setVisibility(View.GONE);
+                        holder.bt_rate.setClickable(false);
+                        holder.bt_rate.setText("평가완료");
                         ref = FirebaseDatabase.getInstance().getReference().child("Users").child(counter);
                         Log.e("counter", counter);
                         ref.child("userGrade").setValue(rate);
