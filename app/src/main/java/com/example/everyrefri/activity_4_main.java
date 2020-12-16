@@ -46,6 +46,7 @@ import java.util.Date;
 
 public class activity_4_main extends AppCompatActivity {
 
+
     private DatabaseReference ref;
     private Button bt_follower,bt_following, bt_refrigerator;
     private ImageButton ibt_back,ibt_board,ibt_alarm,ibt_setting,ibt_chat;
@@ -82,7 +83,7 @@ public class activity_4_main extends AppCompatActivity {
         tv_grade =findViewById(R.id.tv_grade);//사용자정보와연결
         iv_prof= findViewById(R.id.iv_profile);//사용자정보와연결
 
-        출처: https://chocorolls.tistory.com/47 [초코롤의 개발이야기]
+        //출처: https://chocorolls.tistory.com/47 [초코롤의 개발이야기]
         // 파이어베이스 스토리지
         storage = FirebaseStorage.getInstance();
 
@@ -97,7 +98,7 @@ public class activity_4_main extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf("@")));
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot tasksSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot tasksSnapshot) {
                     follower = new Integer(tasksSnapshot.child("userFollower").getValue().toString());
                     following = new Integer(tasksSnapshot.child("userFollowing").getValue().toString());
                     grade = new Float(tasksSnapshot.child("userGrade").getValue().toString());

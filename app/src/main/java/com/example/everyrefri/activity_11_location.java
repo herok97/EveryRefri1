@@ -51,7 +51,7 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
     private MapView mapView;
     private EditText txtsearch;
     private Button bt_search;
-    private Button save;
+    private Button bt_save;
     private ImageButton ibt_back;
     private TextView locationText;
     private User user;
@@ -86,6 +86,7 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
         txtsearch=findViewById(R.id.et_location);
         locationText=findViewById(R.id.tv_view);
         ibt_back=findViewById(R.id.ibt_back11);
+        bt_save=findViewById(R.id.bt_locationsave);
 
 
 
@@ -169,6 +170,7 @@ public class activity_11_location extends AppCompatActivity implements OnMapRead
 
 
     }
+
 
 
 
