@@ -159,16 +159,17 @@
         style="@style/button_4"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/round_rectangle_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_follower"
         app:srcCompat="?attr/actionModePasteDrawable" />
-
 
 
     <ImageButton
         android:id="@+id/ibt_chat"
         style="@style/button_4"
         android:layout_marginTop="16dp"
+        android:background="@drawable/round_rectangle_blue"
         app:layout_constraintStart_toStartOf="@+id/bt_refri"
         app:layout_constraintTop_toBottomOf="@+id/bt_refri"
         app:srcCompat="@android:drawable/sym_action_chat" />
@@ -177,6 +178,7 @@
         android:id="@+id/ibt_pfs"
         style="@style/button_4"
         android:layout_marginTop="16dp"
+        android:background="@drawable/round_rectangle_blue"
         app:layout_constraintEnd_toEndOf="@+id/ibt_list"
         app:layout_constraintTop_toBottomOf="@+id/ibt_list"
         app:srcCompat="@android:drawable/ic_menu_preferences" />
@@ -186,6 +188,7 @@
         style="@style/button_4"
         android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
+        android:background="@drawable/round_rectangle_blue"
         android:src="@drawable/common_full_open_on_phone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_follower" />

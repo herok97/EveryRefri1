@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Rating;
 import android.os.Build;
 import android.util.Log;
 import android.view.Gravity;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +48,8 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
     private ArrayList<String> msgs = null;
     private String chatName;
     private String user;
-    private String type;
+    private String type, counter;
+    private float rate;
     private FirebaseStorage storage;
     public interface OnItemClickListener {
         void onItemClick(View v, int pos, ArrayList<String> msgs);
@@ -64,20 +67,24 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
         TextView tv_msg_counter, tv_time_counter, tv_id_counter;
         TextView tv_msg_self, tv_time_self, tv_id_self;
         TextView tv_msg_system, tv_time_system, tv_id_system;
-
+        RatingBar ratingbar;
 
         TextView tv_msg_ask, tv_time_ask, tv_waiting;
         ImageView iv_ask_pic;
         Button bt_yes, bt_no, bt_complete, bt_emergency, bt_rate;
 
-
         LinearLayout ll_msg_counter, ll_msg_self, ll_msg_system, ll_msg_ask;
+
+
 
 
 
         ViewHolder(View itemView) {
             super(itemView);
+
             // 뷰 객체에 대한 참조. (hold strong reference)
+            ratingbar = itemView.findViewById(R.id.ratingBar);
+
             tv_msg_counter = itemView.findViewById(R.id.tv_msg_counter);
             tv_time_counter = itemView.findViewById(R.id.tv_time_counter);
             tv_id_counter = itemView.findViewById(R.id.tv_id_counter);
@@ -128,6 +135,17 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
         this.msgs = _msgs;
         this.chatName = _chatName;
         this.user = _user;
+        // 채팅방 이름에서 상대방 이름보다 내 이름이 먼저 나오면
+        if (chatName.indexOf(user) < chatName.indexOf("_")) {
+            // 상대방의 이름은
+            counter = chatName.substring(chatName.indexOf("_") + 5);
+            Log.e("상대방이름", counter);
+
+        } else {
+            // 상대방의 이름은
+            counter = chatName.substring(0, chatName.indexOf("_"));
+            Log.e("상대방이름", counter);
+        }
     }
 
     // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
@@ -192,6 +210,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                             holder.bt_complete.setVisibility(View.GONE);
                             holder.bt_emergency.setVisibility(View.GONE);
                             holder.bt_rate.setVisibility(View.GONE);
+                            holder.ratingbar.setVisibility(View.GONE);
                         }
                         // 상대방이 보낸 나눔 요청 메세지인 경우
                         else{
@@ -205,6 +224,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                             holder.bt_complete.setVisibility(View.GONE);
                             holder.bt_emergency.setVisibility(View.GONE);
                             holder.bt_rate.setVisibility(View.GONE);
+                            holder.ratingbar.setVisibility(View.GONE);
                         }
 
                         // 나눔 요청 수락 메세지
@@ -219,6 +239,7 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                         holder.bt_yes.setVisibility(View.GONE);
                         holder.tv_waiting.setVisibility(View.GONE);
                         holder.bt_rate.setVisibility(View.GONE);
+                        holder.ratingbar.setVisibility(View.GONE);
 
                         // 나눔 완료 메세지
                     }else if (type.indexOf("complete") > -1) {
@@ -232,6 +253,24 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                         holder.bt_emergency.setVisibility(View.GONE);
                         holder.bt_complete.setVisibility(View.GONE);
                         holder.tv_waiting.setVisibility(View.GONE);
+
+
+                        holder.ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+                            @Override
+
+                            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+                                // 저는 0개를 주기싫어서, 만약 1개미만이면 강제로 1개를 넣었습니다.
+
+                                if (holder.ratingbar.getRating()<1.0f){
+                                    holder.ratingbar.setRating(1);
+                                    rate = holder.ratingbar.getRating();
+                                }
+
+                            }
+
+                        });
                         
                     } else {
                         holder.ll_msg_counter.setVisibility(View.VISIBLE);
@@ -294,6 +333,17 @@ public class ChatAdapterClass extends RecyclerView.Adapter<ChatAdapterClass.View
                         message.put("msg", "나눔이 성공적으로 완료되었습니다. \n 상대방을 평가해주세요!");
                         message.put("type", "complete" + "_" + user);
                         ref.child(time).setValue(message);
+                    }
+                });
+
+                // 별점주기 버튼 클릭 이벤트 구현
+                holder.bt_rate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        holder.bt_rate.setVisibility(View.GONE);
+                        ref = FirebaseDatabase.getInstance().getReference().child("Users").child(counter);
+                        Log.e("counter", counter);
+                        ref.child("userGrade").setValue(rate);
                     }
                 });
             }
