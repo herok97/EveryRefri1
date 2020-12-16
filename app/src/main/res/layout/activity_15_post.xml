@@ -56,8 +56,8 @@
 
                 <ImageView
                     android:id="@+id/iv_pro15"
-                    android:layout_width="85dp"
-                    android:layout_height="63dp"
+                    android:layout_width="102dp"
+                    android:layout_height="79dp"
                     android:layout_weight="1"
                     android:scaleType="centerCrop"
                     tools:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
@@ -78,7 +78,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="82dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="end"
                         android:orientation="horizontal">
 
@@ -96,7 +96,8 @@
                             android:layout_height="53dp"
                             android:layout_margin="5dp"
                             android:background="@drawable/circle_whiteblue"
-                            android:text="나눔요청" />
+                            android:text="나눔요청"
+                            android:textSize="10sp"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -119,7 +120,8 @@
                     android:text="※필수기재사항"
                     android:textAlignment="textStart"
                     android:textColor="#222F77"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:ignore="RtlCompat" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

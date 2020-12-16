@@ -9,34 +9,32 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="232dp"
+        android:layout_width="414dp"
+        android:layout_height="256dp"
+        android:orientation="horizontal"
         android:background="@color/color_blue"
         android:gravity="center|bottom"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_profile"
-            android:layout_width="132dp"
-            android:layout_height="127dp"
-            android:layout_marginBottom="10dp"
+            android:layout_width="195dp"
+            android:layout_height="180dp"
             android:background="@drawable/img_profile_none"
             android:scaleType="centerCrop" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="203dp"
-        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:id="@+id/tv_name"
@@ -44,35 +42,19 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="name"
-            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.096"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv_grade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="grade"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="13dp"
-                android:layout_height="12dp"
-                android:layout_margin="2dp"
-                app:layout_constraintEnd_toStartOf="@+id/tv_grade"
-                app:layout_constraintTop_toTopOf="@+id/tv_grade"
-                app:srcCompat="@drawable/icon_star" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="grade"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.78"
+            app:layout_constraintVertical_bias="1.0" />
 
     </LinearLayout>
 
@@ -113,113 +95,76 @@
         android:id="@+id/bt_follower"
         android:layout_width="75sp"
         android:layout_height="75sp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="80dp"
         android:text="팔로워"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/bt_following"
         android:layout_width="75sp"
         android:layout_height="75sp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="45dp"
         android:layout_marginStart="45dp"
         android:text="팔로잉"
-        android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@id/bt_follower"
-        app:layout_constraintTop_toTopOf="@+id/bt_follower" />
-
-    <TextView
-        android:id="@+id/tv_div_num"
-        android:layout_width="75sp"
-        android:layout_height="75sp"
-        android:layout_marginEnd="45dp"
-        android:gravity="center"
-        android:text="나눔 수"
-        app:layout_constraintEnd_toStartOf="@id/bt_follower"
-        app:layout_constraintTop_toTopOf="@+id/bt_follower" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ImageButton
         android:id="@+id/ibt_list"
         style="@style/button_4"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="34dp"
+        app:srcCompat="?attr/actionModePasteDrawable"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_follower"
-        app:srcCompat="?attr/actionModePasteDrawable" />
+        app:layout_constraintTop_toBottomOf="@id/bt_following"
+        app:layout_constraintBottom_toTopOf="@id/ibt_pfs"/>
 
-
+    <TextView
+        android:id="@+id/tv_div_num"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="45dp"
+        android:text="나눔 수"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@id/bt_follower"/>
 
     <ImageButton
         android:id="@+id/ibt_chat"
         style="@style/button_4"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/bt_refri"
-        app:layout_constraintTop_toBottomOf="@+id/bt_refri"
-        app:srcCompat="@android:drawable/sym_action_chat" />
+        android:layout_marginStart="69dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ibt_pfs"
+        app:layout_constraintHorizontal_bias="0.637"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/chat"/>
 
     <ImageButton
         android:id="@+id/ibt_pfs"
         style="@style/button_4"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/ibt_list"
-        app:layout_constraintTop_toBottomOf="@+id/ibt_list"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_preferences" />
 
-    <ImageButton
+    <Button
         android:id="@+id/bt_refri"
         style="@style/button_4"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/common_full_open_on_phone"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="34dp"
+        app:layout_constraintBottom_toTopOf="@+id/ibt_chat"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_follower" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="나의 냉장고"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/bt_refri"
-        app:layout_constraintStart_toStartOf="@+id/bt_refri"
-        app:layout_constraintTop_toTopOf="@+id/bt_refri" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="나눔 게시판"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/ibt_list"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="@+id/ibt_list"
-        app:layout_constraintTop_toTopOf="@+id/ibt_list" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="나의 프로필"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/ibt_pfs"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="@+id/ibt_pfs"
-        app:layout_constraintTop_toTopOf="@+id/ibt_pfs" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="채팅 목록"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/ibt_chat"
-        app:layout_constraintStart_toStartOf="@+id/ibt_chat"
-        app:layout_constraintTop_toTopOf="@+id/ibt_chat" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_div_num" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

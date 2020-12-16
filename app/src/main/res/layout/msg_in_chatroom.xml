@@ -87,7 +87,9 @@
                 android:id="@+id/tv_waiting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="상대방의 응답을 기다리는 중입니다."
+                android:textColor="@color/white"
                 android:textSize="12sp" />
 
             <TextView
