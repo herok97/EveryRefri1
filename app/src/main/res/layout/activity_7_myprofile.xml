@@ -82,7 +82,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/et_self"
         android:layout_width="340dp"
         android:layout_height="100dp"
@@ -93,7 +93,7 @@
         android:textColorHint="@color/color_blue"
         android:background="@drawable/round_rectangle_whiteblue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_self" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_self"/>
 
     <Button
         android:id="@+id/bt_save"
